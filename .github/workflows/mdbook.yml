@@ -1,65 +1,67 @@
-name: mdBook Action with plugins
-description: A github action that installs mdBook and optional some popular mdbook plugins
-author: "Jontze"
-inputs:
-  token:
-    description: "Github token"
-    required: true
-  mdbook-version:
-    description: "mdBook version that should be used (e.g. v0.2.2 or 0.2.2)"
-    required: false
-    default: "latest"
-  use-linkcheck:
-    description: "Use linkcheck plugin (true / false)"
-    required: false
-    default: false
-  linkcheck-version:
-    description: "linkcheck version that should be used (e.g. v0.2.2 or 0.2.2)"
-    required: false
-    default: "latest"
-  use-mermaid:
-    description: "Use mermaid plugin (true / false)"
-    required: false
-    default: false
-  mermaid-version:
-    description: mermaid version that should be used
-    required: false
-    default: "latest"
-  use-toc:
-    description: "Use toc plugin (true / false)"
-    required: false
-    default: false
-  toc-version:
-    description: toc version that should be used
-    required: false
-    default: "latest"
-  use-opengh:
-    description: "Use open-on-gh plugin (true / false)"
-    required: false
-    default: false
-  opengh-version:
-    description: open-on-gh version that should be used
-    required: false
-    default: "latest"
-  use-admonish:
-    description: "Use admonish plugin (true / false)"
-    required: false
-    default: false
-  admonish-version:
-    description: admonish version that should be used
-    required: false
-    default: "latest"
-  use-katex:
-    description: "Use katex plugin (true / false)"
-    required: true
-    default: "latest"
-  katex-version:
-    description: katex version that should be used
-    required: false
-    default: "latest"
-runs:
-  using: "node20"
-  main: "./dist/index.js"
-branding:
-  icon: "book"
-  color: "gray-dark"
+name: Deploy mdBook site to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    env:
+      MDBOOK_VERSION: 0.4.36
+      MDBOOK_KATEX_VERSION: latest  # Optional: specify the version of mdbook-katex
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install Rust and mdBook
+      - name: Install Rust and mdBook
+        run: |
+          curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
+          rustup update
+          cargo install --version ${MDBOOK_VERSION} mdbook
+
+      # Install mdbook-katex (make sure the plugin is available)
+      - name: Install mdbook-katex
+        run: cargo install mdbook-katex
+
+      # Setup Pages (GitHub Pages deployment)
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      # Build the book with mdBook (mdbook-katex will be automatically used during build)
+      - name: Build with mdBook
+        run: mdbook build
+
+      # Upload the build artifact to GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./book
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
