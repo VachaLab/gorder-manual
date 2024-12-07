@@ -1,24 +1,65 @@
-name: mdbook deploy
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@v1
-        with:
-          mdbook-version: 'latest'
-
-      - name: Setup mdbook-katex
-        uses: magicgh/mdbook-katex-action@v1
-        with:
-          version: 'latest'
-      
-      - run: mdbook build
+name: mdBook Action with plugins
+description: A github action that installs mdBook and optional some popular mdbook plugins
+author: "Jontze"
+inputs:
+  token:
+    description: "Github token"
+    required: true
+  mdbook-version:
+    description: "mdBook version that should be used (e.g. v0.2.2 or 0.2.2)"
+    required: false
+    default: "latest"
+  use-linkcheck:
+    description: "Use linkcheck plugin (true / false)"
+    required: false
+    default: false
+  linkcheck-version:
+    description: "linkcheck version that should be used (e.g. v0.2.2 or 0.2.2)"
+    required: false
+    default: "latest"
+  use-mermaid:
+    description: "Use mermaid plugin (true / false)"
+    required: false
+    default: false
+  mermaid-version:
+    description: mermaid version that should be used
+    required: false
+    default: "latest"
+  use-toc:
+    description: "Use toc plugin (true / false)"
+    required: false
+    default: false
+  toc-version:
+    description: toc version that should be used
+    required: false
+    default: "latest"
+  use-opengh:
+    description: "Use open-on-gh plugin (true / false)"
+    required: false
+    default: false
+  opengh-version:
+    description: open-on-gh version that should be used
+    required: false
+    default: "latest"
+  use-admonish:
+    description: "Use admonish plugin (true / false)"
+    required: false
+    default: false
+  admonish-version:
+    description: admonish version that should be used
+    required: false
+    default: "latest"
+  use-katex:
+    description: "Use katex plugin (true / false)"
+    required: true
+    default: "latest"
+  katex-version:
+    description: katex version that should be used
+    required: false
+    default: "latest"
+runs:
+  using: "node20"
+  main: "./dist/index.js"
+branding:
+  icon: "book"
+  color: "gray-dark"
