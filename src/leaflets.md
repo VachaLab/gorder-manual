@@ -1,14 +1,14 @@
 # Order parameters for individual leaflets
 
-`gorder` can calculate order parameters for the entire membrane as well as for individual leaflets. To do this, you need to specify a method for classifying lipids into membrane leaflets. `gorder` assigns lipids to membrane leaflets independently for each frame, making it suitable even for the analysis of membranes where lipids flip-flop between leaflets.
+`gorder` can calculate order parameters for the entire membrane as well as for the individual leaflets. To do this, you need to specify a method for classifying lipids into membrane leaflets. `gorder` assigns lipids to membrane leaflets independently for each frame, making it suitable even for the analysis of membranes where lipids flip-flop between leaflets.
 
 There are three leaflet classification methods available in `gorder`: `global`, `local`, and `individual`.
 
 ## Global method for leaflet classification
 
-> **Summary**: Fast and reliable. Recommended, especially good for disrupted membranes.
+> Fast and reliable. Recommended, especially good for disrupted membranes.
 
-In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **global** membrane center of geometry. The 'head identifier' is a single atom representing the head of the lipid. If the 'head identifier' is located "above" the membrane center, the lipid is assigned to the upper leaflet; if it is located "below," it is assigned to the lower leaflet.
+In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **global** membrane center of geometry. The 'head identifier' is a single atom representing the head of the lipid. If the 'head identifier' is located "above" the membrane center, the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 
 To use this method, you must specify the 'head identifier' atoms and all atoms that form the membrane. [GSL](https://docs.rs/groan_rs/latest/groan_rs/#groan-selection-language) is used to define these selections.
 
@@ -18,13 +18,13 @@ leaflets: !Global
   heads: "name P"
 ```
 
-This configuration uses autodetected membrane atoms to calculate the membrane center and selects atoms named 'P' (phosphorus atoms of lipids) as head identifiers. **Each analyzed lipid must have exactly one head identifier atom**; otherwise, an error will occur.
+Here, we use autodetected membrane atoms to calculate the membrane center and select atoms named 'P' (phosphorus atoms of lipids) as head identifiers. **Each analyzed lipid must have exactly one head identifier atom**; otherwise, an error will occur.
 
 ## Local method for leaflet classification
 
-> **Summary**: Slow but reliable. Useful for some curved systems.
+> Very slow but reliable. Useful for some curved systems.
 
-In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **local** membrane center of geometry. The local membrane center is calculated using atoms in a cylinder around the 'head identifier'. If the 'head identifier' is located "above" the local center, the lipid is assigned to the upper leaflet; if "below," it is assigned to the lower leaflet.
+In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **local** membrane center of geometry. The local membrane center is calculated using atoms in a cylinder around the 'head identifier'. If the 'head identifier' is located "above" the local center, the lipid is assigned to the upper leaflet; if "below", it is assigned to the lower leaflet.
 
 For this method, you need to specify a selection of head identifiers, all atoms forming the membrane, and the radius of the cylinder used to define the local membrane.
 
@@ -35,13 +35,13 @@ leaflets: !Local
   radius: 2.5
 ```
 
-Autodetected membrane atoms will be used to calculate the membrane center. Only atoms within a cylinder of radius 2.5 nm (with infinite height) centered on the head identifier and oriented along the membrane normal will be used for the local center calculation. The atoms named 'P' (phosphorus atoms of lipids) are used as head identifiers.
+Autodetected membrane atoms will be used to calculate the membrane center. Only atoms within a cylinder of radius 2.5 nm (with infinite height) centered on the 'head identifier' and oriented along the membrane normal will be used for the local center calculation. The atoms named 'P' (phosphorus atoms of lipids) are used as 'head identifiers'.
 
 ## Individual method for leaflet classification
 
-> **Summary**: Fast but less reliable. Suitable for large membranes.
+> Fast but less reliable. Suitable for large membranes.
 
-In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to their 'tail ends'. 'Tail ends' refer to the last heavy atoms or beads of the lipid tails. Each lipid molecule may have multiple tail ends, but only one head identifier. If the 'head identifier' is located above the 'tail ends', the lipid is assigned to the upper leaflet; if it is located below, it is assigned to the lower leaflet.
+In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to their 'tail ends'. 'Tail ends' refer to the last heavy atoms or beads of the lipid tails. Each lipid molecule may have multiple 'tail ends', but only one 'head identifier'. If the 'head identifier' is located "above" the 'tail ends', the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 
 To use this method, you must specify selections for the 'head identifiers' and the 'tail ends'.
 
@@ -55,7 +55,7 @@ In this example, atoms named 'P' (phosphorus atoms of lipids) are used as head i
 
 ## Example output YAML file
 
-When the leaflet classification method is specified, `gorder` will calculate order parameters for both the entire membrane and for the individual leaflets. Here is an excerpt from an output YAML file containing results for individual membrane leaflets:
+When the leaflet classification method is specified, `gorder` will calculate order parameters for both the entire membrane and for the individual leaflets. Here is an excerpt from an output YAML file containing results for the individual membrane leaflets:
 
 ```yaml
 # Order parameters calculated with 'gorder v0.2.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.

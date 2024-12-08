@@ -22,7 +22,7 @@ In this example, at least 10,000 samples are required for the bond to have a val
 
 ## Overwrite
 
-By default, `gorder` does not overwrite output files. Before writing an output file (or creating an output directory for the order maps), any existing file (or directory) with the same name is backed up. You can change this behavior by specifying the overwrite option in the input YAML file:
+By default, `gorder` does not overwrite output files. Before writing an output file (or creating an output directory for the ordermaps), any existing file (or directory) with the same name is backed up. You can change this behavior by specifying the `overwrite` option in the input YAML file:
 
 ```yaml
 overwrite: true
@@ -30,7 +30,7 @@ overwrite: true
 
 In this example, no backups will be created, and files will be overwritten directly.
 
-You can also specify this option on the command line when running the `gorder` program:
+You can also specify this option on the command line when calling `gorder`:
 
 ```bash
 $ gorder INPUT_YAML --overwrite

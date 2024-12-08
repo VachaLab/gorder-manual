@@ -2,13 +2,13 @@
 
 ## Preparing the input
 
-Suppose we have a [Martini 3](https://cgmartini.nl/) membrane composed of POPC, POPE, and POPG.
+Suppose we have a [Martini 3](https://cgmartini.nl/) membrane composed of POPC, POPE, and POPG lipids.
 
 To calculate coarse-grained order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
 - An XTC trajectory file (`md.xtc`) whose frames will be analyzed.
 
-Next, we create an input YAML file that specifies the parameters for the analysis:
+Next, we create an input YAML file that specifies the options for the analysis:
 
 ```yaml
 structure: system.tpr
@@ -18,7 +18,7 @@ analysis_type: !CGOrder
 output: order.yaml
 ```
 
-In the YAML file, the analysis type `CGOrder` requires you to specify beads that will be considered for the analysis. `gorder` will then identify all bonds connecting the selected beads. The order parameters are calculated for all these identified bonds.
+In the input YAML file, the analysis type `CGOrder` requires you to specify beads that will be considered for the analysis. `gorder` will then identify all bonds connecting the selected beads. The order parameters are calculated for all these identified bonds.
 
 The atoms are selected using a query language called [GSL](https://docs.rs/groan_rs/latest/groan_rs/#groan-selection-language). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
 
@@ -28,10 +28,10 @@ The results of the analysis will be saved in the `order.yaml` file.
 
 ## Running the analysis
 
-We save the YAML file, for example, as `order_analysis.yaml`. Then, we run `gorder` as follows:
+We save the input YAML file, for example, as `analyze.yaml`. Then, we run `gorder` as follows:
 
 ```bash
-$ gorder order_analysis.yaml
+$ gorder analyze.yaml
 ```
 
 During the analysis, we will see something like this (except colored):
@@ -39,7 +39,7 @@ During the analysis, we will see something like this (except colored):
 ```text
 >>> GORDER v0.2.0 <<<
 
-[*] Read config file 'order_analysis.yaml'.
+[*] Read config file 'analyze.yaml'.
 [*] Will calculate coarse-grained order parameters.
 [*] Membrane normal expected to be oriented along the z axis.
 [*] Read molecular topology from 'system.tpr'.
@@ -104,7 +104,7 @@ Let's take a closer look at a part of the YAML file:
 - molecule: POPC                  # name of the molecule
   order:                          # order parameters
     POPC NC3 (0) - POPC PO4 (1):  # bond type (atom type 1 - atom type 2)
-      total: -0.1362              # order parameter for this bond
+      total: -0.1362              # order parameter of this bond
     POPC PO4 (1) - POPC GL1 (2):  # atom types are specified as residue atom_name (relative_index)
       total: 0.585
     POPC GL1 (2) - POPC GL2 (3):

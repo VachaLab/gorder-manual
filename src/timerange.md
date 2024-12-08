@@ -1,4 +1,4 @@
-# Analyzing part of the trajectory
+# Analyzing a part of the trajectory
 
 By default, `gorder` analyzes the entire provided trajectory, meaning it processes all frames from the start to the end of the trajectory.
 

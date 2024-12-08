@@ -2,13 +2,13 @@
 
 ## Preparing the input
 
-Suppose we have a membrane composed of POPC, POPE, and POPG.
+Suppose we have a membrane composed of POPC, POPE, and POPG lipids.
 
 To calculate atomistic order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
 - An XTC trajectory file (`md.xtc`) whose frames will be analyzed.
 
-Next, we create an input YAML file that specifies the parameters for the analysis:
+Next, we create an input YAML file that specifies the options for the analysis:
 
 ```yaml
 structure: system.tpr
@@ -19,12 +19,12 @@ analysis_type: !AAOrder
 output: order.yaml
 ```
 
-In the YAML file, the analysis type `AAOrder` requires you to specify both `heavy_atoms` and `hydrogens`. `gorder` will then identify all bonds connecting the selected heavy atoms with the selected hydrogen atoms. The order parameters are calculated for all these identified bonds.
+In the input YAML file, the analysis type `AAOrder` requires you to specify both `heavy_atoms` and `hydrogens`. `gorder` will then identify all bonds connecting the selected heavy atoms with the selected hydrogen atoms. The order parameters are calculated for all these identified bonds.
   
 The atoms are selected using a query language called [GSL](https://docs.rs/groan_rs/latest/groan_rs/#groan-selection-language). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
 
 Here:
-- `heavy_atoms` are selected using the query `@membrane and name r'C3([2-9]|1[0-6])|C2([2-9]|1[0-8])'`, which selects all palmitoyl and oleoyl carbons in the membrane lipids.
+- `heavy_atoms` are selected using the query `@membrane and name r'C3([2-9]|1[0-6])|C2([2-9]|1[0-8])'`, which selects all palmitoyl and oleoyl carbons of the membrane lipids.
 - `hydrogens` are selected using the query `@membrane and element name hydrogen`.
 
 > `@membrane` is a GSL autodetection macro that selects all atoms of common membrane lipids. The block starting with `r'` is a regular expression which are also supported by GSL.
@@ -33,10 +33,10 @@ The results of the analysis will be saved in the `order.yaml` file.
 
 ## Running the analysis
 
-We save the YAML file, for example, as `order_analysis.yaml`. Then, we run `gorder` as follows:
+We save the input YAML file, for example, as `analyze.yaml`. Then, we run `gorder` as follows:
 
 ```bash
-$ gorder order_analysis.yaml
+$ gorder analyze.yaml
 ```
 
 During the analysis, we will see something like this (except colored):
@@ -44,7 +44,7 @@ During the analysis, we will see something like this (except colored):
 ```text
 >>> GORDER v0.2.0 <<<
 
-[*] Read config file 'order_analysis.yaml'.
+[*] Read config file 'analyze.yaml'.
 [*] Will calculate all-atom order parameters.
 [*] Membrane normal expected to be oriented along the z axis.
 [*] Read molecular topology from 'system.tpr'.
@@ -120,7 +120,7 @@ The results of the analysis are saved in the `order.yaml` file. Here is an excer
           total: 0.1926
 ```
 
-`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atoms are obtained by averaging the order parameters for their bonds with hydrogens.
+`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens.
 
 Let's take a closer look at a part of the YAML file:
 
@@ -128,12 +128,12 @@ Let's take a closer look at a part of the YAML file:
 - molecule: POPE         # name of the molecule
   order:                 # order parameters
     POPC C22 (23):       # heavy atom type: residue atom_name (relative_index)
-      total: 0.1098      # order parameter for the heavy atom
+      total: 0.1098      # order parameter of the heavy atom
       bonds:             # bonds of this heavy atom with hydrogens
         POPC H2R (24):   # hydrogen type: residue atom_name (relative_index)
-          total: 0.0946  # order parameter for bond with this hydrogen
+          total: 0.0946  # order parameter of bond with this hydrogen
         POPC H2S (25):   # hydrogen type: residue atom_name (relative_index)
-          total: 0.125   # order parameter for bond with this hydrogen
+          total: 0.125   # order parameter of bond with this hydrogen
 ```
 
 YAML files are easy to read programmatically and not completely human-unreadable. However, `gorder` also provides other output formats (XVG, CSV, human-readable table). See [Output Formats](output.md) for more information.

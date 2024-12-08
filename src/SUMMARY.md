@@ -1,8 +1,8 @@
 # Summary
 
-[What is gorder?](introduction.md)
-
-[Some theory](theory.md)
+# Introduction
+- [What is gorder?](introduction.md)
+- [Some theory](theory.md)
 
 # Basics
 - [Installation](installation.md)
@@ -10,10 +10,10 @@
 - [Coarse-grained order parameters](cgorder_basics.md)
 - [Output formats](output.md)
 
-# Advanced features
-- [Analyzing part of the trajectory](timerange.md)
+# Advanced
 - [Order parameters for individual leaflets](leaflets.md)
 - [Maps of order parameters](ordermaps.md)
+- [Analyzing a part of the trajectory](timerange.md)
 - [Multithreaded analysis](multithreading.md)
 - [Other options](other_options.md)
 
