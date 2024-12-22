@@ -62,7 +62,7 @@ To write the results of the analysis in Table format, add `output_tab: PATH_TO_O
 Here is an excerpt from a Table file:
 
 ```text
-# Order parameters calculated with 'gorder v0.2.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
 
 Molecule type POPE
            TOTAL   |   H #1   |   H #2   |   H #3   |
@@ -71,6 +71,7 @@ C32        0.2341  |  0.2438  |  0.2244  |          |
 C23        0.2172  |  0.2168  |  0.2175  |          |
 C24        0.2214  |  0.2193  |  0.2235  |          |
 (...)
+AVERAGE    0.1455
 
 Molecule type POPC
            TOTAL   |   H #1   |   H #2   |   H #3   |
@@ -79,6 +80,7 @@ C32        0.2325  |  0.2405  |  0.2245  |          |
 C23        0.2228  |  0.2232  |  0.2224  |          |
 C24        0.2228  |  0.2228  |  0.2228  |          |
 (...)
+AVERAGE    0.1378
 
 Molecule type POPG
            TOTAL   |   H #1   |   H #2   |   H #3   |
@@ -87,9 +89,10 @@ C32        0.2028  |  0.2131  |  0.1926  |          |
 C23        0.2107  |  0.2172  |  0.2041  |          |
 C24        0.2170  |  0.2189  |  0.2151  |          |
 (...)
+AVERAGE    0.1561
 ```
 
-Each line corresponds to one heavy atom type (or one bond type in the case of coarse-grained systems). The first column corresponds to the name of the atom type, the second to the order parameter calculated for this atom type, and the following columns correspond to the order parameters of the bond the heavy atom type is involved in.
+Each line corresponds to one heavy atom type (or one bond type in the case of coarse-grained systems). The first column corresponds to the name of the atom type, the second to the order parameter calculated for this atom type, and the following columns correspond to the order parameters of the bond the heavy atom type is involved in. The last line (`AVERAGE`) corresponds to the average order of all the relevant bonds of a single molecule type.
 
 ## XVG format
 
@@ -100,7 +103,7 @@ To write the results of the analysis in XVG format, add `output_xvg: FILE_PATTER
 Here is an excerpt from an XVG file:
 
 ```text
-# Order parameters calculated with 'gorder v0.2.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
 @    title "Atomistic order parameters for molecule type POPC"
 @    xaxis label "Atom"
 @    yaxis label "-Sch"
@@ -135,7 +138,7 @@ trajectory: md.xtc
 analysis_type: !AAOrder
   heavy_atoms: "@membrane and name r'C3([2-9]|1[0-6])|C2([2-9]|1[0-8])'"
   hydrogens: "@membrane and element name hydrogen"
-output_yaml: order.yaml    # for yaml format, you can use either `output` or `output_yaml`
+output_yaml: order.yaml    # for yaml format, you can use either `output`, `output_yaml` or `output_yml`
 output_tab: order.tab
 output_xvg: order.xvg
 output_csv: order.csv

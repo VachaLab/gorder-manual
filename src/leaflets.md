@@ -58,9 +58,13 @@ In this example, atoms named 'P' (phosphorus atoms of lipids) are used as head i
 When the leaflet classification method is specified, `gorder` will calculate order parameters for both the entire membrane and for the individual leaflets. Here is an excerpt from an output YAML file containing results for the individual membrane leaflets:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.2.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
-- molecule: POPE
-  order:
+# Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+POPE:
+  average order:
+    total: 0.1455
+    upper: 0.1492
+    lower: 0.1419
+  order parameters:
     POPE C22 (23):
       total: 0.1098
       upper: 0.1101
@@ -88,8 +92,12 @@ When the leaflet classification method is specified, `gorder` will calculate ord
           upper: 0.2209
           lower: 0.2278
   #(...)
-- molecule: POPC
-  order:
+POPC:
+  average order:
+    total: 0.1378
+    upper: 0.1326
+    lower: 0.1431
+  order parameters:
     POPC C22 (32):
       total: 0.1094
       upper: 0.1065
@@ -117,8 +125,12 @@ When the leaflet classification method is specified, `gorder` will calculate ord
           upper: 0.2272
           lower: 0.2219
   #(...)
-- molecule: POPG
-  order:
+POPG:
+  average order:
+    total: 0.1561
+    upper: 0.1522
+    lower: 0.1606
+  order parameters:
     POPG C22 (25):
       total: 0.1081
       upper: 0.0975

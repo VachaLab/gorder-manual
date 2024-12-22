@@ -2,7 +2,7 @@
 
 ## Preparing the input
 
-Suppose we have a membrane composed of POPC, POPE, and POPG lipids.
+Suppose we have a [CHARMM36](https://academiccharmm.org/) membrane composed of POPC, POPE, and POPG lipids.
 
 To calculate atomistic order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
@@ -42,7 +42,7 @@ $ gorder analyze.yaml
 During the analysis, we will see something like this (except colored):
 
 ```text
->>> GORDER v0.2.0 <<<
+>>> GORDER v0.3.0 <<<
 
 [*] Read config file 'analyze.yaml'.
 [*] Will calculate all-atom order parameters.
@@ -67,9 +67,11 @@ During the analysis, we will see something like this (except colored):
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.2.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
-- molecule: POPE
-  order:
+# Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+POPE:
+  average order:
+    total: 0.1455
+  order parameters:
     POPE C22 (23):
       total: 0.1098
       bonds:
@@ -85,8 +87,10 @@ The results of the analysis are saved in the `order.yaml` file. Here is an excer
         POPE H2Y (34):
           total: 0.2244
   # (...)
-- molecule: POPC
-  order:
+POPC:
+  average order:
+    total: 0.1378
+  order parameters:
     POPC C22 (32):
       total: 0.1094
       bonds:
@@ -102,8 +106,10 @@ The results of the analysis are saved in the `order.yaml` file. Here is an excer
         POPC H2Y (43):
           total: 0.2245
   # (...)
-- molecule: POPG
-  order:
+POPG:
+  average order:
+    total: 0.1561
+  order parameters:
     POPG C22 (25):
       total: 0.1081
       bonds:
@@ -120,13 +126,15 @@ The results of the analysis are saved in the `order.yaml` file. Here is an excer
           total: 0.1926
 ```
 
-`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens.
+`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens. `average_order` corresponds to the average order of all the relevant bonds of a single molecule type.
 
 Let's take a closer look at a part of the YAML file:
 
 ```yaml
-- molecule: POPE         # name of the molecule
-  order:                 # order parameters
+POPE:                    # name of the molecule
+  average_order:
+    total: 0.1455        # average order calculated for POPE molecules in the entire membrane
+  order parameters:
     POPC C22 (23):       # heavy atom type: residue atom_name (relative_index)
       total: 0.1098      # order parameter of the heavy atom
       bonds:             # bonds of this heavy atom with hydrogens

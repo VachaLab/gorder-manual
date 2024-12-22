@@ -37,7 +37,7 @@ $ gorder analyze.yaml
 During the analysis, we will see something like this (except colored):
 
 ```text
->>> GORDER v0.2.0 <<<
+>>> GORDER v0.3.0 <<<
 
 [*] Read config file 'analyze.yaml'.
 [*] Will calculate coarse-grained order parameters.
@@ -61,9 +61,11 @@ During the analysis, we will see something like this (except colored):
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.2.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
-- molecule: POPC
-  order:
+# Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+POPC:
+  average order:
+    total: 0.2943
+  order parameters:
     POPC NC3 (0) - POPC PO4 (1):
       total: -0.1362
     POPC PO4 (1) - POPC GL1 (2):
@@ -73,8 +75,10 @@ The results of the analysis are saved in the `order.yaml` file. Here is an excer
     POPC GL1 (2) - POPC C1A (4):
       total: 0.3835
   # (...)
-- molecule: POPE
-  order:
+POPE:
+  average order:
+    total: 0.2972
+  order parameters:
     POPE NH3 (0) - POPE PO4 (1):
       total: -0.1293
     POPE PO4 (1) - POPE GL1 (2):
@@ -83,8 +87,10 @@ The results of the analysis are saved in the `order.yaml` file. Here is an excer
       total: -0.1833
     POPE GL1 (2) - POPE C1A (4):
   # (...)
-- molecule: POPG
-  order:
+POPG:
+  average order:
+    total: 0.3059
+  order parameters:
     POPG GL0 (0) - POPG PO4 (1):
       total: 0.0004
     POPG PO4 (1) - POPG GL1 (2):
@@ -96,13 +102,15 @@ The results of the analysis are saved in the `order.yaml` file. Here is an excer
   # (...)
 ```
 
-`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported for each bond type of each molecule type.
+`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported for each bond type of each molecule type. `average_order` corresponds to the average order of all the relevant bonds of a single molecule type.
 
 Let's take a closer look at a part of the YAML file:
 
 ```yaml
-- molecule: POPC                  # name of the molecule
-  order:                          # order parameters
+POPC:                             # name of the molecule
+  average order:
+    total: 0.2943                 # average order calculated for POPC molecules in the entire membrane
+  order parameters:
     POPC NC3 (0) - POPC PO4 (1):  # bond type (atom type 1 - atom type 2)
       total: -0.1362              # order parameter of this bond
     POPC PO4 (1) - POPC GL1 (2):  # atom types are specified as residue atom_name (relative_index)
