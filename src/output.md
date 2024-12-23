@@ -138,7 +138,7 @@ trajectory: md.xtc
 analysis_type: !AAOrder
   heavy_atoms: "@membrane and name r'C3([2-9]|1[0-6])|C2([2-9]|1[0-8])'"
   hydrogens: "@membrane and element name hydrogen"
-output_yaml: order.yaml    # for yaml format, you can use either `output`, `output_yaml` or `output_yml`
+output_yaml: order.yaml    # for yaml format, you can use either `output`, `output_yaml`, or `output_yml`
 output_tab: order.tab
 output_xvg: order.xvg
 output_csv: order.csv
