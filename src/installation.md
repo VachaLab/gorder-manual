@@ -9,4 +9,4 @@ Installing the `gorder` tool consists of two simple steps:
 2. **Install `gorder`.**
     - Run `cargo install gorder` in your terminal.
 
-You can verify that the installation was successful by running `gorder --version`. The current version of the `gorder` tool should be displayed in the terminal. You can now call `gorder` from anywhere.
+You can verify that the installation was successful by running `gorder --version`. The current version of the `gorder` tool should be displayed in the terminal. If everything went right, you can now call `gorder` from anywhere.
