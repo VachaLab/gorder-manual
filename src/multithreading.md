@@ -10,4 +10,4 @@ n_threads: 4
 
 In the example above, the analysis will be performed using 4 threads.
 
-`gorder` guarantees binary identical output, regardless of the number of threads used.
+> `gorder` guarantees binary identical output, regardless of the number of threads used.

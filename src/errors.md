@@ -22,35 +22,35 @@ The output YAML file will then include error estimates and may look similar to t
 POPE:
   average order:
     total:
-      mean: 0.1455
-      error: 0.0029
+      mean: 0.1601
+      error: 0.0015
   order parameters:
-    POPE C12 (4):
+    POPE C22 (23):
       total:
-        mean: -0.0046
-        error: 0.0155
+        mean: 0.1036
+        error: 0.0017
       bonds:
-        POPE H12A (5):
+        POPE H2R (24):
           total:
-            mean: 0.0021
-            error: 0.0242
-        POPE H12B (6):
+            mean: 0.0876
+            error: 0.0054
+        POPE H2S (25):
           total:
-            mean: -0.0114
-            error: 0.0289
-    POPE C11 (7):
+            mean: 0.1196
+            error: 0.0033
+    POPE C32 (32):
       total:
-        mean: -0.0745
-        error: 0.0082
+        mean: 0.2297
+        error: 0.0045
       bonds:
-        POPE H11A (8):
+        POPE H2X (33):
           total:
-            mean: -0.095
-            error: 0.0119
-        POPE H11B (9):
+            mean: 0.2423
+            error: 0.0052
+        POPE H2Y (34):
           total:
-            mean: -0.0539
-            error: 0.0087
+            mean: 0.2171
+            error: 0.0045
 #(...)
 ```
 
@@ -58,24 +58,24 @@ The errors are also reported in CSV and table files but **not** in XVG files:
 
 ```csv
 molecule,residue,atom,relative index,total,total error,hydrogen #1,hydrogen #1 error,hydrogen #2,hydrogen #2 error,hydrogen #3,hydrogen #3 error
-POPE,POPE,C12,4,-0.0046,0.0155,0.0021,0.0242,-0.0114,0.0289,,
-POPE,POPE,C11,7,-0.0745,0.0082,-0.0950,0.0119,-0.0539,0.0087,,
-POPE,POPE,C1,15,0.2155,0.0059,0.2079,0.0116,0.2231,0.0124,,
-POPE,POPE,C2,18,0.1914,0.0070,0.1914,0.0070,,,,
+POPE,POPE,C22,23,0.1036,0.0017,0.0876,0.0054,0.1196,0.0033,,
+POPE,POPE,C32,32,0.2297,0.0045,0.2423,0.0052,0.2171,0.0045,,
+POPE,POPE,C23,35,0.2138,0.0034,0.2139,0.0025,0.2138,0.0047,,
+POPE,POPE,C24,38,0.2165,0.0022,0.2158,0.0035,0.2172,0.0038,,
 (...)
 ```
 
 ```text
 Molecule type POPE
                 TOTAL       |    HYDROGEN #1    |    HYDROGEN #2    |    HYDROGEN #3    |
-C12       -0.0046 ± 0.0155  |  0.0021 ± 0.0242  | -0.0114 ± 0.0289  |                   |
-C11       -0.0745 ± 0.0082  | -0.0950 ± 0.0119  | -0.0539 ± 0.0087  |                   |
-C1         0.2155 ± 0.0059  |  0.2079 ± 0.0116  |  0.2231 ± 0.0124  |                   |
-C2         0.1914 ± 0.0070  |  0.1914 ± 0.0070  |                   |                   |
+C22        0.1036 ± 0.0017  |  0.0876 ± 0.0054  |  0.1196 ± 0.0033  |                   |
+C32        0.2297 ± 0.0045  |  0.2423 ± 0.0052  |  0.2171 ± 0.0045  |                   |
+C23        0.2138 ± 0.0034  |  0.2139 ± 0.0025  |  0.2138 ± 0.0047  |                   |
+C24        0.2165 ± 0.0022  |  0.2158 ± 0.0035  |  0.2172 ± 0.0038  |                   |
 (...)
 ```
 
-However, error estimates are currently not available for individual [ordermaps](ordermaps.md).
+> Error estimates are currently **not** available for individual [ordermaps](ordermaps.md).
 
 ## Changing the number of blocks
 

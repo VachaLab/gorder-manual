@@ -16,7 +16,7 @@ use gorder::prelude::*;
 
 Once imported, you can access all the options and functionality described in this manual. 
 
-For instance, the following input yaml file:
+For instance, the following input YAML file:
 
 ```yaml
 structure: system.tpr
@@ -29,7 +29,7 @@ output: order.yaml
 can also by written as the following Rust code:
 
 ```rust
-let analysis = Analysis::new()
+let analysis = Analysis::builder()
     .structure("system.tpr")
     .trajectory("md.xtc")
     .analysis_type(AnalysisType::cgorder("@membrane"))

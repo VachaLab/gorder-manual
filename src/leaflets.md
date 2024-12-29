@@ -61,101 +61,101 @@ When the leaflet classification method is specified, `gorder` will calculate ord
 # Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
 POPE:
   average order:
-    total: 0.1455
-    upper: 0.1492
-    lower: 0.1419
+    total: 0.1601
+    upper: 0.1603
+    lower: 0.1598
   order parameters:
     POPE C22 (23):
-      total: 0.1098
-      upper: 0.1101
-      lower: 0.1095
+      total: 0.1036
+      upper: 0.1069
+      lower: 0.1003
       bonds:
         POPE H2R (24):
-          total: 0.0946
-          upper: 0.0938
-          lower: 0.0955
+          total: 0.0876
+          upper: 0.0924
+          lower: 0.0828
         POPE H2S (25):
-          total: 0.125
-          upper: 0.1265
-          lower: 0.1235
+          total: 0.1196
+          upper: 0.1214
+          lower: 0.1178
     POPE C32 (32):
-      total: 0.2341
-      upper: 0.2309
-      lower: 0.2372
+      total: 0.2297
+      upper: 0.2291
+      lower: 0.2303
       bonds:
         POPE H2X (33):
-          total: 0.2438
-          upper: 0.2409
-          lower: 0.2467
+          total: 0.2423
+          upper: 0.241
+          lower: 0.2437
         POPE H2Y (34):
-          total: 0.2244
-          upper: 0.2209
-          lower: 0.2278
-  #(...)
+          total: 0.2171
+          upper: 0.2173
+          lower: 0.2168
+#(...)
 POPC:
   average order:
-    total: 0.1378
-    upper: 0.1326
-    lower: 0.1431
+    total: 0.166
+    upper: 0.1654
+    lower: 0.1665
   order parameters:
     POPC C22 (32):
-      total: 0.1094
-      upper: 0.1065
-      lower: 0.1124
+      total: 0.1109
+      upper: 0.1117
+      lower: 0.1101
       bonds:
         POPC H2R (33):
-          total: 0.0953
-          upper: 0.0928
-          lower: 0.0978
+          total: 0.0935
+          upper: 0.0966
+          lower: 0.0904
         POPC H2S (34):
-          total: 0.1235
-          upper: 0.1201
-          lower: 0.1269
+          total: 0.1283
+          upper: 0.1268
+          lower: 0.1297
     POPC C32 (41):
-      total: 0.2325
-      upper: 0.2363
-      lower: 0.2287
+      total: 0.2373
+      upper: 0.236
+      lower: 0.2387
       bonds:
         POPC H2X (42):
-          total: 0.2405
-          upper: 0.2455
-          lower: 0.2354
+          total: 0.2483
+          upper: 0.2446
+          lower: 0.2519
         POPC H2Y (43):
-          total: 0.2245
-          upper: 0.2272
-          lower: 0.2219
-  #(...)
+          total: 0.2264
+          upper: 0.2273
+          lower: 0.2255
+#(...)
 POPG:
   average order:
-    total: 0.1561
-    upper: 0.1522
-    lower: 0.1606
+    total: 0.1608
+    upper: 0.1621
+    lower: 0.1594
   order parameters:
     POPG C22 (25):
-      total: 0.1081
-      upper: 0.0975
-      lower: 0.1203
+      total: 0.0987
+      upper: 0.103
+      lower: 0.0944
       bonds:
         POPG H2R (26):
-          total: 0.1024
-          upper: 0.0934
-          lower: 0.1128
+          total: 0.08
+          upper: 0.0841
+          lower: 0.0759
         POPG H2S (27):
-          total: 0.1138
-          upper: 0.1016
-          lower: 0.1278
+          total: 0.1174
+          upper: 0.1219
+          lower: 0.1129
     POPG C32 (34):
-      total: 0.2028
-      upper: 0.2174
-      lower: 0.1862
+      total: 0.2272
+      upper: 0.2293
+      lower: 0.2251
       bonds:
         POPG H2X (35):
-          total: 0.2131
-          upper: 0.2315
-          lower: 0.192
+          total: 0.2367
+          upper: 0.2391
+          lower: 0.2342
         POPG H2Y (36):
-          total: 0.1926
-          upper: 0.2033
-          lower: 0.1803
-  #(...)
+          total: 0.2177
+          upper: 0.2195
+          lower: 0.2159
+#(...)
 ```

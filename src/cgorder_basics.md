@@ -104,6 +104,8 @@ POPG:
 
 `gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported for each bond type of each molecule type. `average_order` corresponds to the average order of all the relevant bonds of a single molecule type.
 
+> The bond types (and molecule types) are listed in the same order their atoms appear in the input TPR structure.
+
 Let's take a closer look at a part of the YAML file:
 
 ```yaml

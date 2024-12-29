@@ -16,7 +16,7 @@ ordermaps:
 If the output directory (here `ordermaps`) does not exist, it will be created. If it already exists, it will be backed up unless the [`overwrite`](other_options.md#overwrite) option is enabled.
 
 By default:
-- The ordermap is placed in the plane perpendicular to the membrane normal (usually the xy plane since the membrane normal is typically along the z-axis).
+- The ordermap is placed in the plane perpendicular to the membrane normal (usually the xy-plane since the membrane normal is typically along the z-axis).
 - The dimensions of the ordermaps are derived from the simulation box dimensions in the input **structure** file.
 - The bin size is set to 0.1×0.1 nm.
 - At least one sample per bin is required to calculate the order parameter for that bin.

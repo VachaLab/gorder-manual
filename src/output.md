@@ -11,44 +11,44 @@ To write the results of the analysis in CSV format, add `output_csv: PATH_TO_OUT
 Here is an excerpt from a CSV file:
 ```csv
 molecule,residue,atom,relative index,total,hydrogen #1,hydrogen #2,hydrogen #3
-POPE,POPE,C22,23,0.1098,0.0946,0.1250,
-POPE,POPE,C32,32,0.2341,0.2438,0.2244,
-POPE,POPE,C23,35,0.2172,0.2168,0.2175,
-POPE,POPE,C24,38,0.2214,0.2193,0.2235,
-POPE,POPE,C25,41,0.2333,0.2341,0.2325,
-POPE,POPE,C26,44,0.2137,0.2144,0.2129,
-POPE,POPE,C27,47,0.2040,0.2036,0.2044,
-POPE,POPE,C28,50,0.1206,0.1193,0.1220,
-POPE,POPE,C29,53,0.0748,0.0748,,
-POPE,POPE,C210,55,0.0600,0.0600,,
+POPE,POPE,C22,23,0.1036,0.0876,0.1196,
+POPE,POPE,C32,32,0.2297,0.2423,0.2171,
+POPE,POPE,C23,35,0.2138,0.2139,0.2138,
+POPE,POPE,C24,38,0.2165,0.2158,0.2172,
+POPE,POPE,C25,41,0.2290,0.2305,0.2274,
+POPE,POPE,C26,44,0.2081,0.2099,0.2063,
+POPE,POPE,C27,47,0.1989,0.2001,0.1977,
+POPE,POPE,C28,50,0.1176,0.1163,0.1190,
+POPE,POPE,C29,53,0.0703,0.0703,,
+POPE,POPE,C210,55,0.0598,0.0598,,
 (...)
-POPE,POPE,C218,78,0.0324,0.0329,0.0321,0.0322
+POPE,POPE,C218,78,0.0321,0.0316,0.0327,0.0319
 (...)
-POPC,POPC,C22,32,0.1094,0.0953,0.1235,
-POPC,POPC,C32,41,0.2325,0.2405,0.2245,
-POPC,POPC,C23,44,0.2228,0.2232,0.2224,
-POPC,POPC,C24,47,0.2228,0.2228,0.2228,
-POPC,POPC,C25,50,0.2356,0.2366,0.2347,
-POPC,POPC,C26,53,0.2150,0.2165,0.2134,
-POPC,POPC,C27,56,0.2058,0.2055,0.2062,
-POPC,POPC,C28,59,0.1220,0.1239,0.1201,
-POPC,POPC,C29,62,0.0712,0.0712,,
-POPC,POPC,C210,64,0.0648,0.0648,,
+POPC,POPC,C22,32,0.1109,0.0935,0.1283,
+POPC,POPC,C32,41,0.2373,0.2483,0.2264,
+POPC,POPC,C23,44,0.2244,0.2237,0.2252,
+POPC,POPC,C24,47,0.2230,0.2223,0.2236,
+POPC,POPC,C25,50,0.2355,0.2358,0.2352,
+POPC,POPC,C26,53,0.2122,0.2134,0.2109,
+POPC,POPC,C27,56,0.2031,0.2035,0.2027,
+POPC,POPC,C28,59,0.1196,0.1193,0.1199,
+POPC,POPC,C29,62,0.0711,0.0711,,
+POPC,POPC,C210,64,0.0610,0.0610,,
 (...)
-POPC,POPC,C218,87,0.0344,0.0351,0.0340,0.0341
+POPC,POPC,C218,87,0.0344,0.0340,0.0351,0.0340
 (...)
-POPG,POPG,C22,25,0.1081,0.1024,0.1138,
-POPG,POPG,C32,34,0.2028,0.2131,0.1926,
-POPG,POPG,C23,37,0.2107,0.2172,0.2041,
-POPG,POPG,C24,40,0.2170,0.2189,0.2151,
-POPG,POPG,C25,43,0.2367,0.2341,0.2392,
-POPG,POPG,C26,46,0.2193,0.2191,0.2195,
-POPG,POPG,C27,49,0.2101,0.2094,0.2108,
-POPG,POPG,C28,52,0.1233,0.1181,0.1286,
-POPG,POPG,C29,55,0.0806,0.0806,,
-POPG,POPG,C210,57,0.0597,0.0597,,
+POPG,POPG,C22,25,0.0987,0.0800,0.1174,
+POPG,POPG,C32,34,0.2272,0.2367,0.2177,
+POPG,POPG,C23,37,0.2088,0.2075,0.2101,
+POPG,POPG,C24,40,0.2117,0.2108,0.2126,
+POPG,POPG,C25,43,0.2254,0.2255,0.2253,
+POPG,POPG,C26,46,0.2039,0.2006,0.2072,
+POPG,POPG,C27,49,0.1933,0.1911,0.1954,
+POPG,POPG,C28,52,0.1132,0.1148,0.1117,
+POPG,POPG,C29,55,0.0637,0.0637,,
+POPG,POPG,C210,57,0.0624,0.0624,,
 (...)
-POPG,POPG,C218,80,0.0351,0.0361,0.0345,0.0346
+POPG,POPG,C218,80,0.0330,0.0296,0.0324,0.0369
 ```
 
 Each line corresponds to one heavy atom type (or one bond type in the case of coarse-grained systems). The first column corresponds to the molecule name, the second to the residue name, the third to the atom name, the fourth to the relative index of the atom type, the fifth to the order parameter calculated for this atom type, and the following columns correspond to the order parameters of the bonds the heavy atom type is involved in.
@@ -66,33 +66,33 @@ Here is an excerpt from a Table file:
 
 Molecule type POPE
            TOTAL   |   H #1   |   H #2   |   H #3   |
-C22        0.1098  |  0.0946  |  0.1250  |          |
-C32        0.2341  |  0.2438  |  0.2244  |          |
-C23        0.2172  |  0.2168  |  0.2175  |          |
-C24        0.2214  |  0.2193  |  0.2235  |          |
+C22        0.1036  |  0.0876  |  0.1196  |          |
+C32        0.2297  |  0.2423  |  0.2171  |          |
+C23        0.2138  |  0.2139  |  0.2138  |          |
+C24        0.2165  |  0.2158  |  0.2172  |          |
 (...)
-AVERAGE    0.1455
+AVERAGE    0.1601  |
 
 Molecule type POPC
            TOTAL   |   H #1   |   H #2   |   H #3   |
-C22        0.1094  |  0.0953  |  0.1235  |          |
-C32        0.2325  |  0.2405  |  0.2245  |          |
-C23        0.2228  |  0.2232  |  0.2224  |          |
-C24        0.2228  |  0.2228  |  0.2228  |          |
+C22        0.1109  |  0.0935  |  0.1283  |          |
+C32        0.2373  |  0.2483  |  0.2264  |          |
+C23        0.2244  |  0.2237  |  0.2252  |          |
+C24        0.2230  |  0.2223  |  0.2236  |          |
 (...)
-AVERAGE    0.1378
+AVERAGE    0.1660  |
 
 Molecule type POPG
            TOTAL   |   H #1   |   H #2   |   H #3   |
-C22        0.1081  |  0.1024  |  0.1138  |          |
-C32        0.2028  |  0.2131  |  0.1926  |          |
-C23        0.2107  |  0.2172  |  0.2041  |          |
-C24        0.2170  |  0.2189  |  0.2151  |          |
+C22        0.0987  |  0.0800  |  0.1174  |          |
+C32        0.2272  |  0.2367  |  0.2177  |          |
+C23        0.2088  |  0.2075  |  0.2101  |          |
+C24        0.2117  |  0.2108  |  0.2126  |          |
 (...)
-AVERAGE    0.1561
+AVERAGE    0.1608  |
 ```
 
-Each line corresponds to one heavy atom type (or one bond type in the case of coarse-grained systems). The first column corresponds to the name of the atom type, the second to the order parameter calculated for this atom type, and the following columns correspond to the order parameters of the bond the heavy atom type is involved in. The last line (`AVERAGE`) corresponds to the average order of all the relevant bonds of a single molecule type.
+Each line corresponds to one heavy atom type (or one bond type in the case of coarse-grained systems). The first column corresponds to the name of the atom type, the second to the order parameter calculated for this atom type, and the following columns correspond to the order parameters of the bond the heavy atom type is involved in. The last line in each molecule type (`AVERAGE`) corresponds to the average order of all the relevant bonds of a single molecule type.
 
 ## XVG format
 
@@ -110,21 +110,21 @@ Here is an excerpt from an XVG file:
 @    s0 legend "Full membrane"
 @TYPE xy
 # Atom C22:
-1      0.1094 
+1      0.1109
 # Atom C32:
-2      0.2325 
+2      0.2373
 # Atom C23:
-3      0.2228 
+3      0.2244
 # Atom C24:
-4      0.2228 
+4      0.2230
 # Atom C25:
-5      0.2356 
+5      0.2355
 # Atom C26:
-6      0.2150 
+6      0.2122
 # Atom C27:
-7      0.2058 
+7      0.2031
 # Atom C28:
-8      0.1220 
+8      0.1196
 (...)
 ```
 
@@ -136,7 +136,7 @@ XVG files provide the least complete information. The first column is the index 
 structure: system.tpr
 trajectory: md.xtc
 analysis_type: !AAOrder
-  heavy_atoms: "@membrane and name r'C3([2-9]|1[0-6])|C2([2-9]|1[0-8])'"
+  heavy_atoms: "@membrane and name r'C3.+|C2.+'"
   hydrogens: "@membrane and element name hydrogen"
 output_yaml: order.yaml    # for yaml format, you can use either `output`, `output_yaml`, or `output_yml`
 output_tab: order.tab
