@@ -8,6 +8,6 @@ title = "gorder manual"
 [preprocessor.katex]
 after = ["links"]
 
-[output.html]
+# [output.html]
 
-[output.pdf]
+# [output.pdf]

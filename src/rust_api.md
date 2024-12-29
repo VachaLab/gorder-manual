@@ -8,7 +8,7 @@ To use `gorder` in your project, first add it as a dependency:
 $ cargo add gorder
 ```
 
-Next, import the crate into your Rust code:
+Next, include the crate into your Rust code:
 
 ```rust
 use gorder::prelude::*;
@@ -29,13 +29,25 @@ output: order.yaml
 can also by written as the following Rust code:
 
 ```rust
-Analysis::new()
+let analysis = Analysis::new()
     .structure("system.tpr")
     .trajectory("md.xtc")
     .analysis_type(AnalysisType::cgorder("@membrane"))
     .output("order.yaml")
-    .build()
-    .unwrap()
+    .build()?;
 ```
 
-For some more examples on how to specify the analysis options and how to perform the analysis in Rust, refer to the corresponding [docs.rs](https://docs.rs/gorder/latest/gorder).
+You can then run the analysis like this:
+```rust
+let results = analysis.run()?;
+```
+
+and either write the results into the output file(s):
+
+```rust
+results.write()?;
+```
+
+or access them programmatically.
+
+See the Rust API documentation on [docs.rs](https://docs.rs/gorder/latest/gorder) for more information about using `gorder` as a Rust crate.
