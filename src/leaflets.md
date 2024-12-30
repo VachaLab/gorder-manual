@@ -94,8 +94,8 @@ During analysis, `gorder` also prints information about membrane composition in 
 
 ```text
 (...)
-[*] Upper leaflet in the first analyzed frame: POPC: 128
-[*] Lower leaflet in the first analyzed frame: POPE: 131, POPG: 15
+[*] Upper leaflet in the first analyzed frame: POPE: 45, POPC: 50, POPG: 5
+[*] Lower leaflet in the first analyzed frame: POPE: 45, POPC: 50, POPG: 5
 (...)
 ```
 
