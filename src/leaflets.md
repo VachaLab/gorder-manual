@@ -1,6 +1,8 @@
 # Order parameters for individual leaflets
 
-`gorder` can calculate order parameters for the entire membrane as well as for the individual leaflets. To do this, you need to specify a method for classifying lipids into membrane leaflets. `gorder` assigns lipids to membrane leaflets independently for each frame, making it suitable even for the analysis of membranes where lipids flip-flop between leaflets.
+`gorder` can calculate order parameters for the entire membrane as well as for the individual leaflets. 
+
+To do this, you need to specify a method for classifying lipids into membrane leaflets. By default, `gorder` assigns lipids to membrane leaflets independently for each analyzed frame (this can be customized, see [Classification frequency](#classification-frequency)), making it suitable even for the analysis of membranes where lipids flip-flop between leaflets.
 
 There are three leaflet classification methods available in `gorder`: `global`, `local`, and `individual`.
 
@@ -39,7 +41,7 @@ Autodetected membrane atoms will be used to calculate the membrane center. Only 
 
 ## Individual method for leaflet classification
 
-> Fast but less reliable. Suitable for large membranes.
+> Very fast but less reliable. Suitable for large membranes.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to their 'tail ends'. 'Tail ends' refer to the last heavy atoms or beads of the lipid tails. Each lipid molecule may have multiple 'tail ends', but only one 'head identifier'. If the 'head identifier' is located "above" the 'tail ends', the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 
@@ -53,9 +55,51 @@ leaflets: !Individual
 
 In this example, atoms named 'P' (phosphorus atoms of lipids) are used as head identifiers, and 'C218' or 'C316' atoms (the last carbons of oleoyl and palmitoyl chains) are used as tail ends.
 
-## Example output YAML file
+## Classification frequency
 
-When the leaflet classification method is specified, `gorder` will calculate order parameters for both the entire membrane and for the individual leaflets. Here is an excerpt from an output YAML file containing results for the individual membrane leaflets:
+By default, `gorder` performs leaflet classification independently for each analyzed frame. This ensures accurate analysis in membranes where lipid exchange occurs between leaflets. However, you can modify this behavior using the `frequency` keyword to specify how often leaflet classification should be performed.
+
+### Once
+If you know that lipid flip-flop does not occur in your system and want to accelerate the analysis, you can use `frequency: !Once`. This option assigns lipids to individual membrane leaflets based on the **first** trajectory frame (**not** the TPR file structure), and this assignment is then used for all subsequent trajectory frames.
+
+Example usage:
+```yaml
+leaflets: !Local
+  membrane: "@membrane"
+  heads: "name P"
+  radius: 2.5
+  frequency: !Once
+```
+
+> Using `frequency: !Once` is especially useful for the Local classification method which is very computationally expensive.
+
+### Every N frames
+Alternatively, you can specify that classification should occur every N analyzed trajectory frames using `frequency: !Every N`. For example, `frequency: !Every 10` means that classification will be performed every 10 analyzed trajectory frames, with the closest previous assignment used for intermediate frames.
+
+Example usage:
+```yaml
+leaflets: !Global
+  membrane: "@membrane"
+  heads: "name P"
+  frequency: !Every 10
+```
+
+> **Important note:** The frequency applies to **analyzed** trajectory frames. For instance, if the classification frequency is set to 10 and the analysis step size is 5 (see [Analyzing a part of the trajectory](timerange.md)), leaflet classification will occur every **50th** (10×5) frame in the input trajectory.
+
+## Leaflet-wise output
+
+When a leaflet classification method is defined, `gorder` calculates order parameters for both the entire membrane and individual leaflets. Leaflet-specific order parameters are included in all `gorder` output formats: YAML, CSV, "table", and XVG.
+
+During analysis, `gorder` also prints information about membrane composition in the first trajectory frame, allowing you to quickly check for any obvious errors. Such membrane composition information may look like this:
+
+```text
+(...)
+[*] Upper leaflet in the first analyzed frame: POPC: 128
+[*] Lower leaflet in the first analyzed frame: POPE: 131, POPG: 15
+(...)
+```
+
+Below is an excerpt from an output YAML file containing results for individual membrane leaflets:
 
 ```yaml
 # Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
