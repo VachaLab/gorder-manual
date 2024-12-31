@@ -29,7 +29,7 @@ Here:
 
 > `@membrane` is a GSL autodetection macro that selects all atoms of common membrane lipids. `r'C3.+|C2.+'` is a regular expression block, natively supported by GSL.
 
-The results of the analysis will be saved in the `order.yaml` file.
+The results of the analysis will be saved in the `order.yaml` file as $-S_{CH}$ (see [Theory](theory.md)).
 
 ## Running the analysis
 
@@ -128,7 +128,7 @@ POPG:
 
 `gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens. `average_order` corresponds to the average order of all the relevant bonds of a single molecule type.
 
-> The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure. Note that parameters for C21 and C31 are absent, even though these atoms should qualify as `heavy_atoms` based on the regular expression `C3.+|C2.+`. However, these atoms lack bonded hydrogens and are therefore excluded from the output.
+> The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure. Note that parameters for C21 and C31 are absent, even though these atoms should qualify as `heavy_atoms` based on the regular expression `C3.+|C2.+`. However, these atoms lack bonded hydrogens and are therefore automatically excluded from the output.
 
 Let's take a closer look at a part of the YAML file:
 

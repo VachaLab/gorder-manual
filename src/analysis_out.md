@@ -1,4 +1,4 @@
-# Getting all analysis options
+# Extracting all analysis options
 
 When `gorder` runs, it automatically sets many analysis options to their default values if they are not explicitly specified. To view the full set of parameters used in an analysis, including defaults, you can run the `gorder` program with the `--export-config` argument. For example:
 

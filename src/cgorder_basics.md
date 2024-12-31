@@ -24,7 +24,7 @@ The atoms are selected using a query language called [GSL](https://docs.rs/groan
 
 Here `beads` are selected using the query `@membrane`. That is a GSL autodetection macro that select all beads or atoms of common membrane lipids.
 
-The results of the analysis will be saved in the `order.yaml` file.
+The results of the analysis will be saved in the `order.yaml` file as $S$ (see [Theory](theory.md)).
 
 ## Running the analysis
 

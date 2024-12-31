@@ -19,7 +19,7 @@
 - [Other options](other_options.md)
 
 # Expert
-- [Getting all analysis options](analysis_out.md)
+- [Extracting all analysis options](analysis_out.md)
 - [Using gorder as a Rust crate](rust_api.md)
 
 # Meta
