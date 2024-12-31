@@ -21,7 +21,7 @@ output: order.yaml
 
 In the input YAML file, the analysis type `AAOrder` requires you to specify both `heavy_atoms` and `hydrogens`. `gorder` will then identify all bonds connecting the selected heavy atoms with the selected hydrogen atoms. The order parameters are calculated for all these identified bonds.
   
-The atoms are selected using a query language called [GSL](https://docs.rs/groan_rs/latest/groan_rs/#groan-selection-language). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
+The atoms are selected using a query language called [GSL](https://ladme.github.io/gsl-guide/). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
 
 Here:
 - `heavy_atoms` are selected using the query `@membrane and name r'C3.+|C2.+'`, which selects all palmitoyl and oleoyl carbons of the membrane lipids.
