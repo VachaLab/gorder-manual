@@ -11,12 +11,12 @@ ordermaps:
   output_directory: "ordermaps"
 ```
 
-`gorder` will generate one ordermap per bond type and save it in the `ordermaps` directory. If you calculate atomistic order parameters, ordermaps for individual heavy atom types will also be created as averages of the order parameters of heavy atom - hydrogen bonds. If the calculation of order parameters for the individual membrane leaflets is requested (see [Order parameters for individual leaflets](leaflets.md)), additional ordermaps for the upper and lower leaflets will be constructed.
+`gorder` will generate one ordermap per bond type and save it in the `ordermaps` directory. If you calculate atomistic order parameters, ordermaps for individual heavy atom types will also be created as averages of the order parameters of heavy atom - hydrogen bonds. An ordermap with the average order parameter collected from all relevant bonds will also be written for each molecule type. If the calculation of order parameters for the individual membrane leaflets is requested (see [Order parameters for individual leaflets](leaflets.md)), additional ordermaps for the upper and lower leaflets will be constructed.
 
 If the output directory (here `ordermaps`) does not exist, it will be created. If it already exists, it will be backed up unless the [`overwrite`](other_options.md#overwrite) option is enabled.
 
 By default:
-- The ordermap is placed in the plane perpendicular to the membrane normal (usually the xy plane since the membrane normal is typically along the z-axis).
+- The ordermap is placed in the plane perpendicular to the membrane normal (usually the xy-plane since the membrane normal is typically along the z-axis).
 - The dimensions of the ordermaps are derived from the simulation box dimensions in the input **structure** file.
 - The bin size is set to 0.1×0.1 nm.
 - At least one sample per bin is required to calculate the order parameter for that bin.
@@ -81,7 +81,7 @@ Ordermaps are saved in a custom two-dimensional `gorder` format:
 
 ```text
 # Map of average order parameters calculated for the atom type POPC-C22-32.
-# Calculated with 'gorder v0.2.0'.
+# Calculated with 'gorder v0.3.0'.
 @ xlabel x-dimension [nm]
 @ ylabel y-dimension [nm]
 @ zlabel order parameter ($-S_{CH}$)

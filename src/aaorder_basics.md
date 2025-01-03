@@ -2,7 +2,7 @@
 
 ## Preparing the input
 
-Suppose we have a membrane composed of POPC, POPE, and POPG lipids.
+Suppose we have a [CHARMM36](https://academiccharmm.org/) membrane composed of POPC, POPE, and POPG lipids.
 
 To calculate atomistic order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
@@ -14,22 +14,22 @@ Next, we create an input YAML file that specifies the options for the analysis:
 structure: system.tpr
 trajectory: md.xtc
 analysis_type: !AAOrder
-  heavy_atoms: "@membrane and name r'C3([2-9]|1[0-6])|C2([2-9]|1[0-8])'"
+  heavy_atoms: "@membrane and name r'C3.+|C2.+'"
   hydrogens: "@membrane and element name hydrogen"
 output: order.yaml
 ```
 
 In the input YAML file, the analysis type `AAOrder` requires you to specify both `heavy_atoms` and `hydrogens`. `gorder` will then identify all bonds connecting the selected heavy atoms with the selected hydrogen atoms. The order parameters are calculated for all these identified bonds.
   
-The atoms are selected using a query language called [GSL](https://docs.rs/groan_rs/latest/groan_rs/#groan-selection-language). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
+The atoms are selected using a query language called [GSL](https://ladme.github.io/gsl-guide/). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
 
 Here:
-- `heavy_atoms` are selected using the query `@membrane and name r'C3([2-9]|1[0-6])|C2([2-9]|1[0-8])'`, which selects all palmitoyl and oleoyl carbons of the membrane lipids.
+- `heavy_atoms` are selected using the query `@membrane and name r'C3.+|C2.+'`, which selects all palmitoyl and oleoyl carbons of the membrane lipids.
 - `hydrogens` are selected using the query `@membrane and element name hydrogen`.
 
-> `@membrane` is a GSL autodetection macro that selects all atoms of common membrane lipids. The block starting with `r'` is a regular expression which are also supported by GSL.
+> `@membrane` is a GSL autodetection macro that selects all atoms of common membrane lipids. `r'C3.+|C2.+'` is a regular expression block, natively supported by GSL.
 
-The results of the analysis will be saved in the `order.yaml` file.
+The results of the analysis will be saved in the `order.yaml` file as $-S_{CH}$ (see [Theory](theory.md)).
 
 ## Running the analysis
 
@@ -42,23 +42,23 @@ $ gorder analyze.yaml
 During the analysis, we will see something like this (except colored):
 
 ```text
->>> GORDER v0.2.0 <<<
+>>> GORDER v0.3.0 <<<
 
 [*] Read config file 'analyze.yaml'.
 [*] Will calculate all-atom order parameters.
 [*] Membrane normal expected to be oriented along the z axis.
 [*] Read molecular topology from 'system.tpr'.
-[*] Detected 8768 heavy atoms using a query '@membrane and name r'C3([2-9]|1[0-6])|C2([2-9]|1[0-8])''.
-[*] Detected 21592 hydrogen atoms using a query '@membrane and element name hydrogen'.
+[*] Detected 6800 heavy atoms using a query '@membrane and name r'C3.+|C2.+''.
+[*] Detected 15800 hydrogen atoms using a query '@membrane and element name hydrogen'.
 [*] Detecting molecule types...
 [*] Detected 3 relevant molecule type(s).
-[*] Molecule type POPE: 64 order bonds, 131 molecules.
-[*] Molecule type POPC: 64 order bonds, 128 molecules.
-[*] Molecule type POPG: 64 order bonds, 15 molecules.
+[*] Molecule type POPE: 64 order bonds, 90 molecules.
+[*] Molecule type POPC: 64 order bonds, 100 molecules.
+[*] Molecule type POPG: 64 order bonds, 10 molecules.
 [*] Will read trajectory file 'md.xtc' (start: 0 ps, end: inf ps, step: 1).
 [*] Performing the analysis using 1 thread(s)...
-[COMPLETED]   Step    225000000 | Time       450000 ps
-[*] Writing the order parameters into a yaml file 'order.yaml'...
+[COMPLETED]   Step    150000000 | Time       300000 ps
+[*] Writing order parameters into yaml file 'order.yaml'...
 [✔] ANALYSIS COMPLETED
 ```
 
@@ -67,73 +67,83 @@ During the analysis, we will see something like this (except colored):
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.2.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
-- molecule: POPE
-  order:
+# Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+POPE:
+  average order:
+    total: 0.1601
+  order parameters:
     POPE C22 (23):
-      total: 0.1098
+      total: 0.1036
       bonds:
         POPE H2R (24):
-          total: 0.0946
+          total: 0.0876
         POPE H2S (25):
-          total: 0.125
+          total: 0.1196
     POPE C32 (32):
-      total: 0.2341
+      total: 0.2297
       bonds:
         POPE H2X (33):
-          total: 0.2438
+          total: 0.2423
         POPE H2Y (34):
-          total: 0.2244
+          total: 0.2171
   # (...)
-- molecule: POPC
-  order:
+POPC:
+  average order:
+    total: 0.166
+  order parameters:
     POPC C22 (32):
-      total: 0.1094
+      total: 0.1109
       bonds:
         POPC H2R (33):
-          total: 0.0953
+          total: 0.0935
         POPC H2S (34):
-          total: 0.1235
+          total: 0.1283
     POPC C32 (41):
-      total: 0.2325
+      total: 0.2373
       bonds:
         POPC H2X (42):
-          total: 0.2405
+          total: 0.2483
         POPC H2Y (43):
-          total: 0.2245
+          total: 0.2264
   # (...)
-- molecule: POPG
-  order:
+POPG:
+  average order:
+    total: 0.1608
+  order parameters:
     POPG C22 (25):
-      total: 0.1081
+      total: 0.0987
       bonds:
         POPG H2R (26):
-          total: 0.1024
+          total: 0.08
         POPG H2S (27):
-          total: 0.1138
+          total: 0.1174
     POPG C32 (34):
-      total: 0.2028
+      total: 0.2272
       bonds:
         POPG H2X (35):
-          total: 0.2131
+          total: 0.2367
         POPG H2Y (36):
-          total: 0.1926
+          total: 0.2177
 ```
 
-`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens.
+`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens. `average_order` corresponds to the average order of all the relevant bonds of a single molecule type.
+
+> The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure. Note that parameters for C21 and C31 are absent, even though these atoms should qualify as `heavy_atoms` based on the regular expression `C3.+|C2.+`. However, these atoms lack bonded hydrogens and are therefore automatically excluded from the output.
 
 Let's take a closer look at a part of the YAML file:
 
 ```yaml
-- molecule: POPE         # name of the molecule
-  order:                 # order parameters
+POPE:                    # name of the molecule
+  average_order:
+    total: 0.1601        # average order calculated for POPE molecules in the entire membrane
+  order parameters:
     POPC C22 (23):       # heavy atom type: residue atom_name (relative_index)
-      total: 0.1098      # order parameter of the heavy atom
+      total: 0.1036      # order parameter of the heavy atom
       bonds:             # bonds of this heavy atom with hydrogens
         POPC H2R (24):   # hydrogen type: residue atom_name (relative_index)
-          total: 0.0946  # order parameter of bond with this hydrogen
+          total: 0.0876  # order parameter of bond with this hydrogen
         POPC H2S (25):   # hydrogen type: residue atom_name (relative_index)
-          total: 0.125   # order parameter of bond with this hydrogen
+          total: 0.1196  # order parameter of bond with this hydrogen
 ```
 
 YAML files are easy to read programmatically and not completely human-unreadable. However, `gorder` also provides other output formats (XVG, CSV, human-readable table). See [Output Formats](output.md) for more information.
@@ -145,7 +155,7 @@ YAML files are easy to read programmatically and not completely human-unreadable
 ```yaml
 structure: system.tpr
 trajectory: md.xtc
-index: index.ndx     # name of the NDX file
+index: index.ndx               # name of the NDX file
 analysis_type: !AAOrder
   heavy_atoms: "TailCarbons"   # name of a group from NDX file
   hydrogens: "@membrane and element name hydrogen"
