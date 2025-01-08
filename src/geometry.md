@@ -1,6 +1,6 @@
 # Order parameters for a specific membrane region
 
-`gorder` allows you to calculate order parameters for a specific region of the membrane within a defined geometric shape. Currently, three geometric shapes are supported for this selection: [cuboid](#cuboid-selection), [cylinder](#cylindrical-selection), and [sphere](#spherical-selection). When a geometric shape is specified, only **bonds** located within that shape are included in the order parameter calculations. The bond's inclusion is dynamically evaluated for every frame of the trajectory. This feature is useful when analyzing order parameters near transmembrane proteins or specific membrane regions.
+`gorder` allows you to calculate order parameters for a specific region of the membrane within a defined geometric shape. Currently, three geometric shapes are supported for this selection: [cuboid](#cuboid-selection), [cylinder](#cylindrical-selection), and [sphere](#spherical-selection). When a geometric shape is specified, only **bonds** located within that shape are included in the order parameter calculations. The bond's inclusion is dynamically evaluated for every frame of the trajectory. This feature is useful for instance when analyzing order parameters near transmembrane proteins or specific membrane regions.
 
 > **Note:** The position of a bond is defined as the center of geometry of the bonded atoms.
 

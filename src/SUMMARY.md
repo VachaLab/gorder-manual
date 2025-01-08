@@ -20,6 +20,7 @@
 - [Other options](other_options.md)
 
 # Expert
+- [Using other input file formats](other_input.md)
 - [Extracting all analysis options](analysis_out.md)
 - [Using gorder as a Rust crate](rust_api.md)
 
