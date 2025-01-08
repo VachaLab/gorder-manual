@@ -123,7 +123,7 @@ POPC:                             # name of the molecule
       total: 0.3835
 ```
 
-YAML files are easy to read programmatically and not completely human-unreadable. However, `gorder` also provides other output formats (XVG, CSV, human-readable table). See [Output Formats](output.md) for more information.
+YAML files are easy to read programmatically and not completely human-unreadable. However, `gorder` also provides other output formats (XVG, CSV, human-readable table). See [Output formats](output.md) for more information.
 
 ## Using groups from an NDX file
 

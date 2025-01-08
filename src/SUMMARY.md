@@ -14,6 +14,7 @@
 - [Order parameters for individual leaflets](leaflets.md)
 - [Maps of order parameters](ordermaps.md)
 - [Estimating errors](errors.md)
+- [Order parameters for a specific membrane region](geometry.md)
 - [Analyzing a part of the trajectory](timerange.md)
 - [Multithreaded analysis](multithreading.md)
 - [Other options](other_options.md)
