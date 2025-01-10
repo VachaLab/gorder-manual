@@ -34,7 +34,7 @@ We save the input YAML file, for example, as `analyze.yaml`. Then, we run `gorde
 $ gorder analyze.yaml
 ```
 
-During the analysis, we will see something like this (except colored):
+During the analysis, we will see something like this:
 
 ![Gorder calculates coarse-grained order parameters](martini.gif)
 
