@@ -36,35 +36,17 @@ $ gorder analyze.yaml
 
 During the analysis, we will see something like this (except colored):
 
-```text
->>> GORDER v0.3.0 <<<
-
-[*] Read config file 'analyze.yaml'.
-[*] Will calculate coarse-grained order parameters.
-[*] Membrane normal expected to be oriented along the z axis.
-[*] Read molecular topology from 'system.tpr'.
-[*] Detected 6096 beads for order calculation using a query '@membrane'.
-[*] Detecting molecule types...
-[*] Detected 3 relevant molecule type(s).
-[*] Molecule type POPC: 11 order bonds, 242 molecules.
-[*] Molecule type POPE: 11 order bonds, 242 molecules.
-[*] Molecule type POPG: 11 order bonds, 24 molecules.
-[*] Will read trajectory file 'md.xtc' (start: 0 ps, end: inf ps, step: 1).
-[*] Performing the analysis using 1 thread(s)...
-[COMPLETED]   Step     50000000 | Time      1000000 ps
-[*] Writing order parameters into a yaml file 'order.yaml'...
-[✔] ANALYSIS COMPLETED
-```
+![Gorder calculates coarse-grained order parameters](martini.gif)
 
 > Note that the structure from the TPR file is not analyzed. The TPR file is only used to construct the system and obtain its topology.
 
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.4.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
 POPC:
   average order:
-    total: 0.2943
+    total: 0.2902
   order parameters:
     POPC NC3 (0) - POPC PO4 (1):
       total: -0.1362
@@ -77,7 +59,7 @@ POPC:
   # (...)
 POPE:
   average order:
-    total: 0.2972
+    total: 0.2959
   order parameters:
     POPE NH3 (0) - POPE PO4 (1):
       total: -0.1293
@@ -86,10 +68,11 @@ POPE:
     POPE GL1 (2) - POPE GL2 (3):
       total: -0.1833
     POPE GL1 (2) - POPE C1A (4):
+      total: 0.3965
   # (...)
 POPG:
   average order:
-    total: 0.3059
+    total: 0.3063
   order parameters:
     POPG GL0 (0) - POPG PO4 (1):
       total: 0.0004
@@ -111,7 +94,7 @@ Let's take a closer look at a part of the YAML file:
 ```yaml
 POPC:                             # name of the molecule
   average order:
-    total: 0.2943                 # average order calculated for POPC molecules in the entire membrane
+    total: 0.2902                 # average order calculated for POPC molecules in the entire membrane
   order parameters:
     POPC NC3 (0) - POPC PO4 (1):  # bond type (atom type 1 - atom type 2)
       total: -0.1362              # order parameter of this bond

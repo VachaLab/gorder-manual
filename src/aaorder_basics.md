@@ -39,35 +39,16 @@ We save the input YAML file, for example, as `analyze.yaml`. Then, we run `gorde
 $ gorder analyze.yaml
 ```
 
-During the analysis, we will see something like this (except colored):
+During the analysis, we will see something like this:
 
-```text
->>> GORDER v0.3.0 <<<
-
-[*] Read config file 'analyze.yaml'.
-[*] Will calculate all-atom order parameters.
-[*] Membrane normal expected to be oriented along the z axis.
-[*] Read molecular topology from 'system.tpr'.
-[*] Detected 6800 heavy atoms using a query '@membrane and name r'C3.+|C2.+''.
-[*] Detected 15800 hydrogen atoms using a query '@membrane and element name hydrogen'.
-[*] Detecting molecule types...
-[*] Detected 3 relevant molecule type(s).
-[*] Molecule type POPE: 64 order bonds, 90 molecules.
-[*] Molecule type POPC: 64 order bonds, 100 molecules.
-[*] Molecule type POPG: 64 order bonds, 10 molecules.
-[*] Will read trajectory file 'md.xtc' (start: 0 ps, end: inf ps, step: 1).
-[*] Performing the analysis using 1 thread(s)...
-[COMPLETED]   Step    150000000 | Time       300000 ps
-[*] Writing order parameters into yaml file 'order.yaml'...
-[✔] ANALYSIS COMPLETED
-```
+![Gorder calculates atomistic order parameters](charmm.gif)
 
 > Note that the structure from the TPR file is not analyzed. The TPR file is only used to construct the system and obtain its topology.
 
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.4.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
 POPE:
   average order:
     total: 0.1601
