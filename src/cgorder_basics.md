@@ -44,6 +44,8 @@ The results of the analysis are saved in the `order.yaml` file. Here is an excer
 
 ```yaml
 # Order parameters calculated with 'gorder v0.4.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+average order:
+  total: 0.2937
 POPC:
   average order:
     total: 0.2902
@@ -85,13 +87,15 @@ POPG:
   # (...)
 ```
 
-`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported for each bond type of each molecule type. `average_order` corresponds to the average order of all the relevant bonds of a single molecule type.
+`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported for each bond type of each molecule type. `average order` corresponds to the average order of all the relevant bonds of the entire system or a single molecule type, respectively.
 
 > The bond types (and molecule types) are listed in the same order their atoms appear in the input TPR structure.
 
 Let's take a closer look at a part of the YAML file:
 
 ```yaml
+average order:
+  total: 0.2937                   # average order calculated for all molecules in the entire membrane
 POPC:                             # name of the molecule
   average order:
     total: 0.2902                 # average order calculated for POPC molecules in the entire membrane

@@ -90,9 +90,13 @@ C23        0.2088  |  0.2075  |  0.2101  |          |
 C24        0.2117  |  0.2108  |  0.2126  |          |
 (...)
 AVERAGE    0.1608  |
+
+All molecule types
+           TOTAL   |
+AVERAGE    0.1631  |
 ```
 
-Each line corresponds to one heavy atom type (or one bond type in the case of coarse-grained systems). The first column corresponds to the name of the atom type, the second to the order parameter calculated for this atom type, and the following columns correspond to the order parameters of the bond the heavy atom type is involved in. The last line in each molecule type (`AVERAGE`) corresponds to the average order of all the relevant bonds of a single molecule type.
+Each line corresponds to one heavy atom type (or one bond type in the case of coarse-grained systems). The first column corresponds to the name of the atom type, the second to the order parameter calculated for this atom type, and the following columns correspond to the order parameters of the bond the heavy atom type is involved in. The last line in each molecule type (`AVERAGE`) corresponds to the average order of all the relevant bonds of a single molecule type. The last segment (`All molecule types`) shows average order parameter calculated for the entire system (all the identified molecules).
 
 ## XVG format
 

@@ -103,6 +103,10 @@ Below is an excerpt from an output YAML file containing results for individual m
 
 ```yaml
 # Order parameters calculated with 'gorder v0.4.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+average order:
+  total: 0.1631
+  upper: 0.1629
+  lower: 0.1632
 POPE:
   average order:
     total: 0.1601

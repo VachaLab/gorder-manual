@@ -11,7 +11,7 @@ ordermaps:
   output_directory: "ordermaps"
 ```
 
-`gorder` will generate one ordermap per bond type and save it in the `ordermaps` directory. If you calculate atomistic order parameters, ordermaps for individual heavy atom types will also be created as averages of the order parameters of heavy atom - hydrogen bonds. An ordermap with the average order parameter collected from all relevant bonds will also be written for each molecule type. If the calculation of order parameters for the individual membrane leaflets is requested (see [Order parameters for individual leaflets](leaflets.md)), additional ordermaps for the upper and lower leaflets will be constructed.
+`gorder` will generate one ordermap per bond type and save it in the `ordermaps` directory. If you calculate atomistic order parameters, ordermaps for individual heavy atom types will also be created as averages of the order parameters of heavy atom - hydrogen bonds. An ordermap with the average order parameter collected from all relevant bonds will also be written for each molecule type as well as for the entire system. If the calculation of order parameters for the individual membrane leaflets is requested (see [Order parameters for individual leaflets](leaflets.md)), additional ordermaps for the upper and lower leaflets will be constructed.
 
 If the output directory (here `ordermaps`) does not exist, it will be created. If it already exists, it will be backed up unless the [`overwrite`](other_options.md#overwrite) option is enabled.
 

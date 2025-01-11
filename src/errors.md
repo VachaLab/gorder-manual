@@ -19,6 +19,10 @@ The output YAML file will then include error estimates and may look similar to t
 
 ```yaml
 # Order parameters calculated with 'gorder v0.4.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+average order:
+  total:
+    mean: 0.1631
+    error: 0.0014
 POPE:
   average order:
     total:
