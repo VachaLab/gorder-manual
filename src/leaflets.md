@@ -4,7 +4,7 @@
 
 To do this, you need to specify a method for classifying lipids into membrane leaflets. By default, `gorder` assigns lipids to membrane leaflets independently for each analyzed frame (this can be customized, see [Classification frequency](#classification-frequency)), making it suitable even for the analysis of membranes where lipids flip-flop between leaflets.
 
-There are three leaflet classification methods available in `gorder`: `global`, `local`, and `individual`.
+There are three leaflet classification methods available in `gorder`: `global`, `local`, and `individual`. In case you are not satisfied with any of them, you can also [assign lipids into leaflets manually](manual_leaflets.md).
 
 ## Global method for leaflet classification
 
