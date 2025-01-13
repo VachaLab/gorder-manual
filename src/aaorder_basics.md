@@ -39,35 +39,18 @@ We save the input YAML file, for example, as `analyze.yaml`. Then, we run `gorde
 $ gorder analyze.yaml
 ```
 
-During the analysis, we will see something like this (except colored):
+During the analysis, we will see something like this:
 
-```text
->>> GORDER v0.3.0 <<<
-
-[*] Read config file 'analyze.yaml'.
-[*] Will calculate all-atom order parameters.
-[*] Membrane normal expected to be oriented along the z axis.
-[*] Read molecular topology from 'system.tpr'.
-[*] Detected 6800 heavy atoms using a query '@membrane and name r'C3.+|C2.+''.
-[*] Detected 15800 hydrogen atoms using a query '@membrane and element name hydrogen'.
-[*] Detecting molecule types...
-[*] Detected 3 relevant molecule type(s).
-[*] Molecule type POPE: 64 order bonds, 90 molecules.
-[*] Molecule type POPC: 64 order bonds, 100 molecules.
-[*] Molecule type POPG: 64 order bonds, 10 molecules.
-[*] Will read trajectory file 'md.xtc' (start: 0 ps, end: inf ps, step: 1).
-[*] Performing the analysis using 1 thread(s)...
-[COMPLETED]   Step    150000000 | Time       300000 ps
-[*] Writing order parameters into yaml file 'order.yaml'...
-[✔] ANALYSIS COMPLETED
-```
+![Gorder calculates atomistic order parameters](charmm.gif)
 
 > Note that the structure from the TPR file is not analyzed. The TPR file is only used to construct the system and obtain its topology.
 
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.3.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.4.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+average order:
+  total: 0.1631
 POPE:
   average order:
     total: 0.1601
@@ -126,13 +109,15 @@ POPG:
           total: 0.2177
 ```
 
-`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens. `average_order` corresponds to the average order of all the relevant bonds of a single molecule type.
+`gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens. `average order` corresponds to the average order of all the relevant bonds of the entire system or a single molecule type, respectively.
 
 > The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure. Note that parameters for C21 and C31 are absent, even though these atoms should qualify as `heavy_atoms` based on the regular expression `C3.+|C2.+`. However, these atoms lack bonded hydrogens and are therefore automatically excluded from the output.
 
 Let's take a closer look at a part of the YAML file:
 
 ```yaml
+average order:
+  total: 0.1631          # average order calculated for all molecules in the entire membrane
 POPE:                    # name of the molecule
   average_order:
     total: 0.1601        # average order calculated for POPE molecules in the entire membrane
@@ -146,7 +131,7 @@ POPE:                    # name of the molecule
           total: 0.1196  # order parameter of bond with this hydrogen
 ```
 
-YAML files are easy to read programmatically and not completely human-unreadable. However, `gorder` also provides other output formats (XVG, CSV, human-readable table). See [Output Formats](output.md) for more information.
+YAML files are easy to read programmatically and not completely human-unreadable. However, `gorder` also provides other output formats (XVG, CSV, human-readable table). See [Output formats](output.md) for more information.
 
 ## Using groups from an NDX file
 
