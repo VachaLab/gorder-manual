@@ -75,7 +75,7 @@ ordermaps:
 
 For this example, at least 50 samples must be collected in a bin to calculate the order parameter for it. If the collected sample count is less than 50, the order parameter for that bin will be recorded as NaN.
 
-## Examples of ordermaps
+## Ordermap format
 
 Ordermaps are saved in a custom two-dimensional `gorder` format:
 
@@ -128,7 +128,29 @@ $ colormap seismic_r
 
 This example ordermap corresponds to the atom type `POPC-C22-32` (C22 of POPC). Lines beginning with `#` are comments, while lines starting with `@` and `$` define plotting parameters. Other lines contain the calculated order parameters. The first column represents the first coordinate of the bin (here x-dimension), the second column represents the second coordinate (here y-dimension), and the third column contains the average order parameter for the bin. The data is stored in row-major order. Note that the order parameter may be NaN; ensure your plotting software can handle such cases.
 
-When visualized, the ordermap for this atom type might look like this:
+## Plotting ordermaps
+
+For easy visualization of ordermaps, `gorder` generates a Python script named `plot.py` in the ordermaps directory.
+
+To run the script, it is recommended to use the [`uv`](https://github.com/astral-sh/uv) package manager. To visualize an ordermap, navigate to the generated ordermaps directory and run:
+
+```bash
+uv run -q plot.py INPUT_ORDERMAP
+```
+
+Here, `INPUT_ORDERMAP` is the path to the ordermap file you want to plot. A window displaying the generated plot will appear.
+
+If you want to plot and save the ordermap as a PNG file, run:
+
+```bash
+uv run -q plot.py INPUT_ORDERMAP OUTPUT_PNG
+```
+
+Here, `OUTPUT_PNG` is the path where the PNG file will be saved.
+
+## Examples of plotted ordermaps
+
+When visualized, the ordermap for a specific atom type might look like this:
 
 ![Example of an ordermap](ordermap_example_1.png)
 
