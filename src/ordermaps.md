@@ -85,44 +85,44 @@ Ordermaps are saved in a custom two-dimensional `gorder` format:
 @ xlabel x-dimension [nm]
 @ ylabel y-dimension [nm]
 @ zlabel order parameter ($-S_{CH}$)
-@ zrange -1 1 0.2
+@ zrange -1.0 0.5 0.2
 $ type colorbar
 $ colormap seismic_r
-0.0000 0.0000 0.1025
-0.0000 0.1000 0.0610
-0.0000 0.2000 0.0922
-0.0000 0.3000 0.0798
-0.0000 0.4000 0.1215
-0.0000 0.5000 0.1275
-0.0000 0.6000 0.1120
-0.0000 0.7000 0.0732
-0.0000 0.8000 0.0723
-0.0000 0.9000 0.1040
-0.0000 1.0000 0.0711
+0.0000 0.0000 0.0663
+0.0000 0.1000 0.0599
+0.0000 0.2000 0.0890
+0.0000 0.3000 0.0607
+0.0000 0.4000 0.0851
+0.0000 0.5000 0.0730
+0.0000 0.6000 0.0635
+0.0000 0.7000 0.0650
+0.0000 0.8000 0.0823
+0.0000 0.9000 0.1256
+0.0000 1.0000 0.1154
 (...)
-0.1000 0.0000 0.0825
-0.1000 0.1000 0.0918
-0.1000 0.2000 0.1077
-0.1000 0.3000 0.1022
-0.1000 0.4000 0.1100
-0.1000 0.5000 0.1124
-0.1000 0.6000 0.0917
-0.1000 0.7000 0.1038
-0.1000 0.8000 0.1128
-0.1000 0.9000 0.1064
-0.1000 1.0000 0.1046
+0.1000 0.0000 0.0527
+0.1000 0.1000 0.0738
+0.1000 0.2000 0.0787
+0.1000 0.3000 0.0735
+0.1000 0.4000 0.0600
+0.1000 0.5000 0.0745
+0.1000 0.6000 0.0787
+0.1000 0.7000 0.0897
+0.1000 0.8000 0.1080
+0.1000 0.9000 0.1279
+0.1000 1.0000 0.1003
 (...)
-0.2000 0.0000 0.0603
-0.2000 0.1000 0.0873
-0.2000 0.2000 0.1058
-0.2000 0.3000 0.1097
-0.2000 0.4000 0.1014
-0.2000 0.5000 0.1147
-0.2000 0.6000 0.1199
-0.2000 0.7000 0.1315
-0.2000 0.8000 0.1123
-0.2000 0.9000 0.1012
-0.2000 1.0000 0.1207
+0.2000 0.0000 0.0645
+0.2000 0.1000 0.1024
+0.2000 0.2000 0.0880
+0.2000 0.3000 0.0747
+0.2000 0.4000 0.0647
+0.2000 0.5000 0.0681
+0.2000 0.6000 0.0839
+0.2000 0.7000 0.1048
+0.2000 0.8000 0.1208
+0.2000 0.9000 0.1400
+0.2000 1.0000 0.0974
 (...)
 ```
 
@@ -135,7 +135,7 @@ For easy visualization of ordermaps, `gorder` generates a Python script named `p
 To run the script, it is recommended to use the [`uv`](https://github.com/astral-sh/uv) package manager. To visualize an ordermap, navigate to the generated ordermaps directory and run:
 
 ```bash
-uv run -q plot.py INPUT_ORDERMAP
+uv run plot.py INPUT_ORDERMAP
 ```
 
 Here, `INPUT_ORDERMAP` is the path to the ordermap file you want to plot. A window displaying the generated plot will appear.
@@ -143,14 +143,14 @@ Here, `INPUT_ORDERMAP` is the path to the ordermap file you want to plot. A wind
 If you want to plot and save the ordermap as a PNG file, run:
 
 ```bash
-uv run -q plot.py INPUT_ORDERMAP OUTPUT_PNG
+uv run plot.py INPUT_ORDERMAP OUTPUT_PNG
 ```
 
 Here, `OUTPUT_PNG` is the path where the PNG file will be saved.
 
 ## Examples of plotted ordermaps
 
-When visualized, the ordermap for a specific atom type might look like this:
+When visualized, an ordermap for a specific atom type might look like this:
 
 ![Example of an ordermap](ordermap_example_1.png)
 
