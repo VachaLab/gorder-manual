@@ -24,7 +24,7 @@ The resulting `OUTPUT_XTC_FILE` should then be used as the trajectory input for 
 
 You can of course choose to ignore PBC for any system, even if it has an orthogonal box.
 
-> Note: You do not necessarily have to set `handle_pbc` to `false` when working with an orthogonal box with PBC applied in fewer than three dimensions. However, such systems are untested, so proceed with caution. In cases of uncertainty, try using a trajectory with whole molecules, set `handle_pbc` to `false`, and verify whether the results change.
+> Note: You do not necessarily have to set `handle_pbc` to `false` when working with an orthogonal box with PBC applied in fewer than three dimensions. However, such systems are untested, so proceed with caution. In case you are not sure the analysis is correct, try using a trajectory with whole molecules, set `handle_pbc` to `false`, and check whether the results change.
 
 ## Limitations when ignoring PBC
 
@@ -34,7 +34,7 @@ Be aware of the following limitations when PBC are ignored:
    Ensure that your membrane is fully within the simulation box. For example, if your membrane lies in the xy-plane, ensure it does not extend beyond the limits of the simulation box in the z-dimension or appear fragmented across the periodic boundary. **Failing to meet this requirement may result in entirely incorrect lipid leaflet assignments.** To avoid issues, you may want to center the membrane in the simulation box before running the analysis.
 
 2. **Ordermap dimensions**  
-   When constructing ordermaps, you cannot automatically derive their dimensions from the simulation box because it is ignored. You must specify the dimensions manually. Forgetting to do this will result in an error. See [this guide](ordermaps.md#dimensions-of-the-ordermaps) for instructions on setting dimensions.
+   When constructing ordermaps, you cannot automatically derive their dimensions from the simulation box because it is ignored. You must specify the dimensions manually. Forgetting to do this will result in an error. See [this section of the manual](ordermaps.md#dimensions-of-the-ordermaps) for instructions on setting dimensions.
 
 3. **Reference points for geometry selections**  
    When calculating order parameters for a specific region, you cannot use the dynamic center of the simulation box as the reference point because `gorder` ignores box information. If this constraint is violated, you will get an error. However, you can still use static coordinates or the dynamic center of geometry as the reference point. If using the dynamic center of geometry, ensure that your selected atoms for center calculation are made whole, i.e., are not broken at the simulation box boundary.
