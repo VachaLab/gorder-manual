@@ -14,7 +14,7 @@ When this option is set to `false`, `gorder` will disregard periodic boundary co
 [W] Periodic boundary conditions ignored. Lipid molecules must be made whole!
 ```
 
-In Gromacs, you can make molecules whole with the following command:
+With Gromacs, you can make molecules whole with the following command:
 
 ```bash
 gmx trjconv -s TPR_FILE -f XTC_FILE -pbc mol -o OUTPUT_XTC_FILE
