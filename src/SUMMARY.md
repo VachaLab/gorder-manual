@@ -4,7 +4,7 @@
 - [What is gorder?](introduction.md)
 - [Some theory](theory.md)
 
-# Basics
+# Beginner
 - [Installation](installation.md)
 - [Atomistic order parameters](aaorder_basics.md)
 - [Coarse-grained order parameters](cgorder_basics.md)
@@ -24,6 +24,8 @@
 - [Using other input file formats](other_input.md)
 - [Ignoring periodic boundary conditions](no_pbc.md)
 - [Extracting all analysis options](analysis_out.md)
+
+# APIs
 - [Using gorder as a Rust crate](rust_api.md)
 
 # Meta
