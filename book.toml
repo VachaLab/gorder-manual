@@ -8,6 +8,7 @@ title = "gorder manual"
 [preprocessor.katex]
 after = ["links"]
 
-# [output.html]
+[output.html]
+input-404 = "not_found.md"
 
 # [output.pdf]
