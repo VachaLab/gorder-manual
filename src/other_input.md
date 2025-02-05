@@ -97,7 +97,7 @@ If `gorder` detects potential issues with the guess, it will display a warning i
 
 ## Trajectory file formats
 
-`gorder` is highly optimized to read XTC files as quickly as possible. If you have an XTC file or can generate one, it is recommended to use it. However, `gorder` also supports various other trajectory file formats, namely TRR, TNG, GRO, PDB, Amber NetCDF, DCD, and LAMMPSTRJ. You can use any of these files instead of an XTC trajectory, and `gorder` will automatically recognize the format based on the file extension.
+`gorder` is highly optimized to read XTC files as quickly as possible. If you have an XTC file or can generate one, it is recommended to use it. However, `gorder` also supports various other trajectory file formats, namely TRR, GRO, PDB, Amber NetCDF, DCD, and LAMMPSTRJ. You can use any of these files instead of an XTC trajectory, and `gorder` will automatically recognize the format based on the file extension.
 
 > `gorder` identifies the file format based on the file extension: `.xtc` for XTC files, `.trr` for TRR files, `.gro` for GRO files, `.pdb` for PDB files, `.nc` for Amber NetCDF files, `.dcd` for DCD files, and `.lammpstrj` for LAMMPSTRJ files. Ensure that the file is named accordingly.
 
