@@ -8,7 +8,7 @@ There are three leaflet classification methods available in `gorder`: `global`, 
 
 ## Global method for leaflet classification
 
-> Fast and reliable. Recommended, especially good for disrupted membranes.
+> Fast and reliable. Recommended for most membranes.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **global** membrane center of geometry. The 'head identifier' is a single atom representing the head of the lipid. If the 'head identifier' is located "above" the membrane center, the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 
@@ -24,7 +24,7 @@ Here, we use autodetected membrane atoms to calculate the membrane center and se
 
 ## Local method for leaflet classification
 
-> Very slow but reliable. Useful for some curved systems.
+> Very slow but reliable. Useful for some slightly curved systems.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **local** membrane center of geometry. The local membrane center is calculated using atoms in a cylinder around the 'head identifier'. If the 'head identifier' is located "above" the local center, the lipid is assigned to the upper leaflet; if "below", it is assigned to the lower leaflet.
 
@@ -41,7 +41,7 @@ Autodetected membrane atoms will be used to calculate the membrane center. Only 
 
 ## Individual method for leaflet classification
 
-> Very fast but less reliable. Suitable for large membranes.
+> Very fast but less reliable. Recommended for very large membranes.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to their 'tail ends'. 'Tail ends' refer to the last heavy atoms or beads of the lipid tails. Each lipid molecule may have multiple 'tail ends', but only one 'head identifier'. If the 'head identifier' is located "above" the 'tail ends', the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 

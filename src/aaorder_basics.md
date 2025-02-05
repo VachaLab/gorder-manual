@@ -8,7 +8,7 @@ To calculate atomistic order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
 - An XTC trajectory file (`md.xtc`) whose frames will be analyzed.
 
-> Don't have a TPR file? [You can also use PDB, GRO, or PQR file](other_input.md).
+> It is recommended to use TPR and XTC files, but `gorder` also [supports various other file formats](other_input.md).
 
 Next, we create an input YAML file that specifies the options for the analysis:
 
