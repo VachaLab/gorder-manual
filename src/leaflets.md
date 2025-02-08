@@ -6,6 +6,8 @@ To do this, you need to specify a method for classifying lipids into membrane le
 
 There are three leaflet classification methods available in `gorder`: `global`, `local`, and `individual`. In case you are not satisfied with any of them, you can also [assign lipids into leaflets manually](manual_leaflets.md).
 
+> When calculating order parameters for vesicles or similar highly curved membranes, **you should always assign lipids into leaflets manually**.
+
 ## Global method for leaflet classification
 
 > Fast and reliable. Recommended for most membranes.
