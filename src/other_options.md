@@ -1,15 +1,5 @@
 # Other options
 
-## Membrane normal
-
-By default, `gorder` uses the z-axis as the membrane normal, assuming that the membrane is built in the xy-plane. If your membrane is built in a different plane, you can manually specify the membrane normal in the input YAML file:
-
-```yaml
-membrane_normal: x
-```
-
-In this example, the membrane normal is oriented along the x-axis, meaning that the membrane is built in the yz-plane.
-
 ## Min samples
 
 By default, `gorder` calculates order parameters for all bonds for which it collects at least one sample. If you want to increase the number of required samples, you can specify the minimum number of samples manually in the input YAML file:

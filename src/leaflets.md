@@ -88,6 +88,20 @@ leaflets: !Global
 
 > **Important note:** The frequency applies to **analyzed** trajectory frames. For instance, if the classification frequency is set to 10 and the analysis step size is 5 (see [Analyzing a part of the trajectory](timerange.md)), leaflet classification will occur every **50th** (10×5) frame in the input trajectory.
 
+## Membrane normal
+
+All leaflet classification methods use the specified membrane normal to determine what is 'up' and what is 'down'. If your membrane is planar and aligned with the `xy` plane, no further action is needed. Otherwise, refer to [this section of the manual](membrane_normal.md).
+
+Here, we just mention that the membrane normal used for leaflet classification can be decoupled from the 'global' membrane normal used for calculating order parameters:
+
+```yaml
+leaflets: !Global
+  membrane: "@membrane"
+  heads: "name P"
+  membrane_normal: x   # used only for leaflet classification
+```
+
+
 ## Leaflet-wise output
 
 When a leaflet classification method is defined, `gorder` calculates order parameters for both the entire membrane and individual leaflets. Leaflet-specific order parameters are included in all `gorder` output formats: YAML, CSV, "table", and XVG.
