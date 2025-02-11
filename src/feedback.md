@@ -1,6 +1,6 @@
 # Feedback
 
-If you encounter an issue with the program, such as incorrect or unexpected behavior or functionality, please [open an issue on GitHub](https://github.com/Ladme/gorder/issues) or send an email to `ladmeb@gmail.com`.
+If you encounter an issue with the program, such as incorrect or unexpected behavior or functionality, please [open an issue on GitHub](https://github.com/Ladme/gorder/issues) or send an email to `ladmeb@proton.me`.
 
 
 For feature requests, concerns about calculation methods or metrics, or improvement suggestions, please use the same contact methods. If you discover software you believe outperforms `gorder` in lipid order calculations or simply does something better, sharing your feedback is encouraged. Any constructive criticism, even negative, is welcome.
