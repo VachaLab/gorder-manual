@@ -43,7 +43,7 @@ leaflets: !FromNdx
 
 The leaflet assignment will be read from the NDX file `leaflets.ndx`, which should contain two groups: `UpperLeaflet` and `LowerLeaflet`. These groups should include the atoms of the upper and lower leaflets, respectively. The `heads` field specifies the head identifiers for all analyzed lipid molecules. Note that each lipid molecule must have only one head identifier; otherwise, an error will be returned. Since we are using a single NDX file, we also need to specify `frequency: !Once`, ensuring that the leaflet assignment from the NDX file is applied to all analyzed trajectory frames.
 
-The `UpperLeaflet` and `LowerLeaflet` groups may contain various atoms, but they **must** include all `heads` atoms for the lipids being analyzed. In other words, every analyzed lipid must be assigned to a leaflet. The NDX file itself can contain any number of additional groups, but for performance reasons, it is recommended to keep both the file and the specified groups as lightweight as possible.
+The `UpperLeaflet` and `LowerLeaflet` groups may contain various atoms, but they **must** include all `heads` atoms for the lipids being analyzed. In other words, every analyzed lipid must be assigned to a leaflet. The NDX file itself can contain any number of additional groups, but for performance reasons, it is recommended to keep both the file and the specified groups as small as possible.
 
 ### Scrambling-safe leaflet assignment
 
@@ -59,6 +59,22 @@ leaflets: !FromNdx
 ```
 
 With this setup, leaflet assignment will be performed for each frame using a different NDX file.
+
+### Specifying NDX files using `glob` pattern
+
+Instead of manually listing many NDX file paths in the configuration file, you can use glob pattern matching:
+
+```yaml
+leaflets: !FromNdx
+  ndx: "leaflets*.ndx"
+  heads: "name P"
+  upper_leaflet: "UpperLeaflet"
+  lower_leaflet: "LowerLeaflet"
+```
+
+This pattern matches all NDX files in the current directory whose names start with `"leaflets"`, such as `leaflets0001.ndx`, `leaflets0002.ndx`, as well as `leafletsABCD.ndx`, `leafletsX.ndx`, and similar files, if they exist.
+
+> Glob returns files in lexicographic order based on filenames. As a result, `leaflets10.ndx` may appear before `leaflets2.ndx`. Always verify the order of NDX files and ensure that filenames are structured so that lexicographic and numerical ordering align. For example, when dealing with frames 1–9999, use filenames like `leaflets0001.ndx` to `leaflets9999.ndx` to maintain the correct order.
 
 ### Assignments for every Nth frame
 
