@@ -6,9 +6,11 @@ To do this, you need to specify a method for classifying lipids into membrane le
 
 There are three leaflet classification methods available in `gorder`: `global`, `local`, and `individual`. In case you are not satisfied with any of them, you can also [assign lipids into leaflets manually](manual_leaflets.md).
 
+> When calculating order parameters for vesicles or similar highly curved membranes, **you should always assign lipids into leaflets manually**.
+
 ## Global method for leaflet classification
 
-> Fast and reliable. Recommended, especially good for disrupted membranes.
+> Fast and reliable. Recommended for most membranes.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **global** membrane center of geometry. The 'head identifier' is a single atom representing the head of the lipid. If the 'head identifier' is located "above" the membrane center, the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 
@@ -24,7 +26,7 @@ Here, we use autodetected membrane atoms to calculate the membrane center and se
 
 ## Local method for leaflet classification
 
-> Very slow but reliable. Useful for some curved systems.
+> Very slow but reliable. Useful for some slightly curved systems.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **local** membrane center of geometry. The local membrane center is calculated using atoms in a cylinder around the 'head identifier'. If the 'head identifier' is located "above" the local center, the lipid is assigned to the upper leaflet; if "below", it is assigned to the lower leaflet.
 
@@ -41,7 +43,7 @@ Autodetected membrane atoms will be used to calculate the membrane center. Only 
 
 ## Individual method for leaflet classification
 
-> Very fast but less reliable. Suitable for large membranes.
+> Very fast but less reliable. Recommended for very large membranes.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to their 'tail ends'. 'Tail ends' refer to the last heavy atoms or beads of the lipid tails. Each lipid molecule may have multiple 'tail ends', but only one 'head identifier'. If the 'head identifier' is located "above" the 'tail ends', the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 
@@ -86,6 +88,20 @@ leaflets: !Global
 
 > **Important note:** The frequency applies to **analyzed** trajectory frames. For instance, if the classification frequency is set to 10 and the analysis step size is 5 (see [Analyzing a part of the trajectory](timerange.md)), leaflet classification will occur every **50th** (10×5) frame in the input trajectory.
 
+## Membrane normal
+
+All leaflet classification methods use the specified membrane normal to determine what is 'up' and what is 'down'. If your membrane is planar and aligned with the `xy` plane, no further action is needed. Otherwise, refer to [this section of the manual](membrane_normal.md).
+
+Here, we just mention that the membrane normal used for leaflet classification can be decoupled from the 'global' membrane normal used for calculating order parameters:
+
+```yaml
+leaflets: !Global
+  membrane: "@membrane"
+  heads: "name P"
+  membrane_normal: x   # used only for leaflet classification
+```
+
+
 ## Leaflet-wise output
 
 When a leaflet classification method is defined, `gorder` calculates order parameters for both the entire membrane and individual leaflets. Leaflet-specific order parameters are included in all `gorder` output formats: YAML, CSV, "table", and XVG.
@@ -102,7 +118,7 @@ During analysis, `gorder` also prints information about membrane composition in 
 Below is an excerpt from an output YAML file containing results for individual membrane leaflets:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.4.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.5.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
 average order:
   total: 0.1631
   upper: 0.1629

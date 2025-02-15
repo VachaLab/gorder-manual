@@ -18,7 +18,7 @@ estimate_error: true
 The output YAML file will then include error estimates and may look similar to this:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.4.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.5.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
 average order:
   total:
     mean: 0.1631
@@ -105,6 +105,6 @@ estimate_error:
 
 This will not only estimate errors as described above but also generate an XVG file (e.g., `convergence.xvg`) which shows the order parameters calculated for each frame as the average of values from that frame and all preceding frames (i.e., prefix averages).
 
-![Example of convergence plots: POPE and POPC converge quickly, POPG much more slowly](convergence.png)
+<img src="convergence.png" width="480" height="360">
 
 The example plot illustrates a relatively well-converged atomistic simulation where approximately 3,000 trajectory frames were analyzed. The chart shows that results for POPE and POPC lipids stabilize early (within the first third of the trajectory), while POPG converges more slowly (which is due to the smaller number of these lipids in the system).

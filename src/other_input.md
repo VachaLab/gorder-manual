@@ -1,5 +1,9 @@
 # Using other input file formats
 
+`gorder` is primarily designed for analyzing Gromacs simulations. The most efficient and straightforward way to use it is therefore by providing it with a TPR file and an XTC file. However, to make it more flexible and less dependent on a specific MD engine, `gorder` also supports various other file formats for both structure/topology and trajectory files.
+
+## Structure and topology file formats
+
 In rare cases where `gorder` cannot read your input TPR file, or if no TPR file is available, you can provide the system structure and topology using alternative file formats. `gorder` supports GRO, PDB, and PQR files as structure files.
 
 For example, the following YAML input file is valid if the provided PDB file includes a [connectivity section](https://www.wwpdb.org/documentation/file-format-content/format33/sect10.html) *(and has fewer than 100,000 atoms due to PDB format limitations)*:
@@ -27,7 +31,7 @@ Connectivity information will be read from `system.bnd`. *Note that the connecti
 
 > `gorder` identifies the file format based on the file extension: `.tpr` for TPR files, `.gro` for GRO files, `.pdb` for PDB files, and `.pqr` for PQR files. Ensure that the file is named correspondingly.
 
-## Specification of the bonds file
+### Specification of the bonds file
 
 The bonds file format is similar to the PDB connectivity block but simpler and much more flexible. It also supports systems of any (reasonable) size.
 
@@ -85,8 +89,30 @@ Here’s an excerpt from an example bonds file:
 # (...)
 ```
 
-## Note about selecting elements
+### Note about selecting elements
 
 When using the `element` keyword in [GSL](https://ladme.github.io/gsl-guide/) atom selection queries, atoms are selected based on their associated element. Element information is natively available in TPR files but is missing in other supported formats. If a non-TPR file is used, `gorder` will attempt to guess the elements of atoms based on the atom and residue names.
 
 If `gorder` detects potential issues with the guess, it will display a warning in the terminal. You can then evaluate whether the concerns are harmless, avoid using the `element` keyword, or provide a TPR file instead.
+
+## Trajectory file formats
+
+`gorder` is highly optimized to read XTC files as quickly as possible. If you have an XTC file or can generate one, it is recommended to use it. However, `gorder` also supports various other trajectory file formats, namely TRR, GRO, PDB, Amber NetCDF, DCD, and LAMMPSTRJ. You can use any of these files instead of an XTC trajectory, and `gorder` will automatically recognize the format based on the file extension.
+
+> `gorder` identifies the file format based on the file extension: `.xtc` for XTC files, `.trr` for TRR files, `.gro` for GRO files, `.pdb` for PDB files, `.nc` for Amber NetCDF files, `.dcd` for DCD files, and `.lammpstrj` for LAMMPSTRJ files. Ensure that your trajectory file is named accordingly.
+
+Note that some features of `gorder` are not available for certain trajectory file formats. Specifically, do not specify the analysis time range using `begin` and `end` if your trajectory file is a PDB file or an Amber NetCDF file. **This will not work and will result in an error!** 
+
+You can only use this feature with a GRO trajectory if the file contains simulation time and step information in the 'title' line, formatted as follows:
+
+```text
+Some Arbitrarily Long Title (...) t= SIMULATION_TIME step= SIMULATION_STEP
+```
+
+For example:
+
+```text
+System t= 100.00000 step= 5000
+```
+
+Additionally, note that `gorder` assumes that time information in DCD files is specified in `ps`.
