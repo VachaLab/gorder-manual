@@ -42,7 +42,7 @@ The `reference` point can be defined as a static coordinate, a dynamic center of
 
 Below is an example of an ordermap where calculations considered only bonds within a specific cuboid. The static center of the cuboid is marked by a black `×`.
 
-![Example of an ordermap where order parameters were only calculated for a cuboid region](ordermap_example_cuboid.png)
+<img src="ordermap_example_cuboid.png" width="480" height="360">
 
 ## Cylindrical selection
 
@@ -74,7 +74,7 @@ The main axis of the cylinder (`orientation`) must align with one of the simulat
 
 Below is an example of an ordermap where calculations considered only bonds within a specific cylinder (oriented along the membrane normal). The static center of the cylinder is marked by a black `×`.
 
-![Example of an ordermap where order parameters were only calculated for a cylindrical region](ordermap_example_cylinder.png)
+<img src="ordermap_example_cylinder.png" width="480" height="360">
 
 ## Spherical selection
 

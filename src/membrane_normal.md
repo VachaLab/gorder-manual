@@ -6,15 +6,15 @@ For planar membranes, the default static membrane normal is usually sufficient. 
 
 ## Static membrane normal
 
-By default, `gorder` assumes the membrane normal is along the z-axis, meaning the membrane is built in the xy-plane. If your membrane is oriented differently, you can manually specify the membrane normal in the input YAML file:
+By default, `gorder` assumes the membrane normal is oriented along the z-axis, meaning the membrane is built in the xy-plane. If your membrane is oriented differently, you can manually specify the membrane normal in the input YAML file:
 
 ```yaml
 membrane_normal: x
 ```
 
-In this example, the membrane normal is along the x-axis, indicating that the membrane is built in the yz-plane.
+In this example, the membrane normal is oriented along the x-axis, which means that the membrane is built in the yz-plane.
 
-> Only the primary axes of the orthogonal simulation box (`x`, `y`, and `z`) are supported as static membrane normals.
+> Only the primary axes of an orthogonal simulation box (`x`, `y`, and `z`) are supported as static membrane normals.
 
 ## Dynamic membrane normal
 

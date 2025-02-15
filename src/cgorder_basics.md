@@ -38,14 +38,14 @@ $ gorder analyze.yaml
 
 During the analysis, we will see something like this:
 
-![Gorder calculates coarse-grained order parameters](martini.gif)
+<img src="martini.gif" width="620" height="360">
 
 > Note that the structure from the TPR file is not analyzed. The TPR file is only used to construct the system and obtain its topology.
 
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.4.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.5.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
 average order:
   total: 0.2937
 POPC:

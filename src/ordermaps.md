@@ -81,7 +81,7 @@ Ordermaps are saved in a custom two-dimensional `gorder` format:
 
 ```text
 # Map of average order parameters calculated for the atom type POPC-C22-32.
-# Calculated with 'gorder v0.4.0'.
+# Calculated with 'gorder v0.5.0'.
 @ xlabel x-dimension [nm]
 @ ylabel y-dimension [nm]
 @ zlabel order parameter ($-S_{CH}$)
@@ -152,10 +152,10 @@ Here, `OUTPUT_PNG` is the path where the PNG file will be saved.
 
 When visualized, an ordermap for a specific atom type might look like this:
 
-![Example of an ordermap](ordermap_example_1.png)
+<img src="ordermap_example_1.png" width="480" height="360">
 
 Ordermaps are especially useful for analyzing simulations involving transmembrane proteins. For such analyses, ensure the protein is centered and, ideally, RMSD-fitted in the trajectory.
 
-![Example of an ordermap with transmembrane protein](ordermap_example_2.png)
+<img src="ordermap_example_2.png" width="480" height="360">
 
 In this map of coarse-grained order for a particular lipid bond, the bright white region in the center represents the area occupied by the transmembrane protein. In this zone, no lipids (or an insufficient number to meet the `min_samples` threshold of 50) were detected. The membrane is disrupted in the vicinity of the protein.

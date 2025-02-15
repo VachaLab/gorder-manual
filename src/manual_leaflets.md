@@ -2,15 +2,15 @@
 
 If you do not want to use the automatic leaflet classification (described in [Order parameters for individual leaflets](leaflets.md)), whether due to your system's complicated geometry or a lack of trust in the `gorder` assignment, you can manually specify the leaflet occupied by each lipid molecule (for each analyzed frame).
 
-There are two ways to manually assign lipids to membrane leaflets: using [NDX files](#assigning-lipids-using-ndx-files) or a ["leaflet assignment file"](#assigning-lipids-using-leaflet-assignment-file).
+There are two ways to manually assign lipids to membrane leaflets: using [NDX files](#assigning-lipids-using-ndx-files) or a ["leaflet assignment file"](#assigning-lipids-using-a-leaflet-assignment-file).
 
 ## Assigning lipids using NDX file(s)
 
-Using NDX files for lipid assignment is arguably a simpler method that enables seamless integration of `gorder` with [`FATSLiM`](https://fatslim.github.io/), which implements possibly the most reliable lipid classification method available.
+Using NDX files for lipid assignment is arguably a simpler method that enables seamless integration of `gorder` with [`FATSLiM`](https://fatslim.github.io/), which implements possibly the best lipid classification method available.
 
 ### NDX file
 
-To begin, create an NDX file containing at least two groups. One group should contain lipid atoms (preferably just their 'head identifiers') for the upper leaflet, while the other group should contain lipid atoms for the lower leaflet. 
+To begin, create an NDX file containing at least two groups. One group should contain lipid atoms (preferably just their 'head identifiers') of the upper leaflet, while the other group should contain lipid atoms of the lower leaflet. 
 
 ```
 [ UpperLeaflet ]
