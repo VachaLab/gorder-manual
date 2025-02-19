@@ -1,8 +1,10 @@
 # Specifying membrane normal
 
-`gorder` supports both `static` (provided by the user and applied to all lipid molecules throughout the entire analysis) and `dynamic` (calculated for each lipid molecule in each trajectory frame based on the actual membrane shape) membrane normal specification. 
+`gorder` supports both `static` (provided by the user and applied to all lipid molecules throughout the entire analysis) and `dynamic` (calculated for each lipid molecule in each trajectory frame based on the actual membrane shape) membrane normal specification.
 
 For planar membranes, the default static membrane normal is usually sufficient. However, for vesicles, you should always use dynamic membrane normal calculation. Keep in mind that computing the membrane normal dynamically is computationally expensive.
+
+For complete control over membrane normals, you can also manually assign them for each molecule in every trajectory frame. For more details, refer to [Manual membrane normals](manual_normals.md).
 
 ## Static membrane normal
 

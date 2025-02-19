@@ -22,6 +22,7 @@
 
 # Expert
 - [Manual lipid assignment to leaflets](manual_leaflets.md)
+- [Manual membrane normals](manual_normals.md)
 - [Using other input file formats](other_input.md)
 - [Ignoring periodic boundary conditions](no_pbc.md)
 - [Extracting all analysis options](analysis_out.md)
