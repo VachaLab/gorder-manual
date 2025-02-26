@@ -28,6 +28,7 @@
 - [Extracting all analysis options](analysis_out.md)
 
 # APIs
+- [Using gorder as a Python package](python_api.md)
 - [Using gorder as a Rust crate](rust_api.md)
 
 # Meta
