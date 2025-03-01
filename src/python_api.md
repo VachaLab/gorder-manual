@@ -5,13 +5,13 @@
 To install `gorder`, you can use `pip`:
 
 ```bash
-$ pip install git+https://github.com/Ladme/gorder.git#subdirectory=python
+$ pip install git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
 ```
 
 However, you **should** use the [uv](https://github.com/astral-sh/uv) package manager instead. To add `gorder` to your `uv` project, run:
 
 ```bash
-$ uv add git+https://github.com/Ladme/gorder.git#subdirectory=python
+$ uv add git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
 ```
 
 Next, import the package into your Python code:
