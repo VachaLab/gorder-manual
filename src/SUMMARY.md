@@ -17,6 +17,7 @@
 - [Order parameters for a specific membrane region](geometry.md)
 - [Specifying membrane normal](membrane_normal.md)
 - [Analyzing a part of the trajectory](timerange.md)
+- [Providing multiple trajectory files](multiple_trajectories.md)
 - [Multithreaded analysis](multithreading.md)
 - [Other options](other_options.md)
 
