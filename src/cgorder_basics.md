@@ -98,7 +98,7 @@ Let's take a closer look at a part of the YAML file:
 ```yaml
 average order:
   total: 0.2937                   # average order calculated for all molecules in the entire membrane
-POPC:                             # name of the molecule
+POPC:                             # name of the molecule type
   average order:
     total: 0.2902                 # average order calculated for POPC molecules in the entire membrane
   order parameters:

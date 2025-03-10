@@ -120,7 +120,7 @@ Let's take a closer look at a part of the YAML file:
 ```yaml
 average order:
   total: 0.1631          # average order calculated for all molecules in the entire membrane
-POPE:                    # name of the molecule
+POPE:                    # name of the molecule type
   average_order:
     total: 0.1601        # average order calculated for POPE molecules in the entire membrane
   order parameters:

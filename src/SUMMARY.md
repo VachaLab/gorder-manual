@@ -8,6 +8,7 @@
 - [Installation](installation.md)
 - [Atomistic order parameters](aaorder_basics.md)
 - [Coarse-grained order parameters](cgorder_basics.md)
+- [United-atom order parameters](uaorder_basics.md)
 - [Output formats](output.md)
 
 # Advanced
