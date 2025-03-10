@@ -2,7 +2,7 @@
 
 For absolute control over membrane normals, `gorder` allows manual specification of membrane normals for individual molecules in individual trajectory frames.
 
-To assign membrane normals, you must first prepare a YAML-formatted membrane normals file. The structure of this file is similar to the ["leaflet assignment file"](manual_leaflets.md#leaflet-assignment-file), which is used for manually assigning lipids to leaflets.
+To assign membrane normals, you must first prepare a YAML-formatted membrane normals file. The structure of this file is similar to the ["leaflet assignment file"](manual_leaflets.md#leaflet-assignment-file), which can be used to manually assign lipids to leaflets.
 
 ## Membrane normals file
 
