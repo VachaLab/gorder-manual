@@ -28,4 +28,4 @@ output: order.yaml
 
 In this case, `gorder` will read all XTC files in the current directory whose names start with `"md"`, such as `md1.xtc`, `md2.xtc`, `md3.xtc`, as well as `mdXYZ.xtc`, `md239474.xtc`, and similar files, if they exist.
 
-> Glob returns files in lexicographic order based on filenames. As a result, `md10.xtc` may appear before `md2.xtc`. Always verify the order of XTC files and ensure that filenames are structured so that lexicographic and numerical ordering align. For example, when dealing with frames 1–9999, use filenames like `md0001.xtc` to `md9999.xtc` to maintain the correct order.
+> Glob returns files in lexicographic order based on filenames. As a result, `md10.xtc` may appear before `md2.xtc`. Always verify the order of XTC files and ensure that filenames are structured so that lexicographic and numerical ordering align. For example, when dealing with trajectories 1–99, use filenames like `md01.xtc` to `md99.xtc` to maintain the correct order.
