@@ -22,16 +22,18 @@ analysis_type: !UAOrder
 output: order.yaml
 ```
 
-In the input YAML file, you must specify which carbons should have their order parameters calculated and whether they are `saturated` or `unsaturated`. `gorder` will automatically construct hydrogens for saturated carbons to ensure that the total number of bonds for each carbon is 4. For example:
+In the input YAML file, you must specify which carbons should have their order parameters calculated and whether they are `saturated` or `unsaturated`. `gorder` will automatically construct hydrogens for saturated carbons so that the total number of bonds of each carbon is 4. For example:
 - Carbons within the acyl chains (bonded to two other carbons) will be assigned two hydrogens, whose positions are predicted based on the lipid's geometry.
 - Methyl carbons at the ends of the acyl chains will have three hydrogens constructed.
 - The central carbon of the glycerol will have one hydrogen constructed.
 
-Unsaturated carbons are those with a double bond to another carbon in the acyl chain (and one normal bond to another carbon). Only one hydrogen is predicted for such atoms.
+Unsaturated carbons are those with a double bond to another carbon in the acyl chain (and one single bond to another carbon). Only one hydrogen is predicted for such atoms.
 
 In the YAML file above, we calculate order parameters for all carbons in POPC lipids (except for the carboxyl atoms C15 and C34, which lack hydrogens and should be explicitly excluded, as explained below). We also specify a double bond between atoms C24 and C25.
 
 > Positions of hydrogens are predicted in exactly the same way as in the `buildH` tool. See the [buildH documentation](https://buildh.readthedocs.io/en/latest/algorithms_Hbuilding.html) for more information.
+
+The results of the analysis will be saved in the `order.yaml` file as $-S_{CH}$ (see [Theory](theory.md)).
 
 ### Limitations to consider
 
@@ -43,8 +45,6 @@ There are some limitations you should be aware of when calculating united-atom l
   - No carbon atom is bonded to two double bonds simultaneously.
   - No triple bonds are present.
   - Terminal carbons are methyl groups, not methylidenes.
-
-  If an unnatural or unexpected geometry is detected, a warning will be issued, and the atom will be excluded from the analysis.
 
 ## Running the analysis
 
@@ -138,7 +138,7 @@ YAML files are easy to read programmatically and not completely human-unreadable
 
 > **This is important! Please read at least the information in this box.** You should not trust the order parameters reported for individual C-H bonds in methyl groups. In methyl groups, only the order parameter calculated for the entire carbon is reliable.
 
-While `gorder` reports order parameters for individual predicted C-H bonds, you might notice that the order parameters for bonds of methyl carbons are somewhat suspicious. Typically, the individual C-H bonds of the same atom have very similar values, but this is not the case here, where the order parameters differ significantly. For example:
+While `gorder` reports order parameters for individual predicted C-H bonds, you might notice that the order parameters for bonds of methyl carbons are somewhat suspicious. Typically, the individual C-H bonds of the same atom have very similar values, but this is not the case here, where the order parameters might differ significantly. For example:
 
 ```yaml
     POPC CA2 (51):
@@ -149,7 +149,7 @@ While `gorder` reports order parameters for individual predicted C-H bonds, you 
       - total: 0.0572
 ```
 
-This discrepancy is an artifact of the hydrogen-building process. Despite what the [`buildH` documentation](https://buildh.readthedocs.io/en/latest/algorithms_Hbuilding.html#building-ch3) claims, the results for individual C-H bonds of methyl carbons depend on the atoms used as helpers for predicting hydrogen positions. For `gorder`, this means that changing the order of atoms in your topology may yield **completely** different results for bonds in methyl groups, even when analyzing the same (but reordered) trajectory.
+This discrepancy is an artifact of the hydrogen-building process. Despite what the [`buildH` documentation](https://buildh.readthedocs.io/en/latest/algorithms_Hbuilding.html#building-ch3) claims, the results for individual C-H bonds of methyl carbons depend on the order of atoms that are used as "helpers". For `gorder`, this means that changing the order of atoms in your topology may yield **completely** different results for bonds in methyl groups, even when analyzing the same (but reordered) trajectory.
 
 However, only the order parameters for individual bonds are affected by this artifact. When averaging the order parameters of the individual bonds, the result remains consistent regardless of the helper atom definitions. Thus, the overall order parameter for the atom (the `total` field in the output YAML file) is reasonable and correct *(to the degree united-atom force fields are accurate)* and can be safely reported.
 
@@ -160,7 +160,7 @@ However, only the order parameters for individual bonds are affected by this art
 ```yaml
 structure: system.tpr
 trajectory: md.xtc
-index: index.ndx        # name of the NDX file
+index: index.ndx             # name of the NDX file
 analysis_type: !UAOrder
   saturated: "Saturated"     # name of the NDX group containing saturated carbons
   unsaturated: "Unsaturated" # name of the NDX group containing unsaturated carbons
