@@ -45,6 +45,7 @@ There are some limitations you should be aware of when calculating united-atom l
   - No carbon atom is bonded to two double bonds simultaneously.
   - No triple bonds are present.
   - Terminal carbons are methyl groups, not methylidenes.
+  - Carbon-hydrogen bonds have a length of about 0.109 nm.
 
 ## Running the analysis
 
