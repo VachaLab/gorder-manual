@@ -4,7 +4,7 @@ While `gorder` aims to provide accurate and reliable results, there are some kno
 
 1. **`gorder` cannot read TPR files generated with Gromacs versions older than 5.1.**
    - **Why is this the case?** This limitation stems from the [`minitpr`](https://github.com/Ladme/minitpr) crate used to parse TPR files. The TPR file format evolves constantly, and supporting all ancient Gromacs versions is simply not feasible.
-   - **What can you do if your TPR file is this old?** In most cases, the solution is simple: generate a TPR file using a newer version of Gromacs. Since `gorder` only needs the system topology, you can use `gmx grompp` with any MDP file to create an updated TPR file. If generating a new TPR file is not an option for you, you can instead provide a PDB file with a connectivity section or a GRO file along with a bonds file (see [Using other input file formats](other_input.md)).
+   - **What can you do if your TPR file is this old?** In most cases, the solution is simple: convert the old TPR file using a new version of Gromacs, i.e., run `gmx convert-tpr -s old_file.tpr -o new_file.tpr`. If converting a TPR file is not an option for you, you can instead provide a PDB file with a connectivity section or a GRO file along with a bonds file (see [Using other input file formats](other_input.md)).
    - **Will this be addressed in the future?** Older Gromacs versions will likely **never** be fully supported.
 
 2. **`gorder` only fully supports systems with orthogonal simulation boxes and periodic boundary conditions applied in all three dimensions.**
