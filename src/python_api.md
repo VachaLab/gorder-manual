@@ -56,4 +56,4 @@ results.write()
 
 or access them programmatically.
 
-See the Python API documentation on [TODO: insert link](????) for more information about using `gorder` as a Python package.
+See the Python API documentation on [ladme.github.io/pygorder-docs](https://ladme.github.io/pygorder-docs/) for more information about using `gorder` as a Python package.
