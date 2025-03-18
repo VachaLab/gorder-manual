@@ -2,7 +2,7 @@
 
 In rare cases where `gorder` cannot read your input TPR file, or if no TPR file is available, you can provide the system structure and topology using alternative file formats. `gorder` supports GRO, PDB, and PQR files as structure files.
 
-For example, the following YAML input file is valid if the provided PDB file includes a [connectivity section](https://www.wwpdb.org/documentation/file-format-content/format33/sect10.html) *(and has fewer than 100,000 atoms due to PDB format limitations)*:
+For example, the following configuration YAML file is valid if the provided PDB file includes a [connectivity section](https://www.wwpdb.org/documentation/file-format-content/format33/sect10.html) *(and has fewer than 100,000 atoms due to PDB format limitations)*:
 
 ```yaml
 structure: system.pdb

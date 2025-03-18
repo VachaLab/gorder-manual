@@ -2,7 +2,7 @@
 
 If the trajectory you are analyzing is split across multiple files, you can provide all of them without having to manually merge them into a single file.
 
-To do this, specify all your trajectory files as a list in your YAML configuration file:
+To do this, specify all your trajectory files as a list in your configuration YAML file:
 ```yaml
 structure: system.tpr
 trajectory: [md1.xtc, md2.xtc, md3.xtc, md4.xtc, md5.xtc]

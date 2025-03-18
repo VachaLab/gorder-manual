@@ -10,7 +10,7 @@ To calculate atomistic order parameters, we need two Gromacs files:
 
 > It is recommended to use TPR and XTC files, but `gorder` also [supports various other file formats](other_input.md).
 
-Next, we create an input YAML file that specifies the options for the analysis:
+Next, we create a configuration YAML file that specifies the options for the analysis:
 
 ```yaml
 structure: system.tpr
@@ -21,7 +21,7 @@ analysis_type: !AAOrder
 output: order.yaml
 ```
 
-In the input YAML file, the analysis type `AAOrder` requires you to specify both `heavy_atoms` and `hydrogens`. `gorder` will then identify all bonds connecting the selected heavy atoms with the selected hydrogen atoms. The order parameters are calculated for all these identified bonds.
+In the configuration YAML file, the analysis type `AAOrder` requires you to specify both `heavy_atoms` and `hydrogens`. `gorder` will then identify all bonds connecting the selected heavy atoms with the selected hydrogen atoms. The order parameters are calculated for all these identified bonds.
   
 The atoms are selected using a query language called [GSL](https://ladme.github.io/gsl-guide/). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
 
@@ -35,7 +35,7 @@ The results of the analysis will be saved in the `order.yaml` file as $-S_{CH}$ 
 
 ## Running the analysis
 
-We save the input YAML file, for example, as `analyze.yaml`. Then, we run `gorder` as follows:
+We save the configuration YAML file, for example, as `analyze.yaml`. Then, we run `gorder` as follows:
 
 ```bash
 $ gorder analyze.yaml
@@ -115,7 +115,7 @@ POPG:
 
 > The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure. Note that parameters for C21 and C31 are absent, even though these atoms should qualify as `heavy_atoms` based on the regular expression `C3.+|C2.+`. However, these atoms lack bonded hydrogens and are therefore automatically excluded from the output.
 
-Let's take a closer look at a part of the YAML file:
+Let's take a closer look at a part of the output YAML file:
 
 ```yaml
 average order:
@@ -137,7 +137,7 @@ YAML files are easy to read programmatically and not completely human-unreadable
 
 ## Using groups from an NDX file
 
-`gorder` also supports using groups from NDX files. Let's suppose our NDX file already contains a group called `TailCarbons`, which specifies all the carbons to use. We no longer need to specify them using the complex regular expression from the previous example and can simply select the group. Our input YAML file will look like this:
+`gorder` also supports using groups from NDX files. Let's suppose our NDX file already contains a group called `TailCarbons`, which specifies all the carbons to use. We no longer need to specify them using the complex regular expression from the previous example and can simply select the group. Our configuration YAML file will look like this:
 
 ```yaml
 structure: system.tpr

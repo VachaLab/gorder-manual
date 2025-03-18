@@ -9,7 +9,7 @@ To estimate the error, the trajectory is divided into blocks (default: 5). Each 
 
 ## Requesting error estimation
 
-By default, `gorder` does not calculate error estimates. To enable error estimation, include the following line in your input YAML file:
+By default, `gorder` does not calculate error estimates. To enable error estimation, include the following line in your configuration YAML file:
 
 ```yaml
 estimate_error: true
@@ -96,7 +96,7 @@ For example, setting `n_blocks: 10` will use 10 blocks for error estimation inst
 
 `gorder` offers an additional method to assess simulation convergence by visualizing how the average order parameters evolve over time for individual molecules.
 
-To request convergence analysis, include the following lines in your input YAML file:
+To request convergence analysis, include the following lines in your configuration YAML file:
 
 ```yaml
 estimate_error:

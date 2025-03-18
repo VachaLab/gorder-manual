@@ -7,7 +7,7 @@
 
 ## Cuboidal selection
 
-You can define a cuboid with specific dimensions and position to calculate order parameters for bonds within that region. To define a cuboid, include a configuration like the following in your input YAML file:
+You can define a cuboid with specific dimensions and position to calculate order parameters for bonds within that region. To define a cuboid, include a configuration like the following in your configuration YAML file:
 
 ```yaml
 geometry: !Cuboid
@@ -46,7 +46,7 @@ Below is an example of an ordermap where calculations considered only bonds with
 
 ## Cylindrical selection
 
-You can define a cylinder with specific dimensions, orientation, and position to calculate order parameters for bonds within that region. To specify a cylinder, include a configuration like the following in your input YAML file:
+You can define a cylinder with specific dimensions, orientation, and position to calculate order parameters for bonds within that region. To specify a cylinder, include a configuration like the following in your configuration YAML file:
 
 ```yaml
 geometry: !Cylinder
@@ -78,7 +78,7 @@ Below is an example of an ordermap where calculations considered only bonds with
 
 ## Spherical selection
 
-You can define a sphere with a specific center and radius to calculate order parameters for bonds within that region. To specify a sphere, include a configuration like the following in your input YAML file:
+You can define a sphere with a specific center and radius to calculate order parameters for bonds within that region. To specify a sphere, include a configuration like the following in your configuration YAML file:
 
 ```yaml
 geometry: !Sphere

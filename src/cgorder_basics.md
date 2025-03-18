@@ -10,7 +10,7 @@ To calculate coarse-grained order parameters, we need two Gromacs files:
 
 > It is recommended to use TPR and XTC files, but `gorder` also [supports various other file formats](other_input.md).
 
-Next, we create an input YAML file that specifies the options for the analysis:
+Next, we create a configuration YAML file that specifies the options for the analysis:
 
 ```yaml
 structure: system.tpr
@@ -20,7 +20,7 @@ analysis_type: !CGOrder
 output: order.yaml
 ```
 
-In the input YAML file, the analysis type `CGOrder` requires you to specify beads that will be considered for the analysis. `gorder` will then identify all bonds connecting the selected beads. The order parameters are calculated for all these identified bonds.
+In the configuration YAML file, the analysis type `CGOrder` requires you to specify beads that will be considered for the analysis. `gorder` will then identify all bonds connecting the selected beads. The order parameters are calculated for all these identified bonds.
 
 The atoms are selected using a query language called [GSL](https://ladme.github.io/gsl-guide/). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
 
@@ -30,7 +30,7 @@ The results of the analysis will be saved in the `order.yaml` file as $S$ (see [
 
 ## Running the analysis
 
-We save the input YAML file, for example, as `analyze.yaml`. Then, we run `gorder` as follows:
+We save the configuration YAML file, for example, as `analyze.yaml`. Then, we run `gorder` as follows:
 
 ```bash
 $ gorder analyze.yaml
@@ -93,7 +93,7 @@ POPG:
 
 > The bond types (and molecule types) are listed in the same order their atoms appear in the input TPR structure.
 
-Let's take a closer look at a part of the YAML file:
+Let's take a closer look at a part of the output YAML file:
 
 ```yaml
 average order:
@@ -116,7 +116,7 @@ YAML files are easy to read programmatically and not completely human-unreadable
 
 ## Using groups from an NDX file
 
-`gorder` also supports using groups from NDX files. Let's suppose our NDX file already contains a group called `LipidBeads`, which specifies all the beads to use. We can then simply select the group. Our input YAML file will look like this:
+`gorder` also supports using groups from NDX files. Let's suppose our NDX file already contains a group called `LipidBeads`, which specifies all the beads to use. We can then simply select the group. Our configuration YAML file will look like this:
 
 ```yaml
 structure: system.tpr

@@ -4,7 +4,7 @@
 
 `gorder` can create maps of order parameters ("ordermaps") for the individual bond types and atom types. To construct an ordermap, the membrane plane is mapped onto a grid with bins of a specified size. Order parameters calculated for individual bonds are projected into the respective bins based on the position of the bond center. The average order parameter is then computed for each bin in the grid.
 
-To enable the calculation of ordermaps, add the following section to your input YAML file:
+To enable the calculation of ordermaps, add the following section to your configuration YAML file:
 
 ```yaml
 ordermaps:
