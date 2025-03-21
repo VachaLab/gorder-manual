@@ -82,7 +82,7 @@ You can define a sphere with a specific center and radius to calculate order par
 
 ```yaml
 geometry: !Sphere
-  reference: [3.0, 1.0, 4.0]    # you can also use `center`
+  reference: [3.0, 1.0, 4.0]    # you can also use `center` instead of `reference`
   radius: 2.5
 ```
 
