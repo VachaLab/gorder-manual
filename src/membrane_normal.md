@@ -8,7 +8,7 @@ For complete control over membrane normals, you can also manually assign them fo
 
 ## Static membrane normal
 
-By default, `gorder` assumes the membrane normal is oriented along the z-axis, meaning the membrane is built in the xy-plane. If your membrane is oriented differently, you can manually specify the membrane normal in the input YAML file:
+By default, `gorder` assumes the membrane normal is oriented along the z-axis, meaning the membrane is built in the xy-plane. If your membrane is oriented differently, you can manually specify the membrane normal in the configuration YAML file:
 
 ```yaml
 membrane_normal: x

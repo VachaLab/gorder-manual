@@ -22,7 +22,7 @@ import gorder
 
 Once imported, you can access all the options and functionality described in this manual.
 
-For instance, the following input YAML file:
+For instance, the following configuration YAML file:
 
 ```yaml
 structure: system.tpr

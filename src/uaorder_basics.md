@@ -10,7 +10,7 @@ To calculate united-atom order parameters, we need two Gromacs files:
 
 > It is recommended to use TPR and XTC files, but `gorder` also [supports various other file formats](other_input.md).
 
-Next, we create an input YAML file that specifies the options for the analysis:
+Next, we create a configuration YAML file that specifies the options for the analysis:
 
 ```yaml
 structure: system.tpr
@@ -22,14 +22,14 @@ analysis_type: !UAOrder
 output: order.yaml
 ```
 
-In the input YAML file, you must specify which carbons should have their order parameters calculated and whether they are `saturated` or `unsaturated`. `gorder` will automatically construct hydrogens for saturated carbons so that the total number of bonds of each carbon is 4. For example:
+In the configuration YAML file, you must specify which carbons should have their order parameters calculated and whether they are `saturated` or `unsaturated`. `gorder` will automatically construct hydrogens for saturated carbons so that the total number of bonds of each carbon is 4. For example:
 - Carbons within the acyl chains (bonded to two other carbons) will be assigned two hydrogens, whose positions are predicted based on the lipid's geometry.
 - Methyl carbons at the ends of the acyl chains will have three hydrogens constructed.
 - The central carbon of the glycerol will have one hydrogen constructed.
 
 Unsaturated carbons are those with a double bond to another carbon in the acyl chain (and one single bond to another carbon). Only one hydrogen is predicted for such atoms.
 
-In the YAML file above, we calculate order parameters for all carbons in POPC lipids (except for the carboxyl atoms C15 and C34, which lack hydrogens and should be explicitly excluded, as explained below). We also specify a double bond between atoms C24 and C25.
+In configuration YAML file above, we calculate order parameters for all carbons in POPC lipids (except for the carboxyl atoms C15 and C34, which lack hydrogens and should be explicitly excluded, as explained below). We also specify a double bond between atoms C24 and C25.
 
 > Positions of hydrogens are predicted in exactly the same way as in the `buildH` tool. See the [buildH documentation](https://buildh.readthedocs.io/en/latest/algorithms_Hbuilding.html) for more information.
 
@@ -49,7 +49,7 @@ There are some limitations you should be aware of when calculating united-atom l
 
 ## Running the analysis
 
-We save the input YAML file, for example, as `analyze.yaml`. Then, we run `gorder` as follows:
+We save the configuration YAML file, for example, as `analyze.yaml`. Then, we run `gorder` as follows:
 
 ```bash
 $ gorder analyze.yaml
@@ -116,7 +116,7 @@ POPC:
 
 > The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure.
 
-Let's take a closer look at a part of the YAML file:
+Let's take a closer look at a part of the output YAML file:
 
 ```yaml
 average order:
@@ -156,7 +156,7 @@ However, only the order parameters for individual bonds are affected by this art
 
 ## Using groups from an NDX file
 
-`gorder` also supports using groups from NDX files. Let's suppose our NDX file already contains groups called `Satured` and `Unsaturated`, which specify all carbons to analyze. We can then simply select the groups. Our input YAML file will look like this:
+`gorder` also supports using groups from NDX files. Let's suppose our NDX file already contains groups called `Satured` and `Unsaturated`, which specify all carbons to analyze. We can then simply select the groups. Our configuration YAML file will look like this:
 
 ```yaml
 structure: system.tpr
@@ -172,7 +172,7 @@ Then, we run the analysis in the same way as before.
 
 ## Ignoring some atoms
 
-In some cases, such as when calculating united-atom order parameters from an atomistic system, you may want to ignore certain atoms so that they are not considered when calculating bonds, obtaining the number of hydrogens to construct for each carbon, or determining helper atoms for predicting hydrogen positions. To do this, add an `ignore` keyword to the `analysis_type` section of your input YAML file:
+In some cases, such as when calculating united-atom order parameters from an atomistic system, you may want to ignore certain atoms so that they are not considered when calculating bonds, obtaining the number of hydrogens to construct for each carbon, or determining helper atoms for predicting hydrogen positions. To do this, add an `ignore` keyword to the `analysis_type` section of your configuration YAML file:
 
 ```yaml
 structure: system.tpr

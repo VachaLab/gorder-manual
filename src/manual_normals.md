@@ -87,7 +87,7 @@ membrane_normal: !FromFile normals.yaml
 
 ## Specifying membrane normals inline
 
-You can also define membrane normals directly within the YAML configuration file:
+You can also define membrane normals directly within the configuration YAML file:
 
 ```yaml
 membrane_normal: !Inline

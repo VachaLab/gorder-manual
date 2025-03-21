@@ -77,7 +77,7 @@ POPG:
   # (...)
 ```
 
-To use this expanded file, specify it in the YAML configuration file:
+To use this expanded file, specify it in the configuration YAML file:
 
 ```yaml
 leaflets: !FromFile
