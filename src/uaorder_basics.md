@@ -150,7 +150,7 @@ While `gorder` reports order parameters for individual predicted C-H bonds, you 
       - total: 0.0572
 ```
 
-This discrepancy is an artifact of the hydrogen-building process. Despite what the [`buildH` documentation](https://buildh.readthedocs.io/en/latest/algorithms_Hbuilding.html#building-ch3) claims, the results for individual C-H bonds of methyl carbons depend on the order of atoms that are used as "helpers". For `gorder`, this means that changing the order of atoms in your topology may yield **completely** different results for bonds in methyl groups, even when analyzing the same (but reordered) trajectory.
+This discrepancy is an artifact of the hydrogen-building process. The results for individual C-H bonds of methyl carbons depend on the order of atoms that are used as "helpers". For `gorder`, this means that changing the order of atoms in your topology may yield **completely** different results for bonds in methyl groups, even when analyzing the same (but reordered) trajectory.
 
 However, only the order parameters for individual bonds are affected by this artifact. When averaging the order parameters of the individual bonds, the result remains consistent regardless of the helper atom definitions. Thus, the overall order parameter for the atom (the `total` field in the output YAML file) is reasonable and correct *(to the degree united-atom force fields are accurate)* and can be safely reported.
 

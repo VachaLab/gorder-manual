@@ -6,7 +6,7 @@
   
 - Patrick Fuchs and other developers of [`buildH`](https://github.com/patrickfuchs/buildH), whose incredibly detailed documentation has allowed the calculation of united-atom parameters to actually be reliable.
 
-- Helgi Ingólfsson and Alex de Vries, who wrote the [`do-order`](https://cgmartini.nl/docs/downloads/tools/other-tools.html#do-order) script, which served as the foundation for analyzing coarse-grained order parameters.
+- Helgi Ingólfsson and Alex de Vries, who wrote the [`do-order`](https://cgmartini.nl/docs/downloads/tools/other-tools.html#do-order) script, which served as the foundation for calculating coarse-grained order parameters.
 
 - Sébastien Buchoux, the developer of the [`FATSLiM`](https://fatslim.github.io/) package, which was an inspiration for dynamic membrane normal calculations.
 
