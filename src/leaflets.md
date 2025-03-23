@@ -26,7 +26,7 @@ Here, we use autodetected membrane atoms to calculate the membrane center and se
 
 ## Local method for leaflet classification
 
-> Very slow but reliable. Useful for some slightly curved systems.
+> Slow but reliable. Useful for some slightly curved systems.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **local** membrane center of geometry. The local membrane center is calculated using atoms in a cylinder around the 'head identifier'. If the 'head identifier' is located "above" the local center, the lipid is assigned to the upper leaflet; if "below", it is assigned to the lower leaflet.
 
@@ -118,7 +118,7 @@ During analysis, `gorder` also prints information about membrane composition in 
 Below is an excerpt from an output YAML file containing results for individual membrane leaflets:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.5.0' using structure file 'system.tpr' and trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.6.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
 average order:
   total: 0.1631
   upper: 0.1629
