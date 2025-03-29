@@ -1,6 +1,6 @@
 # Assigning lipids using NDX file(s)
 
-Using NDX files for lipid assignment is arguably a simpler method that enables seamless integration of `gorder` with [`FATSLiM`](https://fatslim.github.io/), which implements possibly the best lipid classification method available.
+Using NDX files for lipid assignment is arguably a simpler method that enables seamless integration of `gorder` with [`FATSLiM`](https://fatslim.github.io/), which implements one of the better lipid classification methods available.
 
 ## NDX file
 

@@ -4,13 +4,13 @@
 
 To do this, you need to specify a method for classifying lipids into membrane leaflets. By default, `gorder` assigns lipids to membrane leaflets independently for each analyzed frame (this can be customized, see [Classification frequency](#classification-frequency)), making it suitable even for the analysis of membranes where lipids flip-flop between leaflets.
 
-There are three leaflet classification methods available in `gorder`: `global`, `local`, and `individual`. In case you are not satisfied with any of them, you can also [assign lipids into leaflets manually](manual_leaflets.md).
+There are three leaflet classification methods available in `gorder`: `global`, `local`, `individual`, and `clustering`. In case you are not satisfied with any of them, you can also [assign lipids into leaflets manually](manual_leaflets.md).
 
-> When calculating order parameters for vesicles or similar highly curved membranes, **you should always assign lipids into leaflets manually**.
+> When calculating order parameters for vesicles or similar highly curved membranes, **you should always assign lipids using the `clustering` method or manually**.
 
 ## Global method for leaflet classification
 
-> Fast and reliable. Recommended for most membranes.
+> Reliable for planar membranes and fast. Recommended for most membranes.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **global** membrane center of geometry. The 'head identifier' is a single atom representing the head of the lipid. If the 'head identifier' is located "above" the membrane center, the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 
@@ -26,7 +26,7 @@ Here, we use autodetected membrane atoms to calculate the membrane center and se
 
 ## Local method for leaflet classification
 
-> Slow but reliable. Useful for some slightly curved systems.
+> Reliable for planar membranes but very slow. Generally not recommended, prefer to use the clustering method.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **local** membrane center of geometry. The local membrane center is calculated using atoms in a cylinder around the 'head identifier'. If the 'head identifier' is located "above" the local center, the lipid is assigned to the upper leaflet; if "below", it is assigned to the lower leaflet.
 
@@ -43,11 +43,11 @@ Autodetected membrane atoms will be used to calculate the membrane center. Only 
 
 ## Individual method for leaflet classification
 
-> Very fast but less reliable. Recommended for very large membranes.
+> Less reliable but very fast. Recommended for very large planar membranes.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to their 'tail ends'. 'Tail ends' refer to the last heavy atoms or beads of the lipid tails. Each lipid molecule may have multiple 'tail ends', but only one 'head identifier'. If the 'head identifier' is located "above" the 'tail ends', the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 
-To use this method, you must specify selections for the 'head identifiers' and the 'tail ends'.
+To use this method, you must specify selections for the 'head identifiers' and the 'tail ends':
 
 ```yaml
 leaflets: !Individual
@@ -57,9 +57,45 @@ leaflets: !Individual
 
 In this example, atoms named 'P' (phosphorus atoms of lipids) are used as head identifiers, and 'C218' or 'C316' atoms (the last carbons of oleoyl and palmitoyl chains) are used as tail ends.
 
+## Clustering method for leaflet classification
+
+> Reliable for membranes without flip-flop but relatively slow. The only automatic leaflet classification method capable of handling curved membranes like vesicles, buckled membranes, or tubes. **Not** recommended for systems with lipid flip-flop and **not usable** for membranes with pores.
+
+This method assigns lipid molecules to membrane leaflets by clustering their head groups using a modified [DBSCAN](https://en.wikipedia.org/wiki/DBSCAN) algorithm. It works with any membrane geometry that is physically realistic.
+
+To use the clustering method, specify a selection for 'head identifier':
+
+```yaml
+leaflets: !Clustering
+  heads: "name P"
+```
+
+In this example, phosphorus atoms ('P') serve as head identifiers. As with other methods, each lipid molecule must have exactly one head identifier, but you can also include head identifiers for lipid molecules for which you are not calculating the order parameters. The method groups the specified atoms into two clusters representing the membrane leaflets.
+
+The clustering method has one adjustable hidden parameter: the maximum neighbor search distance (`epsilon` in DBSCAN). This `radius` parameter defines the sphere around each head identifier within which other heads will be grouped into the same cluster. The default radius is 2 nm, but you can modify it:
+
+```yaml
+leaflets: !Clustering
+  heads: "name P"
+  radius: 1.5
+```
+
+A smaller radius (like 1.5 nm shown here) makes it more likely that both membrane leaflets will be distinguished, but increases the chance of failing to classify outliers. For best results, set the radius to approximately half of your membrane thickness.
+
+### Important considerations for the clustering method
+- **Upper vs lower leaflet assignment:** Unlike other methods, clustering does not use the membrane normal direction, so the labels `upper` and `lower` leaflets are set somewhat arbitrarily following these rules:
+  - First frame: The more populated cluster becomes the `upper` leaflet. If equal, the cluster containing the lowest-index head identifier is `upper`.
+  - Subsequent frames: Clusters are matched to previous frame's leaflets based on similarity.
+  - The matching is heuristic in membranes with lipid flip-flop and may fail if more than roughly 20% of lipids change leaflets between two consecutive analyzed frames. An error is raised if 20-80% lipids change leaflets. If more than 80% change leaflets, results will be incorrect without warning (though this is extremely unlikely).
+
+- **Flip-flop in membranes:** Flip-flopping lipids may disrupt both leaflet matching and the clustering itself. When a lipid positions itself at/near the membrane center, it can create a "bridge" between leaflets, potentially merging them into a single cluster. If this happens, try reducing the `radius` parameter. Due to this limitation, the clustering method also cannot be used for systems with pores.
+
+- **Outlier lipids:** Any head identifier farther than `radius` from others won't be classified, causing analysis to fail. Increasing `radius` may help, but excessive values could incorrectly merge all lipids into one cluster.
+
+
 ## Classification frequency
 
-By default, `gorder` performs leaflet classification independently for each analyzed frame. This ensures accurate analysis in membranes where lipid exchange occurs between leaflets. However, you can modify this behavior using the `frequency` keyword to specify how often leaflet classification should be performed.
+By default, `gorder` performs leaflet classification independently for each analyzed frame. This typically ensures accurate analysis in membranes where lipid exchange occurs between leaflets. However, you can modify this behavior using the `frequency` keyword to specify how often leaflet classification should be performed.
 
 ### Once
 If you know that lipid flip-flop does not occur in your system and want to accelerate the analysis, you can use `frequency: !Once`. This option assigns lipids to individual membrane leaflets based on the **first** trajectory frame (**not** the TPR file structure), and this assignment is then used for all subsequent trajectory frames.
@@ -73,7 +109,7 @@ leaflets: !Local
   frequency: !Once
 ```
 
-> Using `frequency: !Once` is especially useful for the Local classification method which is very computationally expensive.
+> Using `frequency: !Once` is especially useful for the local and clustering classification methods which are computationally expensive.
 
 ### Every N frames
 Alternatively, you can specify that classification should occur every N analyzed trajectory frames using `frequency: !Every N`. For example, `frequency: !Every 10` means that classification will be performed every 10 analyzed trajectory frames, with the closest previous assignment used for intermediate frames.
@@ -90,7 +126,7 @@ leaflets: !Global
 
 ## Membrane normal
 
-All leaflet classification methods use the specified membrane normal to determine what is 'up' and what is 'down'. If your membrane is planar and aligned with the `xy` plane, no further action is needed. Otherwise, refer to [this section of the manual](membrane_normal.md).
+All leaflet classification methods (except for the clustering method) use the specified membrane normal to determine what is 'up' and what is 'down'. If your membrane is planar and aligned with the `xy` plane, no further action is needed. Otherwise, refer to [this section of the manual](membrane_normal.md).
 
 Here, we just mention that the membrane normal used for leaflet classification can be decoupled from the 'global' membrane normal used for calculating order parameters:
 
