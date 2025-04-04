@@ -172,7 +172,7 @@ Then, we run the analysis in the same way as before.
 
 ## Ignoring some atoms
 
-In some cases, such as when calculating united-atom order parameters from an atomistic system, you may want to ignore certain atoms so that they are not considered when calculating bonds, obtaining the number of hydrogens to construct for each carbon, or determining helper atoms for predicting hydrogen positions. To do this, add an `ignore` keyword to the `analysis_type` section of your configuration YAML file:
+In some cases, such as when calculating united-atom order parameters from an atomistic system or when working with a hybrid AA-UA system, you may want to ignore certain atoms so that they are not considered when calculating bonds, obtaining the number of hydrogens to construct for each carbon, or determining helper atoms for predicting hydrogen positions. To do this, add an `ignore` keyword to the `analysis_type` section of your configuration YAML file:
 
 ```yaml
 structure: system.tpr

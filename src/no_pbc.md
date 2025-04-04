@@ -31,7 +31,7 @@ You can of course choose to ignore PBC for any system, even if it has an orthogo
 Be aware of the following limitations when PBC are ignored:
 
 1. **Order parameters for individual leaflets**  
-   Ensure that your membrane is fully within the simulation box. For example, if your membrane lies in the xy-plane, ensure it does not extend beyond the limits of the simulation box in the z-dimension or appear fragmented across the periodic boundary. **Failing to meet this requirement may result in entirely incorrect lipid leaflet assignments.** To avoid issues, you may want to center the membrane in the simulation box before running the analysis.
+   Ensure that your membrane is fully within the simulation box. For example, if your membrane lies in the xy-plane, ensure it does not extend beyond the limits of the simulation box in the z-dimension or appear fragmented across the periodic boundary. Similarly, if your membrane is a vesicle, it should be located entirely and unbroken within the simulation box. **Failing to meet this requirement may result in entirely incorrect lipid leaflet assignments.** To avoid issues, you may want to center the membrane in the simulation box before running the analysis.
 
 2. **Ordermap dimensions**  
    When constructing ordermaps, you cannot automatically derive their dimensions from the simulation box because it is ignored. You must specify the dimensions manually. Forgetting to do this will result in an error. See [this section of the manual](ordermaps.md#dimensions-of-the-ordermaps) for instructions on setting dimensions.
