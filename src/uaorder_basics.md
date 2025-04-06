@@ -8,7 +8,7 @@ To calculate united-atom order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
 - An XTC trajectory file (`md.xtc`) whose frames will be analyzed.
 
-> It is recommended to use TPR and XTC files, but `gorder` also [supports various other file formats](other_input.md).
+> It is recommended to use TPR and XTC files, but `gorder` also [supports some other file formats](other_input.md).
 
 Next, we create a configuration YAML file that specifies the options for the analysis:
 
