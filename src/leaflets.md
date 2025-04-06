@@ -61,9 +61,9 @@ In this example, atoms named 'P' (phosphorus atoms of lipids) are used as head i
 
 > Reliable but very slow. Recommended for curved membranes.
 
-This method assigns lipid molecules to membrane leaflets by clustering their head groups using [spectral clustering](https://en.wikipedia.org/wiki/Spectral_clustering). It works for any membrane geometry that is physically realistic, including for membranes with pores or lipid flip-flop.
+This method assigns lipid molecules to membrane leaflets by clustering their head groups using [spectral clustering](https://en.wikipedia.org/wiki/Spectral_clustering). This method can handle any membrane geometry that is physically realistic, including curved membranes with pores or lipid flip-flop.
 
-To use the clustering method, specify a selection for 'head identifier':
+To use the clustering method, specify a selection for 'head identifiers':
 
 ```yaml
 leaflets: !Clustering
@@ -141,7 +141,7 @@ During analysis, `gorder` also prints information about membrane composition in 
 Below is an excerpt from an output YAML file containing results for individual membrane leaflets:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.6.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.7.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
 average order:
   total: 0.1631
   upper: 0.1629
