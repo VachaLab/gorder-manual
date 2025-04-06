@@ -63,7 +63,7 @@ All methods for classifying lipids into leaflets use the membrane normal to dete
       membrane_normal: z
     ```
 
-    This membrane normal definition is used only when assigning lipids into leaflets. If you are working with a (reasonably) planar membrane, the membrane normal for leaflet classification does not need to be precise, so this approach is perfectly fine, even if you are otherwise working with dynamically calculated membrane normals. However, for a curved membrane, such as a vesicle, you should [assign lipids into leaflets manually](manual_leaflets.md) instead.
+    This membrane normal definition is used only when assigning lipids into leaflets. If you are working with a (reasonably) planar membrane, the membrane normal for leaflet classification does not need to be precise, so this approach is perfectly fine, even if you are otherwise working with dynamically calculated membrane normals. However, for a curved membrane, such as a vesicle, you should instead use the [clustering method](leaflets.md#clustering-method-for-leaflet-classification) which does not use membrane normals or [assign lipids into leaflets manually](manual_leaflets.md).
 
 3. **Constructing ordermaps**  
 When constructing ordermaps, the plane in which an ordermap is generated is determined by the provided membrane normal. Since ordermaps can only be constructed in the `xy`, `xz`, or `yz` plane, they also require a static membrane normal (`z`, `y`, or `x`). If you are calculating the membrane normal dynamically and also want to construct ordermaps, you must specify the ordermap plane manually:

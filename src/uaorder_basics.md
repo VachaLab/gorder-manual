@@ -8,7 +8,7 @@ To calculate united-atom order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
 - An XTC trajectory file (`md.xtc`) whose frames will be analyzed.
 
-> It is recommended to use TPR and XTC files, but `gorder` also [supports various other file formats](other_input.md).
+> It is recommended to use TPR and XTC files, but `gorder` also [supports some other file formats](other_input.md).
 
 Next, we create a configuration YAML file that specifies the options for the analysis:
 
@@ -64,7 +64,7 @@ During the analysis, we will see something like this:
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.6.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.7.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
 average order:
   total: 0.098
 POPC:
@@ -172,7 +172,7 @@ Then, we run the analysis in the same way as before.
 
 ## Ignoring some atoms
 
-In some cases, such as when calculating united-atom order parameters from an atomistic system, you may want to ignore certain atoms so that they are not considered when calculating bonds, obtaining the number of hydrogens to construct for each carbon, or determining helper atoms for predicting hydrogen positions. To do this, add an `ignore` keyword to the `analysis_type` section of your configuration YAML file:
+In some cases, such as when calculating united-atom order parameters from an atomistic system or when working with a hybrid AA-UA system, you may want to ignore certain atoms so that they are not considered when calculating bonds, obtaining the number of hydrogens to construct for each carbon, or determining helper atoms for predicting hydrogen positions. To do this, add an `ignore` keyword to the `analysis_type` section of your configuration YAML file:
 
 ```yaml
 structure: system.tpr

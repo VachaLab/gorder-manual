@@ -81,7 +81,7 @@ Ordermaps are saved in a custom two-dimensional `gorder` format:
 
 ```text
 # Map of average order parameters calculated for the atom type POPC-C22-32.
-# Calculated with 'gorder v0.6.0'.
+# Calculated with 'gorder 7.0'.
 @ xlabel x-dimension [nm]
 @ ylabel y-dimension [nm]
 @ zlabel order parameter ($-S_{CH}$)

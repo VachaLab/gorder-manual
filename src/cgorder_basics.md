@@ -8,7 +8,7 @@ To calculate coarse-grained order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
 - An XTC trajectory file (`md.xtc`) whose frames will be analyzed.
 
-> It is recommended to use TPR and XTC files, but `gorder` also [supports various other file formats](other_input.md).
+> It is recommended to use TPR and XTC files, but `gorder` also [supports some other file formats](other_input.md).
 
 Next, we create a configuration YAML file that specifies the options for the analysis:
 
@@ -45,7 +45,7 @@ During the analysis, we will see something like this:
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.6.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v0.7.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
 average order:
   total: 0.2937
 POPC:

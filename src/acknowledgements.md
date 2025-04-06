@@ -12,8 +12,6 @@
 
 - Marieke Westendorp, the developer of the [`molly`](https://git.sr.ht/~ma3ke/molly) crate, which is the main reason `gorder` is so fast.
 
-- Guillaume Fraux and other developers of the [`chemfiles`](https://github.com/chemfiles/chemfiles) library, which enables `gorder` to read multiple trajectory file formats.
-
 - The developers of the [Rust language](https://www.rust-lang.org/) and many of its crates, without which this project would be painful to complete.
 
 - The many people who contributed to the methodology of molecular dynamics simulations and their analysis over the years.

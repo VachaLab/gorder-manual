@@ -18,7 +18,7 @@ estimate_error: true
 The output YAML file will then include error estimates and may look similar to this:
 
 ```yaml
-# Order parameters calculated with 'gorder v0.6.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder 7.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
 average order:
   total:
     mean: 0.1631
