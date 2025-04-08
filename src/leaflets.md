@@ -78,6 +78,7 @@ In this example, phosphorus atoms ('P') serve as head identifiers. As with other
   - Subsequent frames: Clusters are matched to previous frame's leaflets based on similarity.
   - The matching is heuristic in membranes with lipid flip-flop and may fail if more than roughly 20% of lipids change leaflets between two consecutive analyzed frames. An error is raised if 20-80% lipids change leaflets. If more than 80% change leaflets, results will be incorrect without warning (though this is extremely unlikely).
   - The matching may also fail if the spectral clustering identifies the leaflets incorrectly. In such case, you should provide the leaflet assignment manually.
+- **Head identifier selection:** When using the clustering method, always select head identifiers for **all** lipids in your membrane—even if analyzing only a specific subset of lipids and particularly when this subset resides in just one membrane leaflet.
 - **Extremely slow:** Spectral clustering can be extremely slow, especially when your membrane is large. If you know that there is no flip-flop in your system, it is **highly recommended** to set the classification `frequency` to `!Once` when using this method (see [below](#classification-frequency)).
 
 ## Classification frequency
