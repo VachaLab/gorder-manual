@@ -87,6 +87,6 @@ Here’s an excerpt from an example bonds file:
 
 ## Note about selecting elements
 
-When using the `element` keyword in [GSL](https://ladme.github.io/gsl-guide/) atom selection queries, atoms are selected based on their associated element. Element information is natively available in TPR files but is missing in other supported formats. If a non-TPR file is used, `gorder` will attempt to guess the elements of atoms based on the atom and residue names.
+When using the `element` keyword in [GSL](gsl.md) atom selection queries, atoms are selected based on their associated element. Element information is natively available in TPR files but is missing in other supported formats. If a non-TPR file is used, `gorder` will attempt to guess the elements of atoms based on the atom and residue names.
 
 If `gorder` detects potential issues with the guess, it will display a warning in the terminal. You can then evaluate whether the concerns are harmless, avoid using the `element` keyword, or provide a TPR file instead.

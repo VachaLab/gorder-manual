@@ -14,7 +14,7 @@ There are four leaflet classification methods available in `gorder`: `global`, `
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **global** membrane center of geometry. The 'head identifier' is a single atom representing the head of the lipid. If the 'head identifier' is located "above" the membrane center, the lipid is assigned to the upper leaflet; if it is located "below", it is assigned to the lower leaflet.
 
-To use this method, you must specify the 'head identifier' atoms and all atoms that form the membrane. [GSL](https://ladme.github.io/gsl-guide/) is used to define these selections.
+To use this method, you must specify the 'head identifier' atoms and all atoms that form the membrane. [GSL](gsl.md) is used to define these selections.
 
 ```yaml
 leaflets: !Global

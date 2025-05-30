@@ -22,7 +22,7 @@ output: order.yaml
 
 In the configuration YAML file, the analysis type `CGOrder` requires you to specify beads that will be considered for the analysis. `gorder` will then identify all bonds connecting the selected beads. The order parameters are calculated for all these identified bonds.
 
-The atoms are selected using a query language called [GSL](https://ladme.github.io/gsl-guide/). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
+The atoms are selected using a query language called [GSL](gsl.md). If you are familiar with the query language used in VMD, you'll find the basic syntax of GSL intuitive.
 
 Here `beads` are selected using the query `@membrane`. That is a GSL autodetection macro that select all beads or atoms of common membrane lipids.
 

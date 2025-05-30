@@ -9,6 +9,7 @@
 - [Atomistic order parameters](aaorder_basics.md)
 - [Coarse-grained order parameters](cgorder_basics.md)
 - [United-atom order parameters](uaorder_basics.md)
+- [Selecting atoms using GSL](gsl.md)
 - [Output formats](output.md)
 
 # Advanced

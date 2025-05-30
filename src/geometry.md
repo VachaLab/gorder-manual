@@ -112,7 +112,7 @@ Set the reference point as the center of geometry of a specified group of atoms:
 reference: "@protein"
 ```
 
-Here, the reference point corresponds to the geometric center of the `@protein` atom selection (all protein atoms in the system). The geometric center is recalculated for every frame of the trajectory. Use [GSL](https://ladme.github.io/gsl-guide/) syntax to specify the atom selection.
+Here, the reference point corresponds to the geometric center of the `@protein` atom selection (all protein atoms in the system). The geometric center is recalculated for every frame of the trajectory. Use [GSL](gsl.md) syntax to specify the atom selection.
 
 3. **Dynamic simulation box center**
 
