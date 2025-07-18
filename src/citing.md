@@ -4,14 +4,14 @@ If you would like to cite the `gorder` software, use the following BibTeX entry:
 
 ```text
 @article{gorder,
-	author = {Barto{\v s}, Ladislav and Pajtinka, Peter and V{\'a}cha, Robert},
-	title = {gorder: Comprehensive tool for calculating lipid order parameters from molecular simulations},
-	elocation-id = {2025.05.07.652627},
-	year = {2025},
-	doi = {10.1101/2025.05.07.652627},
-	publisher = {Cold Spring Harbor Laboratory},
-	URL = {https://www.biorxiv.org/content/early/2025/05/08/2025.05.07.652627},
-	eprint = {https://www.biorxiv.org/content/early/2025/05/08/2025.05.07.652627.full.pdf},
-	journal = {bioRxiv}
+title = {gorder: Comprehensive tool for calculating lipid order parameters from molecular simulations},
+journal = {SoftwareX},
+volume = {31},
+pages = {102254},
+year = {2025},
+issn = {2352-7110},
+doi = {https://doi.org/10.1016/j.softx.2025.102254},
+url = {https://www.sciencedirect.com/science/article/pii/S2352711025002213},
+author = {Ladislav Bartoš and Peter Pajtinka and Robert Vácha},
 }
 ```
