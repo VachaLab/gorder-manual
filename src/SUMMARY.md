@@ -1,6 +1,7 @@
 # Summary
 
 # Introduction
+- [How to read this manual](info.md)
 - [What is gorder?](introduction.md)
 - [Some theory](theory.md)
 

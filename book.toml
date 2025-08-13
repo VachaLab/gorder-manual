@@ -10,5 +10,7 @@ after = ["links"]
 
 [output.html]
 input-404 = "not_found.md"
+copy-files = ["src/raw.html"]
+
 
 # [output.pdf]

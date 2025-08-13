@@ -1,6 +1,10 @@
 # Citing
 
-If you would like to cite the `gorder` software, use the following BibTeX entry:
+To cite the `gorder` software, please use the following reference:
+
+> Bartoš, L., Pajtinka, P., Vácha, R. (2025). gorder: Comprehensive tool for calculating lipid order parameters from molecular simulations. SoftwareX, 31, 102254. [https://doi.org/10.1016/j.softx.2025.102254](https://doi.org/10.1016/j.softx.2025.102254)
+
+BibTeX entry:
 
 ```text
 @article{gorder,
