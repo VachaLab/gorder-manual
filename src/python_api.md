@@ -22,7 +22,7 @@ $ conda install conda-forge::pygorder
 
 ## Installing using `pip`
 
-If you use neither `uv` or `conda`, you can also install `gorder` simply using `pip`:
+If you use neither `uv` nor `conda`, you can install `gorder` simply using `pip`:
 
 ```bash
 $ pip install git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
