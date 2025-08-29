@@ -8,4 +8,6 @@ Apart from calculating the order parameters correctly, `gorder` also offers many
 
 > `gorder` is written in [Rust](https://www.rust-lang.org/) and is also available as a [Python package](python_api.md) and a [Rust crate](rust_api.md). If you want to see the code (or comparison with other programs), visit the [`gorder` GitHub repository](https://github.com/Ladme/gorder).
 
+***
+
 [^1]: Even [Gromacs developers say](https://manual.gromacs.org/2024.1/onlinehelp/gmx-order.html#known-issues) that you should not use `gmx order`.
