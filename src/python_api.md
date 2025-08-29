@@ -2,19 +2,35 @@
 
 `gorder` can also be used as a Python package, allowing you to call it directly from your Python code.
 
-To install `gorder`, you can use `pip`:
+## Installing using `uv`
 
-```bash
-$ pip install git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
-```
-
-However, you **should** use the [uv](https://github.com/astral-sh/uv) package manager instead. To add `gorder` to your `uv` project, run:
+The recommended way to install `gorder` as a Python package is to use the [uv](https://github.com/astral-sh/uv) package manager. To add `gorder` to your `uv` project, run:
 
 ```bash
 $ uv add git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
 ```
 
-Next, import the package into your Python code:
+## Installing using `conda`
+
+`gorder` is also available on [`conda-forge`](https://anaconda.org/conda-forge/pygorder) (credit to [@RubenChM](https://github.com/RubenChM)):
+
+```bash
+$ conda create -n gorder
+$ conda activate gorder
+$ conda install conda-forge::pygorder
+```
+
+## Installing using `pip`
+
+If you use neither `uv` or `conda`, you can also install `gorder` simply using `pip`:
+
+```bash
+$ pip install git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
+```
+
+## Using `gorder`
+
+Once you install the package, import it into your Python code:
 
 ```python
 import gorder
