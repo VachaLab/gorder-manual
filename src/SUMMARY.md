@@ -28,6 +28,7 @@
 - [Manual lipid assignment to leaflets](manual_leaflets.md)
     - [Assigning lipids using NDX file(s)](leaflets_ndx.md)
     - [Assigning lipids using a leaflet assignment file](leaflets_assignment_file.md)
+- [Exporting lipid assignment data](leaflets_export.md)
 - [Manual membrane normals](manual_normals.md)
 - [Using other input file formats](other_input.md)
     - [Structure and topology file formats](other_structure.md)
