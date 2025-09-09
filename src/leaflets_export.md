@@ -14,7 +14,7 @@ leaflets: !Global
 
 *Instead of `export`, you can also use the `collect` keyword.*
 
-Leaflet classification will be performed using the [global](leaflets.md#global-method-for-leaflet-classification) method for every 5th analyzed frame (`frequency: !Every 5`). Once the trajectory has been processed, the assignment data will be written to `leaflet_assignment.yaml`. The data are exported in a condensed [leaflet assignment file](leaflets_assignment_file.md#leaflet-assignment-file) format. This means that you can directly reuse the exported YAML file in a subsequent `gorder` run by requesting manual leaflet classification.
+Leaflet classification will be performed using the [global](leaflets.md#global-method-for-leaflet-classification) method for every 5th analyzed frame (`frequency: !Every 5`). Once the trajectory has been processed, the assignment data will be written to `leaflet_assignment.yaml`. The data are exported in a condensed [leaflet assignment file](leaflets_assignment_file.md#leaflet-assignment-file) format. This means that you can directly reuse the exported YAML file in a subsequent `gorder` run by requesting manual leaflet classification. Since the output file is a valid YAML, you an also easily read it using other software.
 
 > Note that exporting lipid assignment data is only supported for [automatic leaflet classification methods](leaflets.md): global, local, individual, and clustering. Exporting lipid assignments is not supported for manual lipid assignment, as it is effectively pointless.
 
