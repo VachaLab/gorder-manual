@@ -74,12 +74,25 @@ In this example, phosphorus atoms ('P') serve as head identifiers. As with other
 
 ### Important considerations for the clustering method
 - **Upper vs lower leaflet assignment:** Unlike other methods, clustering does not use the membrane normal direction, so the labels `upper` and `lower` leaflets are set somewhat arbitrarily following these rules:
-  - First frame: The more populated cluster becomes the `upper` leaflet. If equal, the cluster containing the lowest-index head identifier is `upper`.
+  - First frame: The more populated cluster becomes the `upper` leaflet. If equal, the cluster containing the lowest-index head identifier is `upper`. You can change this behavior using the [`flip`](#flipping-the-assignment) keyword.
   - Subsequent frames: Clusters are matched to previous frame's leaflets based on similarity.
   - The matching is heuristic in membranes with lipid flip-flop and may fail if more than roughly 20% of lipids change leaflets between two consecutive analyzed frames. An error is raised if 20-80% lipids change leaflets. If more than 80% change leaflets, results will be incorrect without warning (though this is extremely unlikely).
   - The matching may also fail if the spectral clustering identifies the leaflets incorrectly. In such case, you should provide the leaflet assignment manually.
 - **Head identifier selection:** When using the clustering method, always select head identifiers for **all** lipids in your membrane—even if analyzing only a specific subset of lipids and particularly when this subset resides in just one membrane leaflet.
 - **Extremely slow:** Spectral clustering can be extremely slow, especially when your membrane is large. If you know that there is no flip-flop in your system, it is **highly recommended** to set the classification `frequency` to `!Once` when using this method (see [below](#classification-frequency)).
+
+### Flipping the assignment
+As mentioned above, the clustering method may in some cases mislabel the leaflets. For example, the leaflet you consider to be the lower leaflet of the membrane might be labeled as `upper` if it happens to contain more lipids. To correct this, you can add the `flip` keyword to invert the leaflet assignment during the analysis.
+
+```yaml
+leaflets: !Clustering
+  heads: "name P"
+  flip: true
+```
+
+With this option enabled, any lipid that would normally be assigned to the `upper` leaflet based on the rules described above will instead be classified as part of the `lower` leaflet. Conversely, lipids that should be assigned to the `lower` leaflet will be actually assigned to the `upper` leaflet.
+
+> The `flip` option can be used with any leaflet classification method, but it is typically not very useful for anything else than the clustering method.
 
 ## Classification frequency
 
