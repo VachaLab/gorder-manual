@@ -25,10 +25,13 @@
 - [Other options](other_options.md)
 
 # Expert
-- [Manual lipid assignment to leaflets](manual_leaflets.md)
+- [Manual lipid assignment and export](manual_leaflets.md)
     - [Assigning lipids using NDX file(s)](leaflets_ndx.md)
     - [Assigning lipids using a leaflet assignment file](leaflets_assignment_file.md)
-- [Manual membrane normals](manual_normals.md)
+    - [Exporting lipid assignment data](leaflets_export.md)
+- [Manual membrane normals assignment and export](advanced_normals.md)
+    - [Assigning membrane normals manually](manual_normals.md)
+    - [Exporting membrane normals](normals_export.md)
 - [Using other input file formats](other_input.md)
     - [Structure and topology file formats](other_structure.md)
     - [Trajectory file formats](other_trajectory.md)

@@ -64,7 +64,7 @@ During the analysis, we will see something like this:
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
 ```yaml
-# Order parameters calculated with 'gorder v1.1.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v1.2.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
 average order:
   total: 0.098
 POPC:

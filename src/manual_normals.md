@@ -1,4 +1,4 @@
-# Manual membrane normals
+# Assigning membrane normals manually
 
 For absolute control over membrane normals, `gorder` allows manual specification of membrane normals for individual molecules in individual trajectory frames.
 
