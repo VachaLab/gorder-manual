@@ -10,16 +10,6 @@ The recommended way to install `gorder` as a Python package is to use the [uv](h
 $ uv add git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
 ```
 
-## Installing using `conda`
-
-`gorder` is also available on [`conda-forge`](https://anaconda.org/conda-forge/pygorder) (credit to [@RubenChM](https://github.com/RubenChM)):
-
-```bash
-$ conda create -n gorder
-$ conda activate gorder
-$ conda install conda-forge::pygorder
-```
-
 ## Installing using `pip`
 
 If you use neither `uv` nor `conda`, you can install `gorder` simply using `pip`:
