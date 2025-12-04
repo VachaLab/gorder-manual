@@ -114,7 +114,7 @@ POPC:
 
 `gorder` automatically identified one molecule type and all relevant bonds. It then predicted the positions of missing hydrogens for the individual carbons. Order parameters are reported for each carbon of each molecule type, as well as for each predicted C-H bond. `average_order` corresponds to the average order of all the relevant atoms of the entire system or a single molecule type, respectively.
 
-> The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure.
+> ⚠️ The atom types are listed in the **same order as they appear in the input TPR structure**. Note that in some force fields, the sequence of atoms may be unintuitive and atoms from different tails may not be separated. Always check the output before plotting the results!
 
 Let's take a closer look at a part of the output YAML file:
 

@@ -113,7 +113,7 @@ POPG:
 
 `gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens. `average order` corresponds to the average order of all the relevant bonds of the entire system or a single molecule type, respectively.
 
-> The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure. Note that parameters for C21 and C31 are absent, even though these atoms should qualify as `heavy_atoms` based on the regular expression `C3.+|C2.+`. However, these atoms lack bonded hydrogens and are therefore automatically excluded from the output.
+> ⚠️ The atom types are listed in the **same order as they appear in the input TPR structure**. Note that in some force fields (e.g., CHARMM), the sequence of atoms may be unintuitive (e.g., C32 can appear between C22 and C23, even though they are from *different lipid tails*). Always check the output before plotting the results!
 
 Let's take a closer look at a part of the output YAML file:
 

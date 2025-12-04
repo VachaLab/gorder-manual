@@ -91,7 +91,7 @@ POPG:
 
 `gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported for each bond type of each molecule type. `average order` corresponds to the average order of all the relevant bonds of the entire system or a single molecule type, respectively.
 
-> The bond types (and molecule types) are listed in the same order their atoms appear in the input TPR structure.
+> ⚠️ The bond types are listed in the **same order their atoms appear in the input TPR structure**. Note that in some force fields, the sequence of atoms may be unintuitive and bonds from different tails may not be separated. Always check the output before plotting the results!
 
 Let's take a closer look at a part of the output YAML file:
 
