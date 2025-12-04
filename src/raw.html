@@ -174,8 +174,7 @@ POPG:
 
 `gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens. `average order` corresponds to the average order of all the relevant bonds of the entire system or a single molecule type, respectively.
 
-> The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure. Note that parameters for C21 and C31 are absent, even though these atoms should qualify as `heavy_atoms` based on the regular expression `C3.+|C2.+`. However, these atoms lack bonded hydrogens and are therefore automatically excluded from the output.
-
+> The atom types are listed in the **same order as they appear in the input TPR structure**. Note that in some force fields (e.g., CHARMM), the sequence of atoms may be unintuitive (e.g., C32 can appear between C22 and C23, even though they are from *different lipid tails*). Always check the output before plotting the results!
 Let's take a closer look at a part of the output YAML file:
 
 ```yaml
@@ -303,7 +302,7 @@ POPG:
 
 `gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported for each bond type of each molecule type. `average order` corresponds to the average order of all the relevant bonds of the entire system or a single molecule type, respectively.
 
-> The bond types (and molecule types) are listed in the same order their atoms appear in the input TPR structure.
+> The bond types are listed in the **same order their atoms appear in the input TPR structure**. Note that in some force fields, the sequence of atoms may be unintuitive and bonds from different tails may not be separated. Always check the output before plotting the results!
 
 Let's take a closer look at a part of the output YAML file:
 
@@ -455,7 +454,7 @@ POPC:
 
 `gorder` automatically identified one molecule type and all relevant bonds. It then predicted the positions of missing hydrogens for the individual carbons. Order parameters are reported for each carbon of each molecule type, as well as for each predicted C-H bond. `average_order` corresponds to the average order of all the relevant atoms of the entire system or a single molecule type, respectively.
 
-> The atom types (and molecule types) are listed in the same order as they appear in the input TPR structure.
+> The atom types are listed in the **same order as they appear in the input TPR structure**. Note that in some force fields, the sequence of atoms may be unintuitive and atoms from different tails may not be separated. Always check the output before plotting the results!
 
 Let's take a closer look at a part of the output YAML file:
 
@@ -2093,7 +2092,6 @@ While `gorder` aims to provide accurate and reliable results, there are some kno
    - **Why is this the case?** This limitation stems from the [`minitpr`](https://github.com/Ladme/minitpr) crate used to parse TPR files. The TPR file format evolves constantly, and supporting all ancient Gromacs versions is simply not feasible.
    - **What can you do if your TPR file is this old?** In most cases, the solution is simple: convert the old TPR file using a new version of Gromacs, i.e., run `gmx convert-tpr -s old_file.tpr -o new_file.tpr`. If converting a TPR file is not an option for you, you can instead provide a PDB file with a connectivity section or a GRO file along with a bonds file (see [Using other input file formats](other_input.md)).
    - **Will this be addressed in the future?** Older Gromacs versions will likely **never** be fully supported.
-
 2. **`gorder` only fully supports systems with orthogonal simulation boxes and periodic boundary conditions applied in all three dimensions.**
    - **Why is this the case?** This limitation arises from the [`groan_rs`](https://github.com/Ladme/groan_rs) crate, which provides only partial support for non-orthogonal simulation boxes. Handling periodic boundary conditions in such boxes is complex and not fully implemented at present.
    - **What can you do if your box is not orthogonal?** You must instruct `gorder` to [ignore periodic boundary conditions](no_pbc.md). Then, provide a trajectory where the lipid molecules are whole, and perform the analysis as usual.
@@ -2103,6 +2101,12 @@ While `gorder` aims to provide accurate and reliable results, there are some kno
    - **Why is this the case?** Handling multiple membranes is complex, and such systems are relatively uncommon. `gorder` is primarily designed for analyzing single-membrane systems. This does not mean you cannot use it for multi-membrane systems, but some features may not work as expected (see below).
    - **What can you do if your system contains multiple membranes?** If you are performing basic analysis with a static membrane normal and no leaflet assignment, no special action is required. However, be aware that order parameters from all membranes will be averaged into a single collective set of order parameters. If you are assigning leaflets, note that the only usable automatic classification method is the `individual` method. If you are using dynamic membrane normal calculation, ensure that the membranes are sufficiently far apart: specifically, farther than the `radius` value used in the membrane normal calculation. You can of course also select atoms from a single membrane for analysis, but make sure to consistently apply this selection across all relevant sections, particularly in dynamic membrane normal calculation.
    - **Will this be addressed in the future?** Will `gorder` ever support membrane-specific order parameter calculations? This is highly unlikely. Multi-membrane systems are rare, and membrane-wise analysis can be performed by running individual analyses with different atom selections. Since `gorder` is fast (and even faster when the trajectory is already cached), performing multiple runs should not be a significant issue.
+4. **`gorder` fails when analyzing simulations longer than 2,147,483,647 simulation steps.**
+   *(Note that this corresponds to simulation length of roughly 4.3 μs at 2 fs time step.)*
+   - **Why is this the case?** This limitation stems from the [`molly`](https://github.com/ma3ke/molly) crate used to parse XTC files (and partially from the design of XTC files themselves). The simulation step in an XTC file is a 4-byte signed integer whose maximum value is 2,147,483,647. If a higher step is reached, `molly` crashes with an error instead of overflowing like many other libraries. Read more [here](https://github.com/Ladme/gorder/issues/14) and [here](https://github.com/ma3ke/molly/issues/1).
+   - **What can you do if your trajectory is this long?** Remove the step information from your trajectory. A recommended approach is to use the [step2frame](https://github.com/Ladme/step2frame) tool, which generates a trajectory where step numbers are replaced with frame numbers. Use the converted trajectory as the input trajectory for `gorder`.
+   - **Will this be addressed in the future?** Yes — either by fixing the issue in the `molly` crate or by allowing compilation of `gorder` without `molly` (which would, however, make `gorder` slower).
+
 # Feedback
 
 If you encounter an issue with the program, such as incorrect or unexpected behavior or functionality, please [open an issue on GitHub](https://github.com/Ladme/gorder/issues) or send an email to `ladmeb@gmail.com`.
