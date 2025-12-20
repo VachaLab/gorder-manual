@@ -4,4 +4,4 @@ It seems this page was excluded from the trajectory. Don't worry, your data is s
 
 > **Hint:** Check that your input URL string is correct.
 
-[Go back to the first trajectory frame.](introduction.md)
+[Go back to the first trajectory frame.](info.md)
