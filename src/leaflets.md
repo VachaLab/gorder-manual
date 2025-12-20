@@ -4,9 +4,13 @@
 
 To do this, you need to specify a method for classifying lipids into membrane leaflets. By default, `gorder` assigns lipids to membrane leaflets independently for each analyzed frame (this can be customized, see [Classification frequency](#classification-frequency)), making it suitable even for the analysis of membranes where lipids flip-flop between leaflets.
 
-There are four leaflet classification methods available in `gorder`: `global`, `local`, `individual`, and `clustering`. In case you are not satisfied with any of them, you can also [assign lipids into leaflets manually](manual_leaflets.md).
+There are five leaflet classification methods available in `gorder`: `global`, `local`, `individual`, `spherical clustering`, and `clustering`. In case you are not satisfied with any of them, you can also [assign lipids into leaflets manually](manual_leaflets.md).
 
-> When calculating order parameters for vesicles or similar highly curved membranes, **you should always assign lipids using the [`clustering` method](#clustering-method-for-leaflet-classification) or [manually](manual_leaflets.md)**.
+> Quick recommendations:
+> - small planar membrane -> [`global method`](#global-method-for-leaflet-classification)
+> - large planar or slightly curved membrane -> [`individual method`](#individual-method-for-leaflet-classification)
+> - vesicle -> [`spherical clustering method`](#spherical-clustering-method-for-leaflet-classification)
+> - buckled membrane, tube, or any other geometry -> [`clustering method`](#clustering-method-for-leaflet-classification)
 
 ## Global method for leaflet classification
 
@@ -57,11 +61,30 @@ leaflets: !Individual
 
 In this example, atoms named 'P' (phosphorus atoms of lipids) are used as head identifiers, and 'C218' or 'C316' atoms (the last carbons of oleoyl and palmitoyl chains) are used as tail ends.
 
+## Spherical clustering method for leaflet classification
+
+> Reliable for spherical vesicles and fast. Do not use for anything other than vesicles!
+
+This method assigns lipid molecules to membrane leaflets by clustering their head groups using 2-component [Gaussian mixture model](https://en.wikipedia.org/wiki/Mixture_model). This method is specifically designed for spherical, unilamellar vesicles and **cannot be used with any other membrane geometry**. The method is able to handle vesicles with pores and lipid flip-flop.
+
+To use spherical clustering, specify a selection for 'head identifiers':
+
+```yaml
+leaflets: !SphericalClustering
+  heads: "name P"
+```
+
+In this example, phosphorus atoms ('P') serve as head identifiers. Each lipid molecule must have exactly one head identifier. **Note that you should select head identifiers of all lipids in the vesicle, including those for which you are not calculating order parameters at all.** Otherwise the classification may be incorrect.
+
+The spherical clustering method divides lipids into two clusters. The labels `upper` and `lower` (equivalent to `outer` and `inner`, respectively) are assigned to these clusters based on the average distance between the head identifiers of the lipids in each cluster and the vesicle's center of geometry. Lipids whose head identifiers are, on average, farther from the vesicle center are classified as belonging to the `upper` (`outer`) leaflet, while lipids with head identifiers closer to the center are classified as belonging to the `lower` (`inner`) leaflet.
+
 ## Clustering method for leaflet classification
 
 > Reliable but very slow. Recommended for curved membranes.
 
-This method assigns lipid molecules to membrane leaflets by clustering their head groups using [spectral clustering](https://en.wikipedia.org/wiki/Spectral_clustering). This method can handle any membrane geometry that is physically realistic, including curved membranes with pores or lipid flip-flop.
+This method assigns lipid molecules to membrane leaflets by clustering their head groups using [spectral clustering](https://en.wikipedia.org/wiki/Spectral_clustering). This method can handle any membrane geometry that is physically realistic, including curved membranes with pores or lipid flip-flop. 
+
+*If you are working with vesicles, you should probably use the [`Spherical clustering` method](#spherical-clustering-method-for-leaflet-classification) instead.*
 
 To use the clustering method, specify a selection for 'head identifiers':
 
@@ -76,8 +99,8 @@ In this example, phosphorus atoms ('P') serve as head identifiers. As with other
 - **Upper vs lower leaflet assignment:** Unlike other methods, clustering does not use the membrane normal direction, so the labels `upper` and `lower` leaflets are set somewhat arbitrarily following these rules:
   - First frame: The more populated cluster becomes the `upper` leaflet. If equal, the cluster containing the lowest-index head identifier is `upper`. You can change this behavior using the [`flip`](#flipping-the-assignment) keyword.
   - Subsequent frames: Clusters are matched to previous frame's leaflets based on similarity.
-  - The matching is heuristic in membranes with lipid flip-flop and may fail if more than roughly 20% of lipids change leaflets between two consecutive analyzed frames. An error is raised if 20-80% lipids change leaflets. If more than 80% change leaflets, results will be incorrect without warning (though this is extremely unlikely).
-  - The matching may also fail if the spectral clustering identifies the leaflets incorrectly. In such case, you should provide the leaflet assignment manually.
+  - The matching is heuristic and may fail in membranes with lipid flip-flop if more than roughly 20% of lipids change leaflets between two consecutive analyzed frames. An error is raised if 20-80% lipids change leaflets. If more than 80% change leaflets, results will be incorrect without warning (though this is extremely unlikely).
+  - The matching may also fail if the spectral clustering identifies the leaflets incorrectly. In such case, consider a different leaflet assignment method or provide the [assignment manually](manual_leaflets.md).
 - **Head identifier selection:** When using the clustering method, always select head identifiers for **all** lipids in your membrane—even if analyzing only a specific subset of lipids and particularly when this subset resides in just one membrane leaflet.
 - **Extremely slow:** Spectral clustering can be extremely slow, especially when your membrane is large. If you know that there is no flip-flop in your system, it is **highly recommended** to set the classification `frequency` to `!Once` when using this method (see [below](#classification-frequency)).
 

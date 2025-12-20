@@ -12,7 +12,9 @@ analysis_type: !AAOrder
 output: order.yaml
 ```
 
-`gorder` will seamlessly concatenate all the trajectory files and analyze them. If the individual trajectories are from the same simulation and follow each other directly, the last frame of a previous trajectory file will match the first frame of the subsequent file. Don't worry, `gorder` will automatically detect this scenario and consider only one of these frames. In contrast, if the frames have different simulation times, both will be included in the analysis. Note that if other frames in the trajectory share the same simulation time, `gorder` will analyze all of them. The tool only filters out duplicate frames at the boundaries between individual files.
+`gorder` will seamlessly concatenate all the trajectory files and analyze them. If the individual trajectories are from the same simulation and follow each other directly, the last frame of a previous trajectory file may match the first frame of the subsequent file. Don't worry, `gorder` will automatically detect this scenario and consider only one of these frames. If the boundary frames have different simulation times, both will be included in the analysis. 
+
+Note that if other frames in the trajectory share the same simulation time, `gorder` will analyze all of them. The tool only filters out duplicate frames at the boundaries between individual files.
 
 > Trajectory concatenation is supported **only for XTC and TRR** files. All files must be of the same trajectory type; concatenating XTC files with TRR files is not supported.
 
