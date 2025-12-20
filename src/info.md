@@ -1,7 +1,5 @@
 # How to read this manual
 
-> Too lazy or too busy to read the manual? [Click here](raw.html) for an LLM-friendly version of it. You can simply download this raw manual, upload it into your LLM of choice and ask for guidance if you get stuck. **Do not trust it blindly though, LLMs often miss important things!**
-
 This is a manual for the `gorder` tool—a command-line (CLI) application, Python package, and Rust crate for calculating lipid order parameters from molecular simulations. Most of the manual focuses on the CLI application.
 
 The contents of this manual are shown in the panel on the left side of the page.
