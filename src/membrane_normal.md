@@ -54,7 +54,7 @@ When using dynamic membrane normal calculation, you should be aware of some limi
 When [ignoring periodic boundary conditions](no_pbc.md), membrane normals for lipids located near the edges (and especially at the corners) of the simulation box might not be calculated accurately. This occurs because, without PBC, not all nearby lipid heads are included in the surface estimation. If periodic boundary conditions are considered (which is the default), this issue does not occur.
 
 2. **Assigning lipids to leaflets**  
-All methods for classifying lipids into leaflets use the membrane normal to determine what is 'up' and what is 'down' in the membrane. However, due to technical limitations, these methods cannot use dynamically calculated membrane normals and always require a static membrane normal. You can specify this manually, for example:
+Most methods for classifying lipids into leaflets use the membrane normal to determine what is 'up' and what is 'down' in the membrane. However, due to technical limitations, these methods cannot use dynamically calculated membrane normals and always require a static membrane normal. You can specify this manually, for example:
 
     ```yaml
     leaflets: !Global
@@ -63,7 +63,7 @@ All methods for classifying lipids into leaflets use the membrane normal to dete
       membrane_normal: z
     ```
 
-    This membrane normal definition is used only when assigning lipids into leaflets. If you are working with a (reasonably) planar membrane, the membrane normal for leaflet classification does not need to be precise, so this approach is perfectly fine, even if you are otherwise working with dynamically calculated membrane normals. However, for a curved membrane, such as a vesicle, you should instead use the [clustering method](leaflets.md#clustering-method-for-leaflet-classification) which does not use membrane normals or [assign lipids into leaflets manually](manual_leaflets.md).
+    This membrane normal definition is used only when assigning lipids into leaflets. If you are working with a (reasonably) planar membrane, the membrane normal for leaflet classification does not need to be precise, so this approach is perfectly fine, even if you are otherwise working with dynamically calculated membrane normals. However, if you are working with a vesicle, you should use the [spherical clustering method](leaflets.md#spherical-clustering-method) which does not use membrane normals.
 
 3. **Constructing ordermaps**  
 When constructing ordermaps, the plane in which an ordermap is generated is determined by the provided membrane normal. Since ordermaps can only be constructed in the `xy`, `xz`, or `yz` plane, they also require a static membrane normal (`z`, `y`, or `x`). If you are calculating the membrane normal dynamically and also want to construct ordermaps, you must specify the ordermap plane manually:

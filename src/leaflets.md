@@ -7,12 +7,14 @@ To do this, you need to specify a method for classifying lipids into membrane le
 There are five leaflet classification methods available in `gorder`: `global`, `local`, `individual`, `spherical clustering`, and `clustering`. In case you are not satisfied with any of them, you can also [assign lipids into leaflets manually](manual_leaflets.md).
 
 > Quick recommendations:
-> - small planar membrane -> [`global method`](#global-method-for-leaflet-classification)
-> - large planar or slightly curved membrane -> [`individual method`](#individual-method-for-leaflet-classification)
-> - vesicle -> [`spherical clustering method`](#spherical-clustering-method-for-leaflet-classification)
-> - buckled membrane, tube, or any other geometry -> [`clustering method`](#clustering-method-for-leaflet-classification)
+> - small planar membrane -> [`global method`](#global-method)
+> - large planar or slightly curved membrane -> [`individual method`](#individual-method)
+> - vesicle -> [`spherical clustering method`](#spherical-clustering-method)
+> - buckled membrane, tube, or any other geometry -> [`clustering method`](#clustering-method)
 
-## Global method for leaflet classification
+## Leaflet classification methods
+
+### Global method
 
 > Reliable for planar membranes and fast. Recommended for most membranes.
 
@@ -28,9 +30,9 @@ leaflets: !Global
 
 Here, we use autodetected membrane atoms to calculate the membrane center and select atoms named 'P' (phosphorus atoms of lipids) as head identifiers. **Each analyzed lipid must have exactly one head identifier atom**; otherwise, an error will occur.
 
-## Local method for leaflet classification
+### Local method
 
-> Reliable for planar membranes but slow. Recommended for planar membranes if the `global` and `individual` methods do not work for you.
+> Reliable for planar membranes but slow. Only use if `global` and `individual` methods do not work for you.
 
 In this method, lipid molecules are assigned to membrane leaflets based on the position of their 'head identifier' relative to the **local** membrane center of geometry. The local membrane center is calculated using atoms in a cylinder around the 'head identifier'. If the 'head identifier' is located "above" the local center, the lipid is assigned to the upper leaflet; if "below", it is assigned to the lower leaflet.
 
@@ -45,7 +47,7 @@ leaflets: !Local
 
 Autodetected membrane atoms will be used to calculate the membrane center. Only atoms within a cylinder of radius 2.5 nm (with infinite height) centered on the 'head identifier' and oriented along the membrane normal will be used for the local center calculation. The atoms named 'P' (phosphorus atoms of lipids) are used as 'head identifiers'.
 
-## Individual method for leaflet classification
+### Individual method
 
 > Less reliable but very fast. Recommended for very large, undulating planar membranes.
 
@@ -61,7 +63,7 @@ leaflets: !Individual
 
 In this example, atoms named 'P' (phosphorus atoms of lipids) are used as head identifiers, and 'C218' or 'C316' atoms (the last carbons of oleoyl and palmitoyl chains) are used as tail ends.
 
-## Spherical clustering method for leaflet classification
+### Spherical clustering method
 
 > Reliable for spherical vesicles and fast. Do not use for anything other than vesicles!
 
@@ -78,13 +80,13 @@ In this example, phosphorus atoms ('P') serve as head identifiers. Each lipid mo
 
 The spherical clustering method divides lipids into two clusters. The labels `upper` and `lower` (equivalent to `outer` and `inner`, respectively) are assigned to these clusters based on the average distance between the head identifiers of the lipids in each cluster and the vesicle's center of geometry. Lipids whose head identifiers are, on average, farther from the vesicle center are classified as belonging to the `upper` (`outer`) leaflet, while lipids with head identifiers closer to the center are classified as belonging to the `lower` (`inner`) leaflet.
 
-## Clustering method for leaflet classification
+### Clustering method
 
-> Reliable but very slow. Recommended for curved membranes.
+> Universal but very slow. Can handle all membrane geometries.
 
 This method assigns lipid molecules to membrane leaflets by clustering their head groups using [spectral clustering](https://en.wikipedia.org/wiki/Spectral_clustering). This method can handle any membrane geometry that is physically realistic, including curved membranes with pores or lipid flip-flop. 
 
-*If you are working with vesicles, you should probably use the [`Spherical clustering` method](#spherical-clustering-method-for-leaflet-classification) instead.*
+*If you are working with vesicles, you should probably use the [`Spherical clustering` method](#spherical-clustering-method) instead.*
 
 To use the clustering method, specify a selection for 'head identifiers':
 
@@ -95,7 +97,7 @@ leaflets: !Clustering
 
 In this example, phosphorus atoms ('P') serve as head identifiers. As with other methods, each lipid molecule must have exactly one head identifier, but you can also include head identifiers for lipid molecules for which you are not calculating the order parameters. The method groups the specified atoms into two clusters representing the membrane leaflets.
 
-### Important considerations for the clustering method
+#### Important considerations for the clustering method
 - **Upper vs lower leaflet assignment:** Unlike other methods, clustering does not use the membrane normal direction, so the labels `upper` and `lower` leaflets are set somewhat arbitrarily following these rules:
   - First frame: The more populated cluster becomes the `upper` leaflet. If equal, the cluster containing the lowest-index head identifier is `upper`. You can change this behavior using the [`flip`](#flipping-the-assignment) keyword.
   - Subsequent frames: Clusters are matched to previous frame's leaflets based on similarity.
@@ -104,7 +106,7 @@ In this example, phosphorus atoms ('P') serve as head identifiers. As with other
 - **Head identifier selection:** When using the clustering method, always select head identifiers for **all** lipids in your membrane—even if analyzing only a specific subset of lipids and particularly when this subset resides in just one membrane leaflet.
 - **Extremely slow:** Spectral clustering can be extremely slow, especially when your membrane is large. If you know that there is no flip-flop in your system, it is **highly recommended** to set the classification `frequency` to `!Once` when using this method (see [below](#classification-frequency)).
 
-### Flipping the assignment
+#### Flipping the assignment
 As mentioned above, the clustering method may in some cases mislabel the leaflets. For example, the leaflet you consider to be the lower leaflet of the membrane might be labeled as `upper` if it happens to contain more lipids. To correct this, you can add the `flip` keyword to invert the leaflet assignment during the analysis.
 
 ```yaml
@@ -150,7 +152,7 @@ leaflets: !Global
 
 ## Membrane normal
 
-All leaflet classification methods (except for the clustering method) use the specified membrane normal to determine what is 'up' and what is 'down'. If your membrane is planar and aligned with the `xy` plane, no further action is needed. Otherwise, refer to [this section of the manual](membrane_normal.md).
+Global, local, and individual leaflet classification methods use the membrane normal specified in the configuration YAML file to determine what is 'up' and what is 'down'. If your membrane is planar and aligned with the `xy` plane, no further action is needed. Otherwise, refer to [this section of the manual](membrane_normal.md).
 
 Here, we just mention that the membrane normal used for leaflet classification can be decoupled from the 'global' membrane normal used for calculating order parameters:
 
@@ -164,9 +166,9 @@ leaflets: !Global
 
 ## Leaflet-wise output
 
-When a leaflet classification method is defined, `gorder` calculates order parameters for both the entire membrane and individual leaflets. Leaflet-specific order parameters are included in all `gorder` output formats: YAML, CSV, "table", and XVG.
+When a leaflet classification method is specified, `gorder` calculates order parameters for both the entire membrane and individual leaflets. Leaflet-specific order parameters are included in all `gorder` output formats: YAML, CSV, "table", and XVG.
 
-During analysis, `gorder` also prints information about membrane composition in the first trajectory frame, allowing you to quickly check for any obvious errors. Such membrane composition information may look like this:
+During analysis, `gorder` also prints information about membrane composition in the first trajectory frame, allowing you to quickly check for obvious errors. Such membrane composition information may look like this:
 
 ```text
 (...)
