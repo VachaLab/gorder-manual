@@ -69,7 +69,7 @@ To write the results of the analysis in Table format, add `output_tab: PATH_TO_O
 Here is an excerpt from a Table file:
 
 ```text
-# Order parameters calculated with 'gorder v1.2.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v1.3.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
 
 Molecule type POPE
            TOTAL   |   H #1   |   H #2   |   H #3   |
@@ -114,7 +114,7 @@ To write the results of the analysis in XVG format, add `output_xvg: FILE_PATTER
 Here is an excerpt from an XVG file:
 
 ```text
-# Order parameters calculated with 'gorder v1.2.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v1.3.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
 @    title "Atomistic order parameters for molecule type POPC"
 @    xaxis label "Atom"
 @    yaxis label "-Sch"
