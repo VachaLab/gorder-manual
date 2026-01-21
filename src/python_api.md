@@ -7,7 +7,7 @@
 The recommended way to install `gorder` as a Python package is to use the [uv](https://github.com/astral-sh/uv) package manager. To add `gorder` to your uv project, run:
 
 ```bash
-$ uv add git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
+$ uv add git+https://github.com/VachaLab/gorder.git#subdirectory=pygorder
 ```
 
 ## Installing using pip
@@ -15,7 +15,7 @@ $ uv add git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
 If you do not use uv, you can install `gorder` simply using pip:
 
 ```bash
-$ pip install git+https://github.com/Ladme/gorder.git#subdirectory=pygorder
+$ pip install git+https://github.com/VachaLab/gorder.git#subdirectory=pygorder
 ```
 
 ## Using `gorder`
@@ -62,4 +62,4 @@ results.write()
 
 or access them programmatically.
 
-See the Python API documentation on [ladme.github.io/pygorder-docs](https://ladme.github.io/pygorder-docs/) for more information about using `gorder` as a Python package.
+See the Python API documentation on [vachalab.github.io/pygorder-docs](https://vachalab.github.io/pygorder-docs/) for more information about using `gorder` as a Python package.

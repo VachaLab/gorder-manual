@@ -17,7 +17,7 @@ You can verify that the installation was successful by running `gorder --version
 ***
 
 ## Troubleshooting
-Below are some common errors you might encounter when installing `gorder` on Linux. If you are still unable to proceed, please [open an issue on GitHub](https://github.com/Ladme/gorder/issues) and provide details about the problem. 
+Below are some common errors you might encounter when installing `gorder` on Linux. If you are still unable to proceed, please [open an issue on GitHub](https://github.com/VachaLab/gorder/issues) and provide details about the problem. 
 
 > Unfortunately, we **cannot** provide support for installing `gorder` on Windows or macOS, and we apologize for any inconvenience this may cause.
 

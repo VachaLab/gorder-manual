@@ -12,6 +12,6 @@ In the **Advanced** section, we discuss various features of `gorder`, such as ca
 
 In the **Expert** section, we cover more advanced features of `gorder`, which mostly provide greater control over the analyses. This includes [manual lipid assignment to leaflets](manual_leaflets.md), [manual specification of membrane normals](manual_normals.md), and [ignoring periodic boundary conditions](no_pbc.md). You will most likely not need these features.
 
-In the **APIs** section, we briefly explain how to use `gorder` directly as a [Python package](python_api.md) or a [Rust crate](rust_api.md). These topics also have their own dedicated manuals ([Python](https://ladme.github.io/pygorder-docs/), [Rust](https://docs.rs/gorder/latest/gorder/)). The CLI version of `gorder` is fully featured; you do not need to use the APIs unless you want direct integration with your code.
+In the **APIs** section, we briefly explain how to use `gorder` directly as a [Python package](python_api.md) or a [Rust crate](rust_api.md). These topics also have their own dedicated manuals ([Python](https://vachalab.github.io/pygorder-docs/), [Rust](https://docs.rs/gorder/latest/gorder/)). The CLI version of `gorder` is fully featured; you do not need to use the APIs unless you want direct integration with your code.
 
 In the **Meta** section, we discuss the [limitations of `gorder`](limitations.md) (**you should read this page!**), where to [send your feedback](feedback.md), and [how to cite `gorder`](citing.md) if you use it in a scientific project.

@@ -6,7 +6,7 @@ The primary (and possibly naïve) goal of `gorder` is to completely replace the 
 
 Apart from calculating the order parameters correctly, `gorder` also offers many additional features, such as reporting order parameters for individual C-H bonds, error estimation, leaflet classification, geometric selection, or construction of ordermaps. `gorder` can also calculate order parameters for non-planar membranes such as tubes or vesicles.
 
-> `gorder` is written in [Rust](https://www.rust-lang.org/) and is also available as a [Python package](python_api.md) and a [Rust crate](rust_api.md). If you want to see the code (or comparison with other programs), visit the [`gorder` GitHub repository](https://github.com/Ladme/gorder).
+> `gorder` is written in [Rust](https://www.rust-lang.org/) and is also available as a [Python package](python_api.md) and a [Rust crate](rust_api.md). If you want to see the code (or comparison with other programs), visit the [`gorder` GitHub repository](https://github.com/VachaLab/gorder).
 
 ***
 
