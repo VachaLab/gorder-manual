@@ -180,7 +180,7 @@ During analysis, `gorder` also prints information about membrane composition in 
 Below is an excerpt from an output YAML file containing results for individual membrane leaflets:
 
 ```yaml
-# Order parameters calculated with 'gorder v1.3.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
+# Order parameters calculated with 'gorder v1.4.0' using a structure file 'system.tpr' and a trajectory file 'md.xtc'.
 average order:
   total: 0.1631
   upper: 0.1629
