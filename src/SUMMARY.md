@@ -12,6 +12,7 @@
 - [United-atom order parameters](uaorder_basics.md)
 - [Selecting atoms using GSL](gsl.md)
 - [Output formats](output.md)
+- [Graphical user interface](guiorder.md)
 
 # Advanced
 - [Order parameters for individual leaflets](leaflets.md)

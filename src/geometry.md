@@ -125,3 +125,23 @@ reference: !Center
 The reference point will be the geometric center of the simulation box in all three dimensions, recalculated for every frame of the trajectory.
 
 > If no reference point is specified, the default is the simulation box origin at `[0, 0, 0]`.
+
+## Inverting the selection
+
+If you want to **exclude** bonds that are inside the specified regions, you may want to *invert* the selection. The order parameters will then be calculated using bonds that are **outside** the selected areas.
+
+To do this, include the `invert` keyword in your geometry selection:
+
+```yaml
+geometry: !Cylinder
+  radius: 2.5
+  orientation: z
+  reference: !Center
+  invert: true
+```
+
+This configuration calculates order parameters for bonds that are outside a cylinder with its center at the simulation box center, oriented along the z-axis, with a radius of 2.5 nm and an infinite height. If we plot an order parameter map for such a selection, it may look like this:
+
+<img src="ordermap_example_inverted_cylinder.png" width="480" height="360">
+
+> Inverting is supported for all geometric shapes: cuboid, cylinder, and sphere.
