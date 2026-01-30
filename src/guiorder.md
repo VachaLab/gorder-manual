@@ -12,6 +12,8 @@ cargo install guiorder
 
 *You don't need to install `gorder` separately if you intend to use just the GUI application. GUIorder comes with its own instance of `gorder`.*
 
+> ⚠️ Note that if you are installing GUIorder on Linux, you also need to have the **gtk3 library** installed. ⚠️
+
 ## Basic usage
 
 To start GUIorder, run `guiorder` in your terminal. This opens the GUI, which should look similar to this:
