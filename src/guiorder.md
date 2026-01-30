@@ -18,6 +18,8 @@ To start GUIorder, run `guiorder` in your terminal. This opens the GUI, which sh
 
 <img src="guiorder/1_guiorder_start.png" width="402" height="486">
 
+> Note that the exact appearance (e.g., the color of the background) can differ on your system from what is displayed here.
+
 Now you can either import a configuration YAML file by clicking the `Import from YAML` button just below the title, which opens an interactive file selection window, or you can construct the YAML file by filling in the interactive form.
 
 Note the red background of some fields, indicating that these fields must be filled in.
