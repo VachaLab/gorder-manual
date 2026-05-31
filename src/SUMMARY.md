@@ -30,6 +30,7 @@
     - [Assigning lipids using NDX file(s)](leaflets_ndx.md)
     - [Assigning lipids using a leaflet assignment file](leaflets_assignment_file.md)
     - [Exporting lipid assignment data](leaflets_export.md)
+- [Order parameters for complex membrane regions](composite_geometry.md)
 - [Manual membrane normals assignment and export](advanced_normals.md)
     - [Assigning membrane normals manually](manual_normals.md)
     - [Exporting membrane normals](normals_export.md)

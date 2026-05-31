@@ -1,6 +1,8 @@
 # Order parameters for a specific membrane region
 
-`gorder` allows you to calculate order parameters for a specific region of the membrane within a defined geometric shape. Currently, three geometric shapes are supported for this selection: [cuboid](#cuboid-selection), [cylinder](#cylindrical-selection), and [sphere](#spherical-selection). When a geometric shape is specified, only **bonds** located within that shape are included in the order parameter calculations. The bond's inclusion is dynamically evaluated for every frame of the trajectory. This feature is useful for instance when analyzing order parameters near transmembrane proteins or specific membrane regions.
+`gorder` allows you to calculate order parameters for a specific region of the membrane within a defined geometric shape. Currently, three basic geometric shapes are supported for this selection — [cuboid](#cuboid-selection), [cylinder](#cylindrical-selection), and [sphere](#spherical-selection) — and additional shapes can be [constructed from the basic ones using logical operations](composite_geometry.md). 
+
+When a geometric shape is specified, only **bonds** located within that shape are included in the order parameter calculations. The bond's inclusion is dynamically evaluated for every frame of the trajectory. This feature is useful for instance when analyzing order parameters near transmembrane proteins or in specific membrane regions.
 
 > **Note:** The position of a bond is defined as the center of geometry of the bonded atoms.
 
@@ -144,4 +146,16 @@ This configuration calculates order parameters for bonds that are outside a cyli
 
 <img src="ordermap_example_inverted_cylinder.png" width="480" height="360">
 
-> Inverting is supported for all geometric shapes: cuboid, cylinder, and sphere.
+Alternatively, instead of using the `invert` keyword, you can also use the [`!Not` operator](composite_geometry.md#not-operator) to invert the selection:
+
+```yaml
+geometry: !Not
+  - !Cylinder
+    radius: 2.5
+    orientation: z
+    reference: !Center
+```
+
+This configuration is equivalent to the one using `invert: true`.
+
+> Inverting is supported for all geometric shapes: cuboid, cylinder, and sphere. Inverting using the `!Not` operator is supported also for the [composite geometries](composite_geometry.md#not-operator).
