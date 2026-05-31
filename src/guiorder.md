@@ -2,6 +2,8 @@
 
 If you don't want to bother with writing configuration files, you can use a companion tool called GUIorder, which provides a graphical user interface that simplifies writing configuration YAML files for `gorder`. In fact, if you use GUIorder, you don't have to touch the command-line application at all.
 
+> ⚠️ Development of GUIorder is currently delayed behind the main `gorder` development. The current version of GUIorder may not support all the latest features of `gorder`.
+
 ## Installation
 
 Installing GUIorder is as simple as installing `gorder`. Once you have [Rust installed](https://rust-lang.org/tools/install/), just run:
