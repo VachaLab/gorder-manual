@@ -1,8 +1,11 @@
 # Specifying membrane normal
 
-`gorder` supports both `static` (provided by the user and applied to all lipid molecules throughout the entire analysis) and `dynamic` (calculated for each lipid molecule in each trajectory frame based on the actual membrane shape) membrane normal specification.
+`gorder` supports three types of membrane normal specification: 
+- `static`  - the membrane normal is provided by the user and applied to all lipid molecules throughout the entire analysis (the default membrane normal is z-axis),
+- `dynamic` - the membrane normal is calculated for each lipid molecule in each trajectory frame based on the membrane's shape, and
+- `individual` - the membrane normal for each lipid molecule corresponds to the orientation of the lipid in the given trajectory frame.
 
-For planar membranes, the default static membrane normal is usually sufficient. However, for vesicles, you should always use dynamic membrane normal calculation. Keep in mind that computing the membrane normal dynamically is computationally expensive.
+For planar membranes, the default static membrane normal (z-axis) is usually sufficient. However, for vesicles, you should always use dynamic membrane normal calculation. The individual membrane normal calculation method is useful when analyzing highly ordered lipid membranes with uniformly tilted lipids. Keep in mind that computing the membrane normal dynamically may be computationally expensive.
 
 For complete control over membrane normals, you can also manually assign them for each molecule in every trajectory frame. For more details, refer to [Manual membrane normals](manual_normals.md).
 
@@ -46,15 +49,33 @@ The 'scanning sphere' must meet several requirements:
 
 As a general rule of thumb, set the radius to approximately **half of the membrane thickness**.
 
-### Limitations
+## Individual membrane normal
 
-When using dynamic membrane normal calculation, you should be aware of some limitations:
+In gel-phase membranes, the individual lipids may be highly ordered but also tilted relative to the membrane normal. When calculating order parameters using the membrane normal as the reference axis, the membrane may appear to be disordered, and some expected behaviors of the order parameters — e.g., temperature dependence — may not be properly reproduced. In such cases, it may be suitable to use the lipid orientation itself (so called "lipid director") as the reference axis.
+
+To request individual membrane normal calculation, you must specify the selection of 'head identifier' atoms and 'tail ends' (similar to when assigning lipids to leaflets using the [individual method](leaflets.md#individual-method)):
+
+```yaml
+membrane_normal: !Individual
+  heads: "name P"
+  methyls: "name C218 C316" 
+```
+
+There must always be one 'head identifier' per lipid molecule and one 'tail end' per acyl chain. The "membrane normal" is then calculated for each lipid molecule in each frame as the average of the vectors connecting each of the methyls with the head identifier.
+
+> **When not to use the individual membrane normals:** It is not recommended to use the individual membrane normals for disordered membranes because the wobbling of the lipids in the membrane strongly contributes to the order parameter values. Using the individual membrane normal removes this contribution, and the membrane may appear to be more ordered than it really is.
+> 
+> If the contribution from lipid wobbling is small, such as in highly ordered membranes where the lipids are uniformly tilted, removing this contribution will usually have a minor effect and may in fact restore some expected behavior of the order parameters.
+
+## Limitations of dynamic and individual membrane normal calculations
+
+When using dynamic or individual membrane normal calculations, you should be aware of some limitations:
 
 1. **Ignoring periodic boundary conditions**  
-When [ignoring periodic boundary conditions](no_pbc.md), membrane normals for lipids located near the edges (and especially at the corners) of the simulation box might not be calculated accurately. This occurs because, without PBC, not all nearby lipid heads are included in the surface estimation. If periodic boundary conditions are considered (which is the default), this issue does not occur.
+When [ignoring periodic boundary conditions](no_pbc.md), dynamically calculated membrane normals for lipids located near the edges (and especially at the corners) of the simulation box might not be calculated accurately. This occurs because, without PBC, not all nearby lipid heads are included in the surface estimation. If periodic boundary conditions are considered (which is the default), this issue does not occur.
 
 2. **Assigning lipids to leaflets**  
-Most methods for classifying lipids into leaflets use the membrane normal to determine what is 'up' and what is 'down' in the membrane. However, due to technical limitations, these methods cannot use dynamically calculated membrane normals and always require a static membrane normal. You can specify this manually, for example:
+Most methods for classifying lipids into leaflets use the membrane normal to determine what is 'up' and what is 'down' in the membrane. However, due to technical limitations, these methods cannot use dynamically or individually calculated membrane normals and always require a static membrane normal. You can specify this manually, for example:
 
     ```yaml
     leaflets: !Global
@@ -66,7 +87,7 @@ Most methods for classifying lipids into leaflets use the membrane normal to det
     This membrane normal definition is used only when assigning lipids into leaflets. If you are working with a (reasonably) planar membrane, the membrane normal for leaflet classification does not need to be precise, so this approach is perfectly fine, even if you are otherwise working with dynamically calculated membrane normals. However, if you are working with a vesicle, you should use the [spherical clustering method](leaflets.md#spherical-clustering-method) which does not use membrane normals.
 
 3. **Constructing ordermaps**  
-When constructing ordermaps, the plane in which an ordermap is generated is determined by the provided membrane normal. Since ordermaps can only be constructed in the `xy`, `xz`, or `yz` plane, they also require a static membrane normal (`z`, `y`, or `x`). If you are calculating the membrane normal dynamically and also want to construct ordermaps, you must specify the ordermap plane manually:
+When constructing ordermaps, the plane in which an ordermap is generated is determined by the provided membrane normal. Since ordermaps can only be constructed in the `xy`, `xz`, or `yz` plane, they also require a static membrane normal (`z`, `y`, or `x`). If you are calculating the membrane normal dynamically or individually and also want to construct ordermaps, you must specify the ordermap plane manually:
 
     ```yaml
     ordermaps:
