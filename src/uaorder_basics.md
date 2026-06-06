@@ -8,6 +8,7 @@ To calculate united-atom order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
 - An XTC trajectory file (`md.xtc`) whose frames will be analyzed.
 
+> [!TIP]
 > It is recommended to use TPR and XTC files, but `gorder` also [supports some other file formats](other_input.md).
 
 Next, we create a configuration YAML file that specifies the options for the analysis:
@@ -31,6 +32,7 @@ Unsaturated carbons are those with a double bond to another carbon in the acyl c
 
 In configuration YAML file above, we calculate order parameters for all carbons in POPC lipids (except for the carboxyl atoms C15 and C34, which lack hydrogens and should be explicitly excluded, as explained below). We also specify a double bond between atoms C24 and C25.
 
+> [!NOTE]
 > Positions of hydrogens are predicted in exactly the same way as in the `buildH` tool. See the [buildH documentation](https://buildh.readthedocs.io/en/latest/algorithms_Hbuilding.html) for more information.
 
 The results of the analysis will be saved in the `order.yaml` file as $-S_{CH}$ (see [Theory](theory.md)).
@@ -59,6 +61,7 @@ During the analysis, we will see something like this:
 
 <img src="berger.gif" width="620" height="360">
 
+> [!NOTE]
 > Note that the structure from the TPR file is not analyzed. The TPR file is only used to construct the system and obtain its topology.
 
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
@@ -114,7 +117,8 @@ POPC:
 
 `gorder` automatically identified one molecule type and all relevant bonds. It then predicted the positions of missing hydrogens for the individual carbons. Order parameters are reported for each carbon of each molecule type, as well as for each predicted C-H bond. `average_order` corresponds to the average order of all the relevant atoms of the entire system or a single molecule type, respectively.
 
-> ⚠️ The atom types are listed in the **same order as they appear in the input TPR structure**. Note that in some force fields, the sequence of atoms may be unintuitive and atoms from different tails may not be separated. Always check the output before plotting the results!
+> [!IMPORTANT]
+> The atom types are listed in the **same order as they appear in the input TPR structure**. Note that in some force fields, the sequence of atoms may be unintuitive and atoms from different tails may not be separated. Always check the output before plotting the results!
 
 Let's take a closer look at a part of the output YAML file:
 
@@ -137,7 +141,8 @@ YAML files are easy to read programmatically and not completely human-unreadable
 
 ### Note on order parameters of methyl groups
 
-> **This is important! Please read at least the information in this box.** You should not trust the order parameters reported for individual C-H bonds in methyl groups. In methyl groups, only the order parameter calculated for the entire carbon is reliable.
+> [!CAUTION]
+> You should not trust the order parameters reported for individual C-H bonds in methyl groups. In methyl groups, only the order parameter calculated for the entire carbon is reliable.
 
 While `gorder` reports order parameters for individual predicted C-H bonds, you might notice that the order parameters for bonds of methyl carbons are somewhat suspicious. Typically, the individual C-H bonds of the same atom have very similar values, but this is not the case here, where the order parameters might differ significantly. For example:
 

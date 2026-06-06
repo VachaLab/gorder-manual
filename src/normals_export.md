@@ -14,7 +14,8 @@ membrane_normal: !Dynamic
 
 The membrane normal is estimated from the shape of the membrane for each lipid molecule in every analyzed frame (for details, see [this section of the manual](membrane_normal.md#dynamic-membrane-normal)). The calculated membrane normals are collected and written to `normals.yaml`. The data are exported in YAML format and can be directly reused in subsequent `gorder` run using `membrane_normal: !FromFile normals.yaml`. Since the output file is a valid YAML, you an also easily process it using other software.
 
-> Note that exporting membrane normals is only supported for dynamically calculated normals. You cannot export static normals (aligned with the `x`, `y`, or `z` axis) or manually assigned normals, since that would be pointless.
+> [!NOTE]
+> Exporting membrane normals is only supported for dynamically calculated normals. You cannot export static normals (aligned with the `x`, `y`, or `z` axis) or manually assigned normals, since that would be pointless.
 
 Below is an example of exported membrane normals from a very short trajectory of only a few lipids (part of a larger system that is ignored here for brevity):
 
@@ -38,7 +39,8 @@ POPE:
 
 Data are written separately for each molecule type. Within each block, every line beginning with `-` corresponds to one analyzed trajectory frame. Each inner `[x, y, z]` vector represents the membrane normal for a specific molecule in that frame. Molecules are listed in the order in which their **first atom** appears in the input structure file.
 
-> **Note:** The above data come from a planar membrane built in the `xy` plane. Therefore, the `x` and `y` components of each normal vector are close to `0`, while the `z` components are close to `±1`. The `z` component may be close to `+1` or close to `−1` because a normal vector can point in two valid directions—in the case of a planar membrane, either "up" or "down". The orientation chosen by `gorder` is undefined and should not be relied upon. While this does not affect the calculated order parameters, you should keep it in mind if you plan to reuse the normal vectors in applications where their direction is important.
+> [!NOTE]
+> The above data come from a planar membrane built in the `xy` plane. Therefore, the `x` and `y` components of each normal vector are close to `0`, while the `z` components are close to `±1`. The `z` component may be close to `+1` or close to `−1` because a normal vector can point in two valid directions—in the case of a planar membrane, either "up" or "down". The orientation chosen by `gorder` is undefined and should not be relied upon. While this does not affect the calculated order parameters, you should keep it in mind if you plan to reuse the normal vectors in applications where their direction is important.
 
 ## Missing membrane normals
 

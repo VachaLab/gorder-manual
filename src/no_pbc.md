@@ -24,7 +24,8 @@ The resulting `OUTPUT_XTC_FILE` should then be used as the trajectory input for 
 
 You can of course choose to ignore PBC for any system, even if it has an orthogonal box.
 
-> Note: You do not necessarily have to set `handle_pbc` to `false` when working with an orthogonal box with PBC applied in fewer than three dimensions. However, such systems are untested, so proceed with caution. In case you are not sure the analysis is correct, try using a trajectory with whole molecules, set `handle_pbc` to `false`, and check whether the results change.
+> [!NOTE]
+> You do not necessarily have to set `handle_pbc` to `false` when working with an orthogonal box with PBC applied in fewer than three dimensions. However, such systems are untested, so proceed with caution. In case you are not sure the analysis is correct, try using a trajectory with whole molecules, set `handle_pbc` to `false`, and check whether the results change.
 
 ## Limitations when ignoring PBC
 

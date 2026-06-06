@@ -1,7 +1,7 @@
 [book]
-authors = []
+authors = ["Ladislav Bartos"]
+description = "Manual for the gorder tool"
 language = "en"
-multilingual = false
 src = "src"
 title = "gorder manual"
 
@@ -10,7 +10,4 @@ after = ["links"]
 
 [output.html]
 input-404 = "not_found.md"
-copy-files = ["src/raw.html"]
-
-
-# [output.pdf]
+mathjax-support = true

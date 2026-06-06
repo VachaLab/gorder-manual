@@ -4,7 +4,8 @@
 
 When a geometric shape is specified, only **bonds** located within that shape are included in the order parameter calculations. The bond's inclusion is dynamically evaluated for every frame of the trajectory. This feature is useful for instance when analyzing order parameters near transmembrane proteins or in specific membrane regions.
 
-> **Note:** The position of a bond is defined as the center of geometry of the bonded atoms.
+> [!NOTE]
+> The position of a bond is defined as the center of geometry of the bonded atoms.
 
 
 ## Cuboidal selection
@@ -126,6 +127,7 @@ reference: !Center
 
 The reference point will be the geometric center of the simulation box in all three dimensions, recalculated for every frame of the trajectory.
 
+> [!NOTE]
 > If no reference point is specified, the default is the simulation box origin at `[0, 0, 0]`.
 
 ## Inverting the selection
@@ -158,4 +160,5 @@ geometry: !Not
 
 This configuration is equivalent to the one using `invert: true`.
 
+> [!TIP]
 > Inverting is supported for all geometric shapes: cuboid, cylinder, and sphere. Inverting using the `!Not` operator is supported also for the [composite geometries](composite_geometry.md#not-operator).

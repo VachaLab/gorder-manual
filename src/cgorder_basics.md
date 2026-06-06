@@ -8,6 +8,7 @@ To calculate coarse-grained order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
 - An XTC trajectory file (`md.xtc`) whose frames will be analyzed.
 
+> [!TIP]
 > It is recommended to use TPR and XTC files, but `gorder` also [supports some other file formats](other_input.md).
 
 Next, we create a configuration YAML file that specifies the options for the analysis:
@@ -40,7 +41,8 @@ During the analysis, we will see something like this:
 
 <img src="martini.gif" width="620" height="360">
 
-> Note that the structure from the TPR file is not analyzed. The TPR file is only used to construct the system and obtain its topology.
+> [!NOTE]
+> The structure from the TPR file is not analyzed. The TPR file is only used to construct the system and obtain its topology.
 
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
@@ -91,7 +93,8 @@ POPG:
 
 `gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported for each bond type of each molecule type. `average order` corresponds to the average order of all the relevant bonds of the entire system or a single molecule type, respectively.
 
-> ⚠️ The bond types are listed in the **same order their atoms appear in the input TPR structure**. Note that in some force fields, the sequence of atoms may be unintuitive and bonds from different tails may not be separated. Always check the output before plotting the results!
+> [!IMPORTANT]
+> The bond types are listed in the **same order their atoms appear in the input TPR structure**. Note that in some force fields, the sequence of atoms may be unintuitive and bonds from different tails may not be separated. Always check the output before plotting the results!
 
 Let's take a closer look at a part of the output YAML file:
 

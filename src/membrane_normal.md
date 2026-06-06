@@ -19,6 +19,7 @@ membrane_normal: x
 
 In this example, the membrane normal is oriented along the x-axis, which means that the membrane is built in the yz-plane.
 
+> [!NOTE]
 > Only the primary axes of an orthogonal simulation box (`x`, `y`, and `z`) are supported as static membrane normals.
 
 ## Dynamic membrane normal
@@ -63,9 +64,12 @@ membrane_normal: !Individual
 
 There must always be one 'head identifier' per lipid molecule and one 'tail end' per acyl chain. The "membrane normal" is then calculated for each lipid molecule in each frame as the average of the vectors connecting each of the methyls with the head identifier.
 
-> **When not to use the individual membrane normals:** It is not recommended to use the individual membrane normals for disordered membranes because the wobbling of the lipids in the membrane strongly contributes to the order parameter values. Using the individual membrane normal removes this contribution, and the membrane may appear to be more ordered than it really is.
+> [!IMPORTANT]
+> **When not to use the individual membrane normals**
+>
+> It is not recommended to use the individual membrane normals for disordered membranes because the wobbling of the lipids in the membrane strongly contributes to the order parameter values. Using the individual membrane normal removes this contribution, and the membrane may appear to be more ordered than it really is.
 > 
-> If the contribution from lipid wobbling is small, such as in highly ordered membranes where the lipids are uniformly tilted, removing this contribution will usually have a minor effect and may in fact restore some expected behavior of the order parameters.
+> In contrast, if the contribution from lipid wobbling is small, such as in highly ordered membranes where the lipids are uniformly tilted, removing this contribution will usually have a minor effect and may in fact restore some expected behavior of the order parameters.
 
 ## Limitations of dynamic and individual membrane normal calculations
 

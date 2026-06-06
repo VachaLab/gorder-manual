@@ -22,7 +22,8 @@ POPG:
 
 Each position in each list corresponds to the leaflet occupied by one lipid molecule of the specified type. The molecules are listed in the order in which their **first atoms** appear in the input structure file.
 
-> **Note:** You can substitute `Upper` and `Lower` with `1` and `0`, respectively, for specifying the 'upper' and 'lower' leaflets.
+> [!NOTE]
+> You can substitute `Upper` and `Lower` with `1` and `0`, respectively, for specifying the 'upper' and 'lower' leaflets.
 
 ## Using the leaflet assignment file
 
@@ -34,6 +35,7 @@ leaflets: !FromFile
   frequency: !Once
 ```
 
+> [!IMPORTANT]
 > Ensure the frequency is set to `!Once`, as this leaflet assignment file provides information for only a single frame.
 
 ## Inline specification of leaflet assignment
@@ -103,4 +105,5 @@ If you want to specify leaflet assignments for every Nth analyzed frame (e.g., e
     ```
 2. **Ensure that the number of frames in the leaflet assignment file exactly matches the number of analyzed frames divided by N.** For example, if the trajectory is 10,000 frames long, [every 5th frame is analyzed](timerange.md), and leaflet assignment is performed for every 10th analyzed frame, the leaflet assignment file must contain information for 200 frames.
 
-> **Note:** `gorder` is **very opinionated** when validating the leaflet assignment file. The file must specify the exact same number of lipid molecules for each molecule type as are present in the analyzed molecular system. Additionally, it must contain **exactly** the number of frames required for the leaflet assignment for the specified trajectory at the specified classification frequency (i.e., not a single unused frame can be present in the leaflet assignment file). The leaflet assignment file also cannot include information about molecule types that do not exist in the system. If any of these criteria are not met, `gorder` will reject the leaflet assignment file. This strict validation reduces the chance of errors, as mistakes in manual assignments are easy to make but can be very difficult to detect otherwise.
+> [!NOTE]
+> `gorder` is **very opinionated** when validating the leaflet assignment file. The file must specify the exact same number of lipid molecules for each molecule type as are present in the analyzed molecular system. Additionally, it must contain **exactly** the number of frames required for the leaflet assignment for the specified trajectory at the specified classification frequency (i.e., not a single unused frame can be present in the leaflet assignment file). The leaflet assignment file also cannot include information about molecule types that do not exist in the system. If any of these criteria are not met, `gorder` will reject the leaflet assignment file. This strict validation reduces the chance of errors, as mistakes in manual assignments are easy to make but can be very difficult to detect otherwise.

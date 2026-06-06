@@ -75,6 +75,7 @@ POPG:
 
 Each innermost vector in the file represents the membrane normal assigned to a lipid molecule of the specified type. The molecules are listed in the order in which their **first atoms** appear in the input structure file. Each list of membrane normal vectors corresponds to one trajectory frame.
 
+> [!NOTE]
 > Unlike manual lipid assignment, membrane normals must be provided for every individual trajectory frame. `gorder` strictly validates the input membrane normals file. The file must contain **exactly** the same number of frames as the number of analyzed frames in the trajectory. Additionally, it must include the correct number of lipid molecules for each lipid type, and all lipid types being analyzed (and no additional ones) must be specified. Failure to meet these requirements will result in an error.
 
 ## Using the membrane normals file

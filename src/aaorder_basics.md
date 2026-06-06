@@ -8,6 +8,7 @@ To calculate atomistic order parameters, we need two Gromacs files:
 - A TPR file containing the system structure and topology (`system.tpr`).
 - An XTC trajectory file (`md.xtc`) whose frames will be analyzed.
 
+> [!TIP]
 > It is recommended to use TPR and XTC files, but `gorder` also [supports some other file formats](other_input.md).
 
 Next, we create a configuration YAML file that specifies the options for the analysis:
@@ -29,6 +30,7 @@ Here:
 - `heavy_atoms` are selected using the query `@membrane and name r'C3.+|C2.+'`, which selects all palmitoyl and oleoyl carbons of the membrane lipids.
 - `hydrogens` are selected using the query `@membrane and element name hydrogen`.
 
+> [!NOTE]
 > `@membrane` is a GSL autodetection macro that selects all atoms of common membrane lipids. `r'C3.+|C2.+'` is a regular expression block, natively supported by GSL.
 
 The results of the analysis will be saved in the `order.yaml` file as $-S_{CH}$ (see [Theory](theory.md)).
@@ -45,7 +47,8 @@ During the analysis, we will see something like this:
 
 <img src="charmm.gif" width="620" height="360">
 
-> Note that the structure from the TPR file is not analyzed. The TPR file is only used to construct the system and obtain its topology.
+> [!NOTE]
+> The structure from the TPR file is not analyzed. The TPR file is only used to construct the system and obtain its topology.
 
 The results of the analysis are saved in the `order.yaml` file. Here is an excerpt from the file:
 
@@ -113,7 +116,8 @@ POPG:
 
 `gorder` automatically identified three molecule types and all relevant bonds. Order parameters are reported separately for each molecule type: for each bond type of each molecule type and for each heavy atom type of each molecule type. Order parameters for heavy atom types are obtained by averaging the order parameters of their bonds with hydrogens. `average order` corresponds to the average order of all the relevant bonds of the entire system or a single molecule type, respectively.
 
-> ⚠️ The atom types are listed in the **same order as they appear in the input TPR structure**. Note that in some force fields (e.g., CHARMM), the sequence of atoms may be unintuitive (e.g., C32 can appear between C22 and C23, even though they are from *different lipid tails*). Always check the output before plotting the results!
+> [!IMPORTANT]
+> The atom types are listed in the **same order as they appear in the input TPR structure**. Note that in some force fields (e.g., CHARMM), the sequence of atoms may be unintuitive (e.g., C32 can appear between C22 and C23, even though they are from *different lipid tails*). Always check the output before plotting the results!
 
 Let's take a closer look at a part of the output YAML file:
 

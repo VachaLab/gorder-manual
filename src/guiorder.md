@@ -2,7 +2,8 @@
 
 If you don't want to bother with writing configuration files, you can use a companion tool called GUIorder, which provides a graphical user interface that simplifies writing configuration YAML files for `gorder`. In fact, if you use GUIorder, you don't have to touch the command-line application at all.
 
-> ⚠️ Development of GUIorder is currently delayed behind the main `gorder` development. The current version of GUIorder may not support all the latest features of `gorder`.
+> [!WARNING]
+> Development of GUIorder is currently delayed behind the main `gorder` development. The current version of GUIorder may not support all the latest features of `gorder`.
 
 ## Installation
 
@@ -14,7 +15,8 @@ cargo install guiorder
 
 *You don't need to install `gorder` separately if you intend to use just the GUI application. GUIorder comes with its own instance of `gorder`.*
 
-> ⚠️ Note that if you are installing GUIorder on Linux, you also need to have the **gtk3 library** installed. ⚠️
+> [!IMPORTANT]
+> Note that if you are installing GUIorder on Linux, you also need to have the **gtk3 library** installed.
 
 ## Basic usage
 
@@ -22,7 +24,8 @@ To start GUIorder, run `guiorder` in your terminal. This opens the GUI, which sh
 
 <img src="guiorder/1_guiorder_start.png" width="402" height="486">
 
-> Note that the exact appearance (e.g., the color of the background) can differ on your system from what is displayed here.
+> [!NOTE]
+> The exact appearance (e.g., the color of the background) can differ on your system from what is displayed here.
 
 Now you can either import a configuration YAML file by clicking the `Import from YAML` button just below the title, which opens an interactive file selection window, or you can construct the YAML file by filling in the interactive form.
 
@@ -36,6 +39,7 @@ If you're unsure about what a specific field means, hover your mouse over its ti
 
 In this example, we first fill in the `Structure`, `Trajectory`, and `Output YAML` fields, which are required. We then fill in the required parameters for the analysis type. Using the radio buttons, you can select between calculating order parameters for atomistic, coarse-grained, and united-atom systems.
 
+> [!NOTE]
 > The version of GUIorder displayed in the title is the same as the version of `gorder` it uses, i.e., GUIorder is guaranteed to behave the same as the corresponding version of `gorder`. If you care about [semantic versioning](https://semver.org/), you should know that while `gorder` follows it, GUIorder does **not**.
 
 <img src="guiorder/2_guiorder_basic.png" width="402" height="486">

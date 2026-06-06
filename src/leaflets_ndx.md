@@ -68,6 +68,7 @@ leaflets: !FromNdx
 
 This pattern matches all NDX files in the current directory whose names start with `"leaflets"`, such as `leaflets0001.ndx`, `leaflets0002.ndx`, as well as `leafletsABCD.ndx`, `leafletsX.ndx`, and similar files, if they exist.
 
+> [!IMPORTANT]
 > Glob returns files in lexicographic order based on filenames. As a result, `leaflets10.ndx` may appear before `leaflets2.ndx`. Always verify the order of NDX files and ensure that filenames are structured so that lexicographic and numerical ordering align. For example, when dealing with frames 1–9999, use filenames like `leaflets0001.ndx` to `leaflets9999.ndx` to maintain the correct order.
 
 ## Assignments for every Nth frame

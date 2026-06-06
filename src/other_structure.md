@@ -25,6 +25,7 @@ output: order.yaml
 
 Connectivity information will be read from `system.bnd`. *Note that the connectivity data in the bonds file **overrides** even information in the provided PDB or TPR file.*
 
+> [!IMPORTANT]
 > `gorder` identifies the file format based on the file extension: `.tpr` for TPR files, `.gro` for GRO files, `.pdb` for PDB files, and `.pqr` for PQR files. Ensure that the file is named correspondingly.
 
 ## Specification of the bonds file

@@ -79,6 +79,7 @@ C24        0.2165 ± 0.0022  |  0.2158 ± 0.0035  |  0.2172 ± 0.0038  |        
 (...)
 ```
 
+> [!NOTE]
 > Error estimates are currently **not** available for individual [ordermaps](ordermaps.md).
 
 ## Changing the number of blocks

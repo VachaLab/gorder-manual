@@ -16,6 +16,7 @@ output: order.yaml
 
 Note that if other frames in the trajectory share the same simulation time, `gorder` will analyze all of them. The tool only filters out duplicate frames at the boundaries between individual files.
 
+> [!NOTE]
 > Trajectory concatenation is supported **only for XTC and TRR** files. All files must be of the same trajectory type; concatenating XTC files with TRR files is not supported.
 
 Alternatively, instead of listing all trajectory files, you can specify them using a glob pattern:
@@ -30,4 +31,5 @@ output: order.yaml
 
 In this case, `gorder` will read all XTC files in the current directory whose names start with `"md"`, such as `md1.xtc`, `md2.xtc`, `md3.xtc`, as well as `mdXYZ.xtc`, `md239474.xtc`, and similar files, if they exist.
 
+> [!IMPORTANT]
 > Glob returns files in lexicographic order based on filenames. As a result, `md10.xtc` may appear before `md2.xtc`. Always verify the order of XTC files and ensure that filenames are structured so that lexicographic and numerical ordering align. For example, when dealing with trajectories 1–99, use filenames like `md01.xtc` to `md99.xtc` to maintain the correct order.

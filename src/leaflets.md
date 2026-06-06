@@ -6,6 +6,7 @@ To do this, you need to specify a method for classifying lipids into membrane le
 
 There are five leaflet classification methods available in `gorder`: `global`, `local`, `individual`, `spherical clustering`, and `clustering`. In case you are not satisfied with any of them, you can also [assign lipids into leaflets manually](manual_leaflets.md).
 
+> [!TIP]
 > Quick recommendations:
 > - small planar membrane -> [`global method`](#global-method)
 > - large planar or slightly curved membrane -> [`individual method`](#individual-method)
@@ -117,6 +118,7 @@ leaflets: !Clustering
 
 With this option enabled, any lipid that would normally be assigned to the `upper` leaflet based on the rules described above will instead be classified as part of the `lower` leaflet. Conversely, lipids that should be assigned to the `lower` leaflet will be actually assigned to the `upper` leaflet.
 
+> [!TIP]
 > The `flip` option can be used with any leaflet classification method, but it is typically not very useful for anything else than the clustering method.
 
 ## Classification frequency
@@ -135,6 +137,7 @@ leaflets: !Local
   frequency: !Once
 ```
 
+> [!TIP]
 > Using `frequency: !Once` is especially useful for the local and clustering classification methods which are computationally expensive.
 
 ### Every N frames
@@ -148,7 +151,8 @@ leaflets: !Global
   frequency: !Every 10
 ```
 
-> **Important note:** The frequency applies to **analyzed** trajectory frames. For instance, if the classification frequency is set to 10 and the analysis step size is 5 (see [Analyzing a part of the trajectory](timerange.md)), leaflet classification will occur every **50th** (10×5) frame in the input trajectory.
+> [!IMPORTANT]
+> The frequency applies to **analyzed** trajectory frames. For instance, if the classification frequency is set to 10 and the analysis step size is 5 (see [Analyzing a part of the trajectory](timerange.md)), leaflet classification will occur every **50th** (10×5) frame in the input trajectory.
 
 ## Membrane normal
 
